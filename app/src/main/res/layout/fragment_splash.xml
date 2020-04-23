@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
+        android:id="@+id/logo_dbmaster"
+        android:src="@drawable/ic_logo_dbmaster"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="80dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/label_dbmaster"
+        android:text="편하고 쉬운 데이터 관리를 해보세요."
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/logo_dbmaster"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
