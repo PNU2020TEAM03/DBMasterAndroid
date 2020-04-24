@@ -30,22 +30,26 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/ed_serverURL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="서버 URL 을 입력해 주세요" />
 
         <EditText
+            android:id="@+id/ed_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="DB 계정을 입력해 주세요" />
 
         <EditText
+            android:id="@+id/ed_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="DB 비밀번호를 입력해 주세요." />
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#000000"
