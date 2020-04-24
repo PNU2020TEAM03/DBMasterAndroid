@@ -10,7 +10,8 @@ import com.loopj.android.http.RequestParams;
 import java.util.Locale;
 
 public class Network {
-    public static String DEV_URL = "http://106.10.36.21";
+    //TODO URL 바꿔야함
+    public static String DEV_URL = "http://100.10.30.01";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
