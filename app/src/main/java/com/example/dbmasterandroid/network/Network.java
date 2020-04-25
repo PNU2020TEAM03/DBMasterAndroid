@@ -1,8 +1,8 @@
-package com.example.dbmasterandroid.Network;
+package com.example.dbmasterandroid.network;
 
 import android.app.Activity;
 
-import com.example.dbmasterandroid.Utils.Useful;
+import com.example.dbmasterandroid.utils.Useful;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
