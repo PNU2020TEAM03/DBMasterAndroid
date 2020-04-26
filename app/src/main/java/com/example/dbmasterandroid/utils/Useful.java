@@ -1,4 +1,4 @@
-package com.example.dbmasterandroid.Utils;
+package com.example.dbmasterandroid.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;

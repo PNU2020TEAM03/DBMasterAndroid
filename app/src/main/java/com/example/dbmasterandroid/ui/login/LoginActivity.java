@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.dbmasterandroid.MainActivity;
-import com.example.dbmasterandroid.Network.Network;
+import com.example.dbmasterandroid.network.Network;
 import com.example.dbmasterandroid.R;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -23,7 +23,7 @@ import cz.msebera.android.httpclient.Header;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText ed_serverURL, ed_id, ed_pw;
-    private Button btn_login;
+    private Button btn_login,btn_signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         btn_login = findViewById(R.id.btn_login);
         btn_login.setOnClickListener(this);
+        btn_signup = findViewById(R.id.btn_signup);
+        btn_signup.setOnClickListener(this);
     }
 
     private void login() {
@@ -101,6 +103,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btn_login:
                 Toast.makeText(getApplicationContext(), "Login Clicked", Toast.LENGTH_SHORT).show();
                 login();
+                break;
+            case R.id.btn_signup:
+                Toast.makeText(getApplicationContext(), "회원가입 Clicked", Toast.LENGTH_SHORT).show();
                 break;
         }
 
