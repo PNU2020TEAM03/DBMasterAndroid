@@ -92,7 +92,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_checkid:
                 Toast.makeText(getContext(), "사용할 수 없는 ID입니다", Toast.LENGTH_SHORT).show();
-
         }
     }
 

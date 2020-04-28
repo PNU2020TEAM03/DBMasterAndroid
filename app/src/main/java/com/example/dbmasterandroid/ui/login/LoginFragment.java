@@ -1,19 +1,23 @@
 package com.example.dbmasterandroid.ui.login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.dbmasterandroid.ui.main.MainActivity;
-import com.example.dbmasterandroid.network.Network;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavAction;
+import androidx.navigation.NavHostController;
+import androidx.navigation.Navigation;
+
 import com.example.dbmasterandroid.R;
-import com.example.dbmasterandroid.ui.signup.SignupFragment;
+import com.example.dbmasterandroid.network.Network;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -21,27 +25,28 @@ import org.json.JSONObject;
 
 import cz.msebera.android.httpclient.Header;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private EditText ed_serverURL, ed_id, ed_pw;
     private Button btn_login,btn_signup;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        bindUI();
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        bindUI(view);
+        return view;
     }
 
-    private void bindUI() {
-        ed_serverURL = findViewById(R.id.ed_serverURL);
-        ed_id = findViewById(R.id.ed_id);
-        ed_pw = findViewById(R.id.ed_pw);
+    private void bindUI(View view) {
+        ed_serverURL = view.findViewById(R.id.ed_serverURL);
+        ed_id = view.findViewById(R.id.ed_id);
+        ed_pw = view.findViewById(R.id.ed_pw);
 
-        btn_login = findViewById(R.id.btn_login);
+        btn_login = view.findViewById(R.id.btn_login);
         btn_login.setOnClickListener(this);
-        btn_signup = findViewById(R.id.btn_signup);
+        btn_signup = view.findViewById(R.id.btn_signup);
         btn_signup.setOnClickListener(this);
     }
 
@@ -55,18 +60,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
                     if (response.getString("code").equals("S01")) {
-                        //TODO 성공하면 MainActivity 로 넘김 
-
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
+                        //TODO 성공하면 MainActivity 로 넘김
 
                     } else if (response.getString("code").equals("E00")) {
                         //서버 신택스
-                        Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_LONG).show();
 
                     } else if (response.getString("code").equals("E01")) {
                         //input error
-                        Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_LONG).show();
 
 
                     } else if (response.getString("code").equals("E02")) {
@@ -75,16 +77,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     } else if (response.getString("code").equals("E03")) {
                         //비밀번호 틀림
-                        Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_LONG).show();
 
                     } else if (response.getString("code").equals("E04")) {
                         //이메일로 계정 활성화 안된 계정
-                        Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), response.getString("message"), Toast.LENGTH_LONG).show();
 
                     } else {
 
                         String message = response.getString("message");
-                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -102,12 +104,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login:
-                Toast.makeText(getApplicationContext(), "Login Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Login Clicked", Toast.LENGTH_SHORT).show();
                 login();
                 break;
             case R.id.btn_signup:
-                Intent intent = new Intent(LoginActivity.this, SignupFragment.class);
-                startActivity(intent);
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signupFragment);
                 break;
         }
 
