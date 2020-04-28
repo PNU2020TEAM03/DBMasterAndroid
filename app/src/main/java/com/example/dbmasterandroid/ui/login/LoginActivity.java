@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.dbmasterandroid.MainActivity;
+import com.example.dbmasterandroid.ui.main.MainActivity;
 import com.example.dbmasterandroid.network.Network;
 import com.example.dbmasterandroid.R;
 import com.example.dbmasterandroid.ui.signup.SignupActivity;
