@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.signup.SignupActivity">
+    tools:context=".ui.signup.SignupFragment">
 
     <View
         android:layout_width="1dp"
@@ -46,7 +46,7 @@
                 android:fontFamily="@font/bmhannapro"
                 android:layout_weight="3"
                 android:background="#000000"
-                android:text="확인"
+                android:text="중복확인"
                 android:textSize="20dp"
                 android:textColor="#ffffff"/>
         </LinearLayout>

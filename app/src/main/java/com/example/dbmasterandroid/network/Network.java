@@ -45,4 +45,17 @@ public class Network {
         }
         client.post(DEV_URL + url, params, responseHandler);
     }
+
+    public static void post(Fragment fragment, String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
+        if(Useful.isNetworkConnected(fragment.getContext()) == false){
+            Useful.showAlertDialog(fragment, "알림", "네트워크에 연결되어 있지 않습니다.\n네트워크 연결 후 다시 시도해 주세요.");
+            return;
+        }
+        if(params!=null){
+            String countryCode = Locale.getDefault().getCountry();
+            params.put("country_code", countryCode);
+            params.put("order_device", "pos");
+        }
+        client.post(DEV_URL + url, params, responseHandler);
+    }
 }

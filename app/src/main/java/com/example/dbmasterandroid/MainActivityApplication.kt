@@ -1,6 +1,7 @@
 package com.example.dbmasterandroid
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.android.synthetic.main.activity_main.*
@@ -19,7 +20,11 @@ class MainActivityApplication : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                // TODO 회원가입 화면
+                R.id.signupActivity -> {
+                    main_toolbar.visibility = View.VISIBLE
+                    main_toolbar.title = "회원가입"
+                    supportActionBar?.show()
+                }
             }
         }
     }

@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.dbmasterandroid.ui.main.MainActivity;
 import com.example.dbmasterandroid.network.Network;
 import com.example.dbmasterandroid.R;
-import com.example.dbmasterandroid.ui.signup.SignupActivity;
+import com.example.dbmasterandroid.ui.signup.SignupFragment;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -106,8 +106,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 login();
                 break;
             case R.id.btn_signup:
-                Toast.makeText(getApplicationContext(), "회원가입 Clicked", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                Intent intent = new Intent(LoginActivity.this, SignupFragment.class);
                 startActivity(intent);
                 break;
         }
