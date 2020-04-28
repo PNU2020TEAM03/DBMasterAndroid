@@ -9,4 +9,8 @@
         <item name="android:statusBarColor">@color/black</item>
     </style>
 
+    <style name="ToolBar" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/bmhannapro</item>
+    </style>
+
 </resources>
