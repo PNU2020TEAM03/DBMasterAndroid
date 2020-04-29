@@ -26,7 +26,7 @@ import cz.msebera.android.httpclient.Header;
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
     private EditText ed_serverURL, ed_id, ed_pw;
-    private Button btn_login,btn_signup;
+    private Button btn_login,btn_signup, btn_howtouse;
 
     @Nullable
     @Override
@@ -38,7 +38,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     }
 
     private void bindUI(View view) {
-        ed_serverURL = view.findViewById(R.id.ed_serverURL);
         ed_id = view.findViewById(R.id.ed_id);
         ed_pw = view.findViewById(R.id.ed_pw);
 
@@ -46,6 +45,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         btn_login.setOnClickListener(this);
         btn_signup = view.findViewById(R.id.btn_signup);
         btn_signup.setOnClickListener(this);
+        btn_howtouse = view.findViewById(R.id.btn_howtouse);
+        btn_howtouse.setOnClickListener(this);
     }
 
     private void login() {
@@ -108,6 +109,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_signup:
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signupFragment);
                 break;
+            case R.id.btn_howtouse:
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_howToUseFirst);
         }
 
     }

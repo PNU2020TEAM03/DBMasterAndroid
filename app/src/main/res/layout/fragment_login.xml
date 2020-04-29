@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.login.LoginFragment">
+    tools:context=".ui.login.LoginActivity">
 
     <View
         android:layout_width="1dp"
@@ -26,12 +26,6 @@
             android:layout_height="300dp"
             android:src="@drawable/ic_logo_dbmaster" />
 
-        <EditText
-            android:id="@+id/ed_serverURL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bmhannapro"
-            android:hint="서버 URL을 입력해 주세요" />
 
         <EditText
             android:id="@+id/ed_id"
@@ -46,6 +40,18 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bmhannapro"
             android:hint="DB 비밀번호를 입력해 주세요." />
+
+        <Button
+            android:id="@+id/btn_howtouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/white"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:text="@string/how_to_use"
+            android:fontFamily="@font/bmhannapro"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
 
 
     </LinearLayout>

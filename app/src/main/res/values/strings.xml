@@ -2,4 +2,6 @@
     <string name="app_name">DBMasterAndroid</string>
     <string name="description_dbmaster">어디서나 데이터 관리를 해보세요.</string>
     <string name="title_dbmaster">DB Master</string>
+    <string name="how_to_use"><u>DB Master 를 어떻게 사용하나요?</u></string>
+    <string name="sign_up">회원가입</string>
 </resources>

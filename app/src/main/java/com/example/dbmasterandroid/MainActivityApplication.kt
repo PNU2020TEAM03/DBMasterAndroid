@@ -24,6 +24,8 @@ class MainActivityApplication : AppCompatActivity() {
         val navController = host.navController
 
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowCustomEnabled(true)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
         appBarConfiguration = AppBarConfiguration(setOf(R.id.loginFragment))
         setupActionBarWithNavController(navController, appBarConfiguration)
 
@@ -35,11 +37,15 @@ class MainActivityApplication : AppCompatActivity() {
                 }
                 R.id.loginFragment->{
                     main_toolbar.visibility = View.VISIBLE
-                    main_toolbar.title = "로그인"
+                    toolbar_title.text = "로그인"
                 }
                 R.id.signupFragment->{
                     main_toolbar.visibility = View.VISIBLE
-                    main_toolbar.title = "회원가입"
+                    toolbar_title.text = "회원가입"
+                }
+                R.id.howToUseFirst->{
+                    main_toolbar.visibility = View.VISIBLE
+                    toolbar_title.text = "DB Master"
                 }
             }
         }
