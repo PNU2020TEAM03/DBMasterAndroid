@@ -13,11 +13,12 @@
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
+            android:theme = "@style/ToolBar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="54dp"
             android:id="@+id/main_toolbar"
             android:visibility="gone"
-            android:background="@color/white"
+            android:background="@color/black"
             app:titleMarginStart="30dp">
 
             <TextView
@@ -25,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="25sp"
+                android:textColor="@color/white"
                 android:fontFamily="@font/bmhannapro"
                 android:id="@+id/toolbar_title"/>
 

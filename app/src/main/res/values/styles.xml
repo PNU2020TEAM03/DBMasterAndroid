@@ -10,6 +10,7 @@
     </style>
 
     <style name="ToolBar" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@color/white</item>
         <item name="android:fontFamily">@font/bmhannapro</item>
     </style>
 

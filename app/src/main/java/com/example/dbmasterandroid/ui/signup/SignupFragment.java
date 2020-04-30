@@ -66,11 +66,11 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
                 String confirmpw = signup_confirmpw.getText().toString();
 
                 if(pw.equals(confirmpw)) {
-                    text_checkpw.setText("비밀번호 일치");
+                    text_checkpw.setText("입력한 비밀번호가 일치해요.");
                     text_checkpw.setTextColor(Color.GREEN);
                 }
                 else {
-                    text_checkpw.setText("비밀번호 불일치");
+                    text_checkpw.setText("입력한 비밀번호가 일치하지 않아요.");
                     text_checkpw.setTextColor(Color.RED);
                 }
 
@@ -91,7 +91,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener {
                 signup();
                 break;
             case R.id.btn_checkid:
-                Toast.makeText(getContext(), "사용할 수 없는 ID입니다", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "이미 사용중인 데이터베이스 이름이 있어요.", Toast.LENGTH_SHORT).show();
         }
     }
 
