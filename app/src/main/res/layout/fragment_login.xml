@@ -30,14 +30,14 @@
             android:id="@+id/ed_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmhannapro"
+            android:fontFamily="@font/nanumsquare_acl"
             android:hint="DB 이름을 입력해 주세요" />
 
         <EditText
             android:id="@+id/ed_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmhannapro"
+            android:fontFamily="@font/nanumsquare_acl"
             android:hint="DB 비밀번호를 입력해 주세요." />
 
         <Button
@@ -48,11 +48,9 @@
             android:backgroundTint="@color/white"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:text="@string/how_to_use"
-            android:fontFamily="@font/bmhannapro"
+            android:fontFamily="@font/nanumsquare_acb"
             android:textSize="20sp"
             android:layout_gravity="center"/>
-
-
     </LinearLayout>
 
     <View
@@ -73,7 +71,7 @@
             android:layout_height="60dp"
             android:gravity="center"
             android:layout_weight="3"
-            android:fontFamily="@font/bmhannapro"
+            android:fontFamily="@font/nanumsquare_acb"
             android:text="회원가입"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -84,7 +82,7 @@
             android:layout_height="60dp"
             android:layout_weight="7"
             android:background="#000000"
-            android:fontFamily="@font/bmhannapro"
+            android:fontFamily="@font/nanumsquare_acb"
             android:text="로그인"
             android:textColor="#ffffff"
             android:textSize="20sp"

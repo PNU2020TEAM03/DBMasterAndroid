@@ -14,6 +14,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="How To Use DB Master?"
         android:textSize="35sp"
-        android:fontFamily="@font/bmhannapro"/>
+        android:fontFamily="@font/nanumsquare_acr"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
