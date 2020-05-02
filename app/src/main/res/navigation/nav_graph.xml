@@ -21,22 +21,10 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/signupFragment"
-        android:name="com.example.dbmasterandroid.ui.signup.SignupFragment"
-        android:label="fragment_signup"
-        tools:layout="@layout/fragment_signup" />
-    <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.dbmasterandroid.ui.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_signupFragment"
-            app:destination="@id/signupFragment"
-            app:enterAnim="@anim/slide_enter"
-            app:exitAnim="@anim/slide_exit"
-            app:popEnterAnim="@anim/slide_pop_enter"
-            app:popExitAnim="@anim/slide_pop_exit" />
         <action
             android:id="@+id/action_loginFragment_to_howToUseFirst"
             app:destination="@id/howToUseFirst"
@@ -53,6 +41,13 @@
             app:popExitAnim="@anim/slide_pop_exit"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpMainFragment"
+            app:destination="@id/signUpMainFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
     </fragment>
     <fragment
         android:id="@+id/howToUseFirst"
@@ -64,4 +59,58 @@
         android:name="com.example.dbmasterandroid.ui.tableselect.TableSelectFragment"
         android:label="TableSelectFragment"
         tools:layout="@layout/fragment_table_select"/>
+    <fragment
+        android:id="@+id/signUpIdFragment"
+        android:name="com.example.dbmasterandroid.ui.signup.SignUpIdFragment"
+        android:label="SignUpIdFragment"
+        tools:layout="@layout/fragment_signup_id">
+        <action
+            android:id="@+id/action_signUpIdFragment_to_signUpPwFragment"
+            app:destination="@id/signUpPwFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpMainFragment"
+        android:name="com.example.dbmasterandroid.ui.signup.SignUpMainFragment"
+        android:label="SignUpMainFragment"
+        tools:layout="@layout/fragment_signup_main">
+        <action
+            android:id="@+id/action_signUpMainFragment_to_signUpIdFragment"
+            app:destination="@id/signUpIdFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpPwFragment"
+        android:name="com.example.dbmasterandroid.ui.signup.SignUpPwFragment"
+        android:label="SignUpPwFragment"
+        tools:layout="@layout/fragment_signup_pw">
+        <action
+            android:id="@+id/action_signUpPwFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.example.dbmasterandroid.ui.signup.SignUpFragment"
+        android:label="SignUpFragment"
+        tools:layout="@layout/fragment_signup">
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit"
+            app:popUpTo="@id/signUpFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

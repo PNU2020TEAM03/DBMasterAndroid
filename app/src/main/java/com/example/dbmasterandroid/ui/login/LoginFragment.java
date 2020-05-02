@@ -107,7 +107,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 login();
                 break;
             case R.id.btn_signup:
-                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signupFragment);
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signUpMainFragment);
                 break;
             case R.id.btn_howtouse:
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_howToUseFirst);

@@ -42,7 +42,8 @@ class MainActivityApplication : AppCompatActivity() {
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "로그인"
                 }
-                R.id.signupFragment->{
+                R.id.signUpIdFragment, R.id.signUpMainFragment,
+                R.id.signUpPwFragment, R.id.signUpFragment->{
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "회원가입"
                 }
@@ -50,6 +51,7 @@ class MainActivityApplication : AppCompatActivity() {
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "DB Master"
                 }
+
             }
         }
     }
