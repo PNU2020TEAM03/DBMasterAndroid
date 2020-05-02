@@ -17,7 +17,8 @@
             app:exitAnim="@anim/fragment_fade_exit"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"
-            app:popUpTo="@id/splashFragment" />
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -32,21 +33,35 @@
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
         <action
             android:id="@+id/action_loginFragment_to_howToUseFirst"
             app:destination="@id/howToUseFirst"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
+        <action
+            android:id="@+id/action_loginFragment_to_tableSelectFragment"
+            app:destination="@id/tableSelectFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/howToUseFirst"
         android:name="com.example.dbmasterandroid.ui.howtouse.HowToUseFirst"
         android:label="HowToUseFirst"
         tools:layout="@layout/fragment_howtouse_first"/>
+    <fragment
+        android:id="@+id/tableSelectFragment"
+        android:name="com.example.dbmasterandroid.ui.tableselect.TableSelectFragment"
+        android:label="TableSelectFragment"
+        tools:layout="@layout/fragment_table_select"/>
 </navigation>

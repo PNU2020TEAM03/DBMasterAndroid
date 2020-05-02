@@ -27,7 +27,7 @@
                 android:layout_gravity="center"
                 android:textSize="25sp"
                 android:textColor="@color/white"
-                android:fontFamily="@font/bmhannapro"
+                android:fontFamily="@font/nanumsquare_acb"
                 android:id="@+id/toolbar_title"/>
 
         </androidx.appcompat.widget.Toolbar>

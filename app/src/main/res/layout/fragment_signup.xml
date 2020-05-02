@@ -36,14 +36,14 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:layout_marginRight="10dp"
-                android:fontFamily="@font/bmhannapro"
+                android:fontFamily="@font/nanumsquare_acl"
                 android:hint="생성할 DB 이름을 입력해주세요."/>
             
             <Button
                 android:id="@+id/btn_checkid"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bmhannapro"
+                android:fontFamily="@font/nanumsquare_acb"
                 android:layout_weight="3"
                 android:background="#000000"
                 android:text="중복확인"
@@ -56,21 +56,21 @@
             android:id="@+id/signup_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmhannapro"
+            android:fontFamily="@font/nanumsquare_acl"
             android:hint="비밀번호"/>
 
         <EditText
             android:id="@+id/signup_confirmpw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmhannapro"
+            android:fontFamily="@font/nanumsquare_acl"
             android:hint="비밀번호 확인"/>
 
         <TextView
             android:id="@+id/checkpw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bmhannapro"
+            android:fontFamily="@font/nanumsquare_acr"
             android:textSize="15dp"/>
 
 
@@ -86,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#000000"
-        android:fontFamily="@font/bmhannapro"
+        android:fontFamily="@font/nanumsquare_acb"
         android:text="회원가입"
         android:textColor="#ffffff"
         android:textSize="20dp"

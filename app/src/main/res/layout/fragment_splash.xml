@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/label_dbmaster"
-        android:fontFamily="@font/bmhannapro"
+        android:fontFamily="@font/nanumsquare_acb"
         android:text="@string/description_dbmaster"
         android:textSize="25sp"
         app:layout_constraintTop_toBottomOf="@+id/logo_dbmaster"
