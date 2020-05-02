@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            
+
             <EditText
                 android:id="@+id/signup_id"
                 android:layout_width="0dp"
@@ -37,7 +37,7 @@
                 android:layout_weight="7"
                 android:layout_marginRight="10dp"
                 android:fontFamily="@font/bmhannapro"
-                android:hint="ID"/>
+                android:hint="생성할 DB 이름을 입력해주세요."/>
             
             <Button
                 android:id="@+id/btn_checkid"
