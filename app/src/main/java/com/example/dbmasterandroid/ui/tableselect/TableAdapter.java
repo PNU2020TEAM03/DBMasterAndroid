@@ -36,7 +36,6 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         viewHolder.setItem(item);
     }
 
-
     // 전체 아이템이 몇 개 인지 확인 후 반환
     @Override
     public int getItemCount() {

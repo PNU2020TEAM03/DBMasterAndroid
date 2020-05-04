@@ -38,7 +38,6 @@ public class TableSelectFragment extends Fragment {
         adapter.addItem(new Table("주소"));
         adapter.addItem(new Table("학교"));
 
-
         //리사이클러뷰에 어댑터 설정
         recyclerView.setAdapter(adapter);
 
