@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +30,7 @@ public class TableSelectFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(layoutManager);
-        TableAdapter adapter = new TableAdapter();
+        final TableAdapter adapter = new TableAdapter();
 
         adapter.addItem(new Table("tableName"));
         adapter.addItem(new Table("개인정보"));
@@ -40,5 +41,16 @@ public class TableSelectFragment extends Fragment {
 
         //리사이클러뷰에 어댑터 설정
         recyclerView.setAdapter(adapter);
+
+        //어댑터에 리스너 설정
+        adapter.setOnItemClickListener(new onTableItemClickListener() {
+            @Override
+            public void onItemClick(TableAdapter.ViewHolder holder, View view, int position) {
+                //아이템 클릭시 어댑터에서 해당 아이템의 Table 객체 가져오기
+                Table item = adapter.getItem(position);
+                // test message
+                Toast.makeText(getContext(), item.getTableName() + " 테이블 선택됨", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

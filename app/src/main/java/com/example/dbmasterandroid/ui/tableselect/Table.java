@@ -9,7 +9,7 @@ public class Table {
         this.tableName = tableName;
     }
 
-    public String getTableTitle() {
+    public String getTableName() {
         return tableName;
     }
 
