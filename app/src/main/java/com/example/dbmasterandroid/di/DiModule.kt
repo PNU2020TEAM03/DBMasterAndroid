@@ -1,7 +1,6 @@
 package com.example.dbmasterandroid.di
 
-import android.view.View
-import com.example.dbmasterandroid.ui.signup.SignUpFragment
+import com.example.dbmasterandroid.ui.login.LoginViewModel
 import com.example.dbmasterandroid.ui.signup.SignUpViewModel
 import com.example.dbmasterandroid.ui.splash.SplashViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -15,4 +14,5 @@ val compositeDisposable = module {
 val viewModelPart = module {
     viewModel { SplashViewModel() }
     viewModel { SignUpViewModel(get(), get()) }
+    viewModel { LoginViewModel(get(), get()) }
 }

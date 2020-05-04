@@ -13,7 +13,7 @@ import java.util.Locale;
 
 public class Network {
     //TODO URL 바꿔야함
-    public static String DEV_URL = "http://100.10.30.01";
+    public static String DEV_URL = "http://10.0.2.2:8081";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 

@@ -16,7 +16,6 @@ class SignUpIdFragment : Fragment() {
 
     private val viewModel: SignUpViewModel by sharedViewModel()
     private var name: String? = null
-    private var clickEvent = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)

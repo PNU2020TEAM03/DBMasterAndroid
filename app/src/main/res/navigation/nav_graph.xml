@@ -22,16 +22,9 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.dbmasterandroid.ui.login.LoginFragment"
         android:label="fragment_login"
+        android:name="com.example.dbmasterandroid.ui.login.LoginFragment"
         tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_howToUseFirst"
-            app:destination="@id/howToUseFirst"
-            app:enterAnim="@anim/slide_enter"
-            app:exitAnim="@anim/slide_exit"
-            app:popEnterAnim="@anim/slide_pop_enter"
-            app:popExitAnim="@anim/slide_pop_exit" />
         <action
             android:id="@+id/action_loginFragment_to_tableSelectFragment"
             app:destination="@id/tableSelectFragment"
@@ -49,11 +42,6 @@
             app:popEnterAnim="@anim/slide_pop_enter"
             app:popExitAnim="@anim/slide_pop_exit" />
     </fragment>
-    <fragment
-        android:id="@+id/howToUseFirst"
-        android:name="com.example.dbmasterandroid.ui.howtouse.HowToUseFirst"
-        android:label="HowToUseFirst"
-        tools:layout="@layout/fragment_howtouse_first"/>
     <fragment
         android:id="@+id/tableSelectFragment"
         android:name="com.example.dbmasterandroid.ui.tableselect.TableSelectFragment"
