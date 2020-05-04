@@ -13,8 +13,10 @@ import com.example.dbmasterandroid.R;
 
 import java.util.ArrayList;
 
-public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> {
+// 어댑터 클래스가 새로 정의한 리스너 인터페이스 구현하도록 하기
+public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> implements onTableItemClickListener {
     ArrayList<Table> items = new ArrayList<Table>();
+    onTableItemClickListener listener;
 
     @NonNull
     @Override
@@ -24,7 +26,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         View itemView = inflater.inflate(R.layout.activity_table_item, viewGroup, false);
 
         // 뷰홀더 객체를 생성하면서 뷰 객체를 전달하고 그 뷰홀더 객체를 반환
-        return new ViewHolder(itemView);
+        return new ViewHolder(itemView, this);
     }
 
     // 뷰홀더가 재사용될 때 호출
@@ -33,7 +35,6 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         Table item = items.get(position);
         viewHolder.setItem(item);
     }
-
 
     // 전체 아이템이 몇 개 인지 확인 후 반환
     @Override
@@ -58,19 +59,45 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         return items.set(position, item);
     }
 
+    // 외부에서 리스너를 설정할 수 있도록 메서드 추가
+    public void setOnItemClickListener(onTableItemClickListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public void onItemClick(ViewHolder holder, View view, int position) {
+        if(listener != null) {
+            listener.onItemClick(holder, view, position);
+        }
+
+    }
+
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
 
         // 뷰홀더 생성자로 전달되는 뷰 객체 참조
-        public ViewHolder(View itemView) {
+        public ViewHolder(View itemView, final onTableItemClickListener listener) {
             super(itemView);
 
             // 뷰 객체에 들어 있는 텍스트뷰 참조
             textView = itemView.findViewById(R.id.textView);
+
+            // 아이템 뷰에 onClickListener 설정
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+
+                    //아이템 뷰 클릭시 미리 정의한 다른 리스너의 메서드 호출
+                    if (listener != null) {
+                        listener.onItemClick(ViewHolder.this, view, position);
+                    }
+                }
+            });
         }
 
         public void setItem(Table item) {
-            textView.setText(item.getTableTitle());
+            textView.setText(item.getTableName());
         }
     }
 }
