@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/pw_input_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 입력."
+        android:textSize="36sp"
+        android:fontFamily="@font/nanumsquare_aceb"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/pw_input_label1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:text="DB Master에서 사용할 비밀번호를 입력해주세요."
+        android:textSize="15sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/pw_input_title"
+        app:layout_constraintTop_toBottomOf="@id/pw_input_title"/>
+
+    <TextView
+        android:id="@+id/pw_input_label2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:text="8자 이상 16자 이하, 영문/숫자/특수문자 조합이 가능해요."
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintLeft_toLeftOf="@id/pw_input_title"
+        app:layout_constraintTop_toBottomOf="@id/pw_input_label1"/>
+
+    <EditText
+        android:id="@+id/pw_input"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nanumsquare_acl"
+        android:maxLines="1"
+        android:inputType="text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pw_input_label2"
+        android:background="@drawable/background_edittext"
+        android:paddingStart="20dp"
+        android:hint="비밀번호를 입력해주세요."/>
+
+    <TextView
+        android:id="@+id/pw_valid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="15dp"
+        app:layout_constraintLeft_toLeftOf="@id/pw_input"
+        app:layout_constraintRight_toRightOf="@id/pw_input"
+        app:layout_constraintTop_toBottomOf="@id/pw_input"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textSize="15sp"/>
+
+    <Button
+        android:id="@+id/btn_signup_next_pw"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:text="다음으로"
+        android:textSize="20sp"
+        android:fontFamily="@font/nanumsquare_acb"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

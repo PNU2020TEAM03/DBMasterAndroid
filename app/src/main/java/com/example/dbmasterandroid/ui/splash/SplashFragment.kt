@@ -29,7 +29,7 @@ class SplashFragment : Fragment() {
                 1 -> {
                     Handler().postDelayed( Runnable {
                         findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-                    }, 1500L)
+                    }, 2000L)
                 }
             }
         })

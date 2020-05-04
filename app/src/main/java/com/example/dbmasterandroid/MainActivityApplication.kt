@@ -28,7 +28,8 @@ class MainActivityApplication : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.loginFragment))
+        appBarConfiguration = AppBarConfiguration(setOf(
+                R.id.loginFragment, R.id.tableSelectFragment))
         main_toolbar.navigationIcon?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
@@ -42,13 +43,14 @@ class MainActivityApplication : AppCompatActivity() {
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "로그인"
                 }
-                R.id.signupFragment->{
+                R.id.signUpIdFragment, R.id.signUpMainFragment,
+                R.id.signUpPwFragment, R.id.signUpFragment->{
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "회원가입"
                 }
-                R.id.howToUseFirst->{
+                R.id.tableSelectFragment->{
                     main_toolbar.visibility = View.VISIBLE
-                    toolbar_title.text = "DB Master"
+                    toolbar_title.text = "테이블 선택"
                 }
             }
         }

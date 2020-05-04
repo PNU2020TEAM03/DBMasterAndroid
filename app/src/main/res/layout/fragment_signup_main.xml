@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/sign_up_last_logo"
+        android:id="@+id/sign_up_logo"
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:src="@drawable/ic_logo_dbmaster"
@@ -15,40 +15,39 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
-        android:hint="최우영 님"
         android:layout_marginTop="20dp"
-        android:id="@+id/sign_up_complete_label1"
+        android:id="@+id/sign_up_main_label1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_last_logo"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:fontFamily="@font/nanumsquare_acr"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/sign_up_complete_label2"
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_complete_label1"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_logo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:fontFamily="@font/nanumsquare_acr"
         android:textSize="20sp"
-        android:text="아래버튼을 눌러 가입을 완료하세요."/>
+        android:text="DB Master 에 가입하고"/>
+
+    <TextView
+        android:id="@+id/sign_up_main_label2"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sign_up_main_label1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textSize="20sp"
+        android:text="편리하게 데이터를 관리해보세요."/>
 
     <Button
-        android:id="@+id/btn_signup_complete"
+        android:id="@+id/btn_signup_next_main"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:backgroundTint="@color/black"
         android:textColor="@color/white"
-        android:text="가입완료하기"
+        android:text="가입하기"
         android:textSize="20sp"
         android:fontFamily="@font/nanumsquare_acb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
