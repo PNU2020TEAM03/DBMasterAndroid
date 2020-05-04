@@ -49,7 +49,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/nanumsquare_acl"
         android:maxLines="1"
-        android:inputType="text"
+        android:inputType="textPassword"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pw_input_label2"

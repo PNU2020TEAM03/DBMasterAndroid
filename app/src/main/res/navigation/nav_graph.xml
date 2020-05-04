@@ -46,7 +46,17 @@
         android:id="@+id/tableSelectFragment"
         android:name="com.example.dbmasterandroid.ui.tableselect.TableSelectFragment"
         android:label="TableSelectFragment"
-        tools:layout="@layout/fragment_table_select"/>
+        tools:layout="@layout/fragment_table_select">
+        <action
+            android:id="@+id/action_tableSelectFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit"
+            app:popUpTo="@id/tableSelectFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/signUpIdFragment"
         android:name="com.example.dbmasterandroid.ui.signup.SignUpIdFragment"
@@ -101,4 +111,9 @@
             app:popUpTo="@id/signUpFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.dbmasterandroid.ui.main.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main"/>
 </navigation>

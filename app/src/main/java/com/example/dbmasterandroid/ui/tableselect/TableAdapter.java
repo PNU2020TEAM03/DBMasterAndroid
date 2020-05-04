@@ -23,7 +23,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
         // 인플레이션으로 통해 뷰 객체 만들기
-        View itemView = inflater.inflate(R.layout.activity_table_item, viewGroup, false);
+        View itemView = inflater.inflate(R.layout.item_table_select_list, viewGroup, false);
 
         // 뷰홀더 객체를 생성하면서 뷰 객체를 전달하고 그 뷰홀더 객체를 반환
         return new ViewHolder(itemView, this);

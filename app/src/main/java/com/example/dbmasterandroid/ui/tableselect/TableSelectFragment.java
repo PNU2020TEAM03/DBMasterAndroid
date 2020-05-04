@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,6 +50,8 @@ public class TableSelectFragment extends Fragment {
                 Table item = adapter.getItem(position);
                 // test message
                 Toast.makeText(getContext(), item.getTableName() + " 테이블 선택됨", Toast.LENGTH_SHORT).show();
+
+                Navigation.findNavController(view).navigate(R.id.action_tableSelectFragment_to_mainFragment);
             }
         });
     }

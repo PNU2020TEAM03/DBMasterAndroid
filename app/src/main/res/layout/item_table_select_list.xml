@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardBackgroundColor="#FFFFFFFF"
+        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="10dp"
         app:cardUseCompatPadding="true">
         <LinearLayout
@@ -16,23 +16,21 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:padding="5dp"
-                android:src="@drawable/database_image"
-                />
+                android:src="@drawable/ic_list"/>
 
             <TextView
+                android:text="최우영 님의 테이블"
+                android:paddingStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/textView"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:fontFamily="@font/nanumsquare_acr"
                 android:textColor="#000000"
-                android:gravity="center_vertical"
-                >
-            </TextView>
-
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

@@ -29,16 +29,14 @@ class MainActivityApplication : AppCompatActivity() {
         supportActionBar!!.setDisplayShowCustomEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.loginFragment, R.id.tableSelectFragment))
+                R.id.loginFragment,
+                R.id.tableSelectFragment,
+                R.id.mainFragment))
         main_toolbar.navigationIcon?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.splashFragment->{
-                    main_toolbar.visibility = View.INVISIBLE
-                    supportActionBar?.hide()
-                }
                 R.id.loginFragment->{
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "로그인"
@@ -51,6 +49,9 @@ class MainActivityApplication : AppCompatActivity() {
                 R.id.tableSelectFragment->{
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "테이블 선택"
+                }
+                else->{
+                    main_toolbar.visibility = View.INVISIBLE
                 }
             }
         }

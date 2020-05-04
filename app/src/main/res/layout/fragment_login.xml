@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:src="@drawable/ic_logo_dbmaster"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -41,7 +41,7 @@
         android:fontFamily="@font/nanumsquare_acl"
         app:layout_constraintTop_toBottomOf="@+id/ed_id"
         android:maxLines="1"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingStart="20dp"
         android:hint="DB 비밀번호를 입력해 주세요." />
 

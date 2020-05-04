@@ -34,7 +34,7 @@ class LoginFragment: Fragment() {
             name = ed_id.text.toString()
             pw = ed_pw.text.toString()
 
-            if(name != null && pw != null) {
+            if(name != "" && pw != "") {
                 viewModel.connect(name!!, pw!!)
             } else {
                 connection_valid.text = "아이디나 비밀번호를 입력하지 않았습니다."
