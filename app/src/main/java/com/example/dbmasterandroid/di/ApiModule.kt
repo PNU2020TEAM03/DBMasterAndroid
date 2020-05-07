@@ -2,10 +2,13 @@ package com.example.dbmasterandroid.di
 
 import com.example.dbmasterandroid.data.ConnectionRepository
 import com.example.dbmasterandroid.data.SignUpRepository
+import com.example.dbmasterandroid.data.TableRepository
 import com.example.dbmasterandroid.data.api.ConnectionService
 import com.example.dbmasterandroid.data.api.SignUpService
+import com.example.dbmasterandroid.data.api.TableControlService
 import com.example.dbmasterandroid.data.repository.ConnectionRepositoryImpl
 import com.example.dbmasterandroid.data.repository.SignUpRepositoryImpl
+import com.example.dbmasterandroid.data.repository.TableRepositoryImpl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -20,9 +23,11 @@ val apiModule = module {
     factory { provideOkHttpClient() }
     factory { provideSignUpService(provideDBMasterRetrofit(get())) }
     factory { provideConnectionService(provideDBMasterRetrofit(get())) }
+    factory { provideTableControlService(provideDBMasterRetrofit(get())) }
 
     single<SignUpRepository> { SignUpRepositoryImpl(get()) }
     single<ConnectionRepository> { ConnectionRepositoryImpl(get()) }
+    single<TableRepository> { TableRepositoryImpl(get()) }
 }
 
 fun provideOkHttpClient(): OkHttpClient {
@@ -43,3 +48,4 @@ fun provideDBMasterRetrofit(okHttpClient: OkHttpClient): Retrofit {
 
 fun provideSignUpService(retrofit: Retrofit): SignUpService = retrofit.create(SignUpService::class.java)
 fun provideConnectionService(retrofit: Retrofit): ConnectionService = retrofit.create(ConnectionService::class.java)
+fun provideTableControlService(retrofit: Retrofit): TableControlService = retrofit.create(TableControlService::class.java)

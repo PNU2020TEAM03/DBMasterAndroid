@@ -44,7 +44,7 @@
     </fragment>
     <fragment
         android:id="@+id/tableSelectFragment"
-        android:name="com.example.dbmasterandroid.ui.tableselect.TableSelectFragment"
+        android:name="com.example.dbmasterandroid.ui.table.select.TableSelectFragment"
         android:label="TableSelectFragment"
         tools:layout="@layout/fragment_table_select">
         <action

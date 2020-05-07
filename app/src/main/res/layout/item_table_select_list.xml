@@ -1,37 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@drawable/background_table_list"
+    android:layout_margin="5dp">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="10dp"
-        app:cardUseCompatPadding="true">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/list_icon"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_list"/>
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_list"/>
+    <TextView
+        android:text="최우영 님의 테이블"
+        android:paddingStart="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/table_name"
+        android:textSize="25sp"
+        android:fontFamily="@font/nanumsquare_acr"
+        app:layout_constraintLeft_toRightOf="@+id/list_icon"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="#000000"/>
 
-            <TextView
-                android:text="최우영 님의 테이블"
-                android:paddingStart="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/textView"
-                android:textSize="25sp"
-                android:fontFamily="@font/nanumsquare_acr"
-                android:textColor="#000000"
-                android:gravity="center_vertical"/>
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
