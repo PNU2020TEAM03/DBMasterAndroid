@@ -43,30 +43,19 @@ class MainActivityApplication : AppCompatActivity() {
                 R.id.tableSelectFragment,
                 R.id.mainFragment))
 
-        main_toolbar.navigationIcon?.setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP)
+        main_toolbar.navigationIcon?.setTint(Color.WHITE)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment->{
-                    main_toolbar.visibility = View.VISIBLE
-                    toolbar_title.text = "로그인"
-                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                }
                 R.id.signUpIdFragment, R.id.signUpMainFragment,
                 R.id.signUpPwFragment, R.id.signUpFragment->{
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "회원가입"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
-                R.id.tableSelectFragment->{
-                    main_toolbar.visibility = View.VISIBLE
-                    toolbar_title.text = "테이블 선택"
-                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                }
                 R.id.mainFragment->{
                     main_toolbar.visibility = View.VISIBLE
-                    toolbar_title.text = ""
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                 }
                 else->{

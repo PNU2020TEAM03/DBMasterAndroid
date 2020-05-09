@@ -56,6 +56,13 @@
             app:popExitAnim="@anim/slide_pop_exit"
             app:popUpTo="@id/tableSelectFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_tableSelectFragment_to_tableCreateFragment"
+            app:destination="@id/tableCreateFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
     </fragment>
     <fragment
         android:id="@+id/signUpIdFragment"
@@ -116,4 +123,9 @@
         android:name="com.example.dbmasterandroid.ui.main.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main"/>
+    <fragment
+        android:id="@+id/tableCreateFragment"
+        android:name="com.example.dbmasterandroid.ui.table.create.TableCreateFragment"
+        android:label="TableCreateFragment"
+        tools:layout="@layout/fragment_table_create"/>
 </navigation>
