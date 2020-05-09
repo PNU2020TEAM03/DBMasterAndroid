@@ -57,8 +57,8 @@
             app:popUpTo="@id/tableSelectFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_tableSelectFragment_to_tableCreateFragment"
-            app:destination="@id/tableCreateFragment"
+            android:id="@+id/action_tableSelectFragment_to_tableCreateNameFragment"
+            app:destination="@id/tableCreateNameFragment"
             app:enterAnim="@anim/slide_enter"
             app:exitAnim="@anim/slide_exit"
             app:popEnterAnim="@anim/slide_pop_enter"
@@ -124,8 +124,8 @@
         android:label="MainFragment"
         tools:layout="@layout/fragment_main"/>
     <fragment
-        android:id="@+id/tableCreateFragment"
-        android:name="com.example.dbmasterandroid.ui.table.create.TableCreateFragment"
-        android:label="TableCreateFragment"
-        tools:layout="@layout/fragment_table_create"/>
+        android:id="@+id/tableCreateNameFragment"
+        android:name="com.example.dbmasterandroid.ui.table.create.TableCreateNameFragment"
+        android:label="TableCreateNameFragment"
+        tools:layout="@layout/fragment_table_create_name"/>
 </navigation>
