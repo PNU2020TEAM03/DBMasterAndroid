@@ -18,6 +18,9 @@ class TableSelectViewModel(
     private val _tableListLiveData = MutableLiveData<List<String>>()
     val tableListLiveData: LiveData<List<String>> get() = _tableListLiveData
 
+    private val _tableListSizeLiveData = MutableLiveData<Int>()
+    val tableListSizeLiveData: LiveData<Int> get() = _tableListSizeLiveData
+
     fun getAllTableList(name: String) {
         val dbName = HashMap<String, String>()
         dbName["name"] = name
@@ -28,6 +31,7 @@ class TableSelectViewModel(
                 .subscribe({ result ->
                     tableList = result.value
                     _tableListLiveData.postValue(result.value)
+                    _tableListSizeLiveData.postValue(tableList.size)
                 }, { t ->
                     t.printStackTrace()
                 })

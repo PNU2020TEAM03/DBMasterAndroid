@@ -3,6 +3,7 @@ package com.example.dbmasterandroid.di
 import com.example.dbmasterandroid.ui.login.LoginViewModel
 import com.example.dbmasterandroid.ui.signup.SignUpViewModel
 import com.example.dbmasterandroid.ui.splash.SplashViewModel
+import com.example.dbmasterandroid.ui.table.create.TableCreateViewModel
 import com.example.dbmasterandroid.ui.table.select.TableSelectViewModel
 import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -17,4 +18,5 @@ val viewModelPart = module {
     viewModel { SignUpViewModel(get(), get()) }
     viewModel { LoginViewModel(get(), get()) }
     viewModel { TableSelectViewModel(get(), get()) }
+    viewModel { TableCreateViewModel(get(), get()) }
 }

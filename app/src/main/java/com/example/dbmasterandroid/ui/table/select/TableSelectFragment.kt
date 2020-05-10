@@ -27,6 +27,7 @@ class TableSelectFragment: Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         viewModel.getAllTableList(dbName)
+
         adapter = TableSelectListAdapter(viewModel)
 
         return inflater.inflate(R.layout.fragment_table_select, container, false)
@@ -41,6 +42,19 @@ class TableSelectFragment: Fragment() {
 
         viewModel.tableListLiveData.observe(viewLifecycleOwner, Observer {
             adapter.notifyDataSetChanged()
+        })
+
+        viewModel.tableListSizeLiveData.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                0 -> {
+                    table_select_empty.visibility = View.VISIBLE
+                    table_select_list.visibility = View.GONE
+                }
+                else -> {
+                    table_select_list.visibility = View.VISIBLE
+                    table_select_empty.visibility = View.GONE
+                }
+            }
         })
 
         btn_table_create.setOnClickListener {

@@ -2,7 +2,6 @@ package com.example.dbmasterandroid.ui.signup
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.dbmasterandroid.data.SignUpRepository
 import com.example.dbmasterandroid.utils.RegularExpressionUtil
@@ -95,10 +94,10 @@ class SignUpViewModel(
                     .timeout(5, TimeUnit.SECONDS)
                     .subscribe({ response ->
                         when (response.result) {
-                            "E01", "duplicate" -> {
+                            "E01" -> {
                                 _nameInvalid.call()
                             }
-                            "available" -> {
+                            "S01" -> {
                                 currentID = name
                                 _nameValid.call()
                                 Log.e("Sign Up View Model", "$currentID, $currentPW")
