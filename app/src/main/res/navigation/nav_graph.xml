@@ -127,5 +127,18 @@
         android:id="@+id/tableCreateNameFragment"
         android:name="com.example.dbmasterandroid.ui.table.create.TableCreateNameFragment"
         android:label="TableCreateNameFragment"
-        tools:layout="@layout/fragment_table_create_name"/>
+        tools:layout="@layout/fragment_table_create_name">
+        <action
+            android:id="@+id/action_tableCreateNameFragment_to_tableCreateInfoFragment"
+            app:destination="@id/tableCreateInfoFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/tableCreateInfoFragment"
+        android:name="com.example.dbmasterandroid.ui.table.create.TableCreateInfoFragment"
+        android:label="TableCreateInfoFragment"
+        tools:layout="@layout/fragment_table_create_info"/>
 </navigation>

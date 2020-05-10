@@ -13,7 +13,7 @@ class TableCreateViewModel(
         private val compositeDisposable: CompositeDisposable
 ): ViewModel() {
 
-    private var currentTableName: String? = null
+    var currentTableName: String? = null
 
     private val _tableNameValid: SingleLiveEvent<Any> = SingleLiveEvent()
     val tableNameValid: LiveData<Any> get() = _tableNameValid

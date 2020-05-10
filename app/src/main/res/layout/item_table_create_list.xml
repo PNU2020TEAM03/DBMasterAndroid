@@ -7,15 +7,36 @@
     android:layout_margin="5dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/table_list_center_line"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/table_list_2of3_line"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_percent="0.75"/>
+
     <TextView
-        android:text="테이블 칼럼 이름입니다."
-        android:padding="5dp"
+        android:text="칼럼 이름"
+        android:padding="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/column_name"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:fontFamily="@font/nanumsquare_acr"
+        android:maxLines="1"
+        android:ellipsize="end"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/table_list_center_line"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textColor="#000000"/>
@@ -26,12 +47,31 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/data_type_name"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:fontFamily="@font/nanumsquare_acr"
-        app:layout_constraintLeft_toRightOf="@+id/column_name"
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintLeft_toRightOf="@+id/table_list_center_line"
+        app:layout_constraintRight_toRightOf="@id/table_list_2of3_line"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/primary_or_foreign_key"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/table_list_2of3_line"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:textColor="#000000"/>
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:text="PK"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:textColor="@color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/table_create_info_title"
@@ -29,13 +29,27 @@
         app:layout_constraintTop_toBottomOf="@id/table_create_info_title"
         app:layout_constraintLeft_toLeftOf="@id/table_create_info_title"/>
 
+    <TextView
+        android:id="@+id/table_create_info_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="@id/table_create_info_text"
+        app:layout_constraintRight_toRightOf="@id/table_create_info_text"
+        app:layout_constraintTop_toBottomOf="@id/table_create_info_text"
+        android:text="현재 생성중인 테이블 이름"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
     <androidx.recyclerview.widget.RecyclerView
+        tools:listitem="@layout/item_table_create_list"
         android:id="@+id/table_create_info_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/table_create_info_text"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/table_create_info_name"
         app:layout_constraintBottom_toTopOf="@+id/btn_table_info_add"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
