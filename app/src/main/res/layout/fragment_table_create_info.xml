@@ -22,7 +22,7 @@
         android:id="@+id/table_create_info_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="현재까지 만들어진 테이블의 정보입니다."
+        android:text="현재까지 추가한 테이블의 정보입니다."
         android:fontFamily="@font/nanumsquare_acr"
         android:textSize="15sp"
         android:layout_marginTop="5dp"
