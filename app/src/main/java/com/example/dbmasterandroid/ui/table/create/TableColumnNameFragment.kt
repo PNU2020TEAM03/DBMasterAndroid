@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.R
 import kotlinx.android.synthetic.main.fragment_column_create_name.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -36,6 +37,7 @@ class TableColumnNameFragment: Fragment() {
 
         viewModel.columnNameValid.observe(viewLifecycleOwner, Observer {
             /* TODO 칼럼 데이터 타입 받는 화면으로 넘어가야 함. */
+            findNavController().navigate(R.id.action_tableColumnNameFragment_to_tableColumnTypeFragment)
         })
     }
 }

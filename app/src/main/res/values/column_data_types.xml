@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="column_data_types">
+
+        <item>NUMERIC</item>
+        <item>DATE/TIME</item>
+        <item>CHARACTER/STRING</item>
+        <item>UNICODE CHAR/STR</item>
+        <item>BINARY</item>
+        <item>MISCELLANEOUS</item>
+
+    </string-array>
+</resources>

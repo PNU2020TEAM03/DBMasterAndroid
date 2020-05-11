@@ -1,7 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/column_type_center_line"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"/>
+
+    <TextView
+        android:id="@+id/column_type_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="칼럼 타입 선택."
+        android:textSize="36sp"
+        android:fontFamily="@font/nanumsquare_aceb"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/column_type_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추가하실 테이블 칼럼의 데이터 타입을 선택해주세요."
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/column_type_title"
+        app:layout_constraintLeft_toLeftOf="@id/column_type_title"/>
+
+    <TextView
+        android:id="@+id/current_column_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="@id/column_type_label"
+        app:layout_constraintRight_toRightOf="@id/column_type_label"
+        app:layout_constraintTop_toBottomOf="@id/column_type_label"
+        android:text="현재 생성중인 칼럼 이름"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+    <Spinner
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/column_data_types"
+        android:layout_marginTop="30dp"
+        app:layout_constraintLeft_toLeftOf="@+id/column_type_title"
+        app:layout_constraintTop_toBottomOf="@id/current_column_name"
+        app:layout_constraintRight_toRightOf="@id/column_type_center_line"/>
+
+    <Button
+        android:id="@+id/btn_column_type_next"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:text="다음으로"
+        android:textSize="20sp"
+        android:fontFamily="@font/nanumsquare_acb"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

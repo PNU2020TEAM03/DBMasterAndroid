@@ -153,5 +153,18 @@
         android:id="@+id/tableColumnNameFragment"
         android:name="com.example.dbmasterandroid.ui.table.create.TableColumnNameFragment"
         android:label="TableColumnNameFragment"
-        tools:layout="@layout/fragment_column_create_name"/>
+        tools:layout="@layout/fragment_column_create_name">
+        <action
+            android:id="@+id/action_tableColumnNameFragment_to_tableColumnTypeFragment"
+            app:destination="@id/tableColumnTypeFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/tableColumnTypeFragment"
+        android:name="com.example.dbmasterandroid.ui.table.create.TableColumnTypeFragment"
+        android:label="TableColumnTypeFragment"
+        tools:layout="@layout/fragment_column_create_type"/>
 </navigation>
