@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.R
 import kotlinx.android.synthetic.main.fragment_table_create_info.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -23,5 +24,13 @@ class TableCreateInfoFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         table_create_info_name.text = "현재 테이블: ${viewModel.currentTableName}"
+
+        btn_table_info_add.setOnClickListener {
+            findNavController().navigate(R.id.action_tableCreateInfoFragment_to_tableColumnNameFragment)
+        }
+
+        btn_table_create.setOnClickListener {
+            /* TODO viewmodel에 가지고 있는 리스트 가지고 테이블 생성하고 테이블 선택화면으로 넘어가야함. */
+        }
     }
 }

@@ -58,7 +58,8 @@ class MainActivityApplication : AppCompatActivity() {
                     main_toolbar.visibility = View.VISIBLE
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                 }
-                R.id.tableCreateNameFragment, R.id.tableCreateInfoFragment->{
+                R.id.tableCreateNameFragment, R.id.tableCreateInfoFragment,
+                R.id.tableColumnNameFragment->{
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "테이블 생성"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)

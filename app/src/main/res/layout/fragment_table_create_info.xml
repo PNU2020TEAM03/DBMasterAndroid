@@ -66,12 +66,12 @@
         android:fontFamily="@font/nanumsquare_acr"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@id/btn_table_info"
+        app:layout_constraintBottom_toTopOf="@id/btn_table_create"
         app:layout_constraintLeft_toLeftOf="@id/table_create_info_list"
         app:layout_constraintRight_toRightOf="@id/table_create_info_list"/>
 
     <Button
-        android:id="@+id/btn_table_info"
+        android:id="@+id/btn_table_create"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:backgroundTint="@color/black"
