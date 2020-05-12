@@ -1,13 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="column_data_types">
-
         <item>NUMERIC</item>
         <item>DATE/TIME</item>
         <item>CHARACTER/STRING</item>
         <item>UNICODE CHAR/STR</item>
         <item>BINARY</item>
         <item>MISCELLANEOUS</item>
+    </string-array>
 
+    <string-array name="column_numeric_types">
+        <item>BIT</item>
+        <item>TINYINT</item>
+        <item>SMALLINT</item>
+        <item>INT</item>
+        <item>BIGINT</item>
+        <item>DECIMAL</item>
+        <item>FLOAT</item>
+        <item>REAL</item>
+        <item>NUMERIC</item>
+    </string-array>
+
+    <string-array name="column_datetime_types">
+        <item>DATE</item>
+        <item>TIME</item>
+        <item>DATETIME</item>
+        <item>TIMESTAMP</item>
+        <item>YEAR</item>
+    </string-array>
+
+    <string-array name="column_charStr_types">
+        <item>CHAR</item>
+        <item>VARCHAR</item>
+        <item>TEXT</item>
+    </string-array>
+
+    <string-array name="column_uCharStr_types">
+        <item>NCHAR</item>
+        <item>NVARCHAR</item>
+        <item>NTEXT</item>
+    </string-array>
+
+    <string-array name="column_binary_types">
+        <item>BINARY</item>
+        <item>VARBINARY</item>
+        <item>IMAGE</item>
+    </string-array>
+
+    <string-array name="column_miscellaneous_types">
+        <item>CLOB</item>
+        <item>BLOB</item>
+        <item>XML</item>
+        <item>JSON</item>
+    </string-array>
+
+    <string-array name="column_is_key">
+        <item>아니오</item>
+        <item>예</item>
+    </string-array>
+
+    <string-array name="column_key">
+        <item>PRIMARY KEY</item>
+        <item>FOREIGN KEY</item>
     </string-array>
 </resources>

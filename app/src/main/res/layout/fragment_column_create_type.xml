@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,7 +17,7 @@
         android:id="@+id/column_type_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="칼럼 타입 선택."
+        android:text="칼럼 상세 정보."
         android:textSize="36sp"
         android:fontFamily="@font/nanumsquare_aceb"
         android:textColor="@color/black"
@@ -29,7 +30,7 @@
         android:id="@+id/column_type_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="추가하실 테이블 칼럼의 데이터 타입을 선택해주세요."
+        android:text="추가하실 테이블 칼럼의 상세 정보를 입력하세요."
         android:fontFamily="@font/nanumsquare_acr"
         android:textSize="15sp"
         android:layout_marginTop="5dp"
@@ -40,7 +41,7 @@
         android:id="@+id/current_column_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/column_type_label"
         app:layout_constraintRight_toRightOf="@id/column_type_label"
         app:layout_constraintTop_toBottomOf="@id/column_type_label"
@@ -49,14 +50,157 @@
         android:textColor="@color/black"
         android:textSize="20sp"/>
 
-    <Spinner
+    <TextView
+        android:id="@+id/column_data_types_explain1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/current_column_name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:fontFamily="@font/nanumsquare_acb"
+        android:text="데이터 형식"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/column_data_types_spinner1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:entries="@array/column_data_types"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="@+id/column_type_title"
-        app:layout_constraintTop_toBottomOf="@id/current_column_name"
+        app:layout_constraintTop_toBottomOf="@id/column_data_types_explain1"
         app:layout_constraintRight_toRightOf="@id/column_type_center_line"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/column_data_types_text1"
+        app:layout_constraintLeft_toLeftOf="@id/column_type_center_line"
+        app:layout_constraintTop_toTopOf="@id/column_data_types_spinner1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/column_data_types_spinner1"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:text="NUMERIC"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/column_data_types_explain2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        app:layout_constraintRight_toRightOf = "parent"
+        app:layout_constraintTop_toBottomOf="@+id/column_data_types_spinner1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="상세 데이터 타입"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/column_data_types_spinner2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/column_numeric_types"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/column_type_title"
+        app:layout_constraintTop_toBottomOf="@id/column_data_types_explain2"
+        app:layout_constraintRight_toRightOf="@id/column_type_center_line"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/column_data_types_text2"
+        app:layout_constraintLeft_toLeftOf="@id/column_type_center_line"
+        app:layout_constraintTop_toTopOf="@id/column_data_types_spinner2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/column_data_types_spinner2"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:text="INT"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/column_data_types_explain3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        app:layout_constraintRight_toRightOf = "parent"
+        app:layout_constraintTop_toBottomOf="@+id/column_data_types_spinner2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="데이터 크기"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/column_data_types_size_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="크기를 입력해주세요."
+        android:fontFamily="@font/nanumsquare_acr"
+        android:background="@drawable/background_edittext"
+        android:padding="10dp"
+        android:inputType="numberDecimal"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintLeft_toLeftOf="@+id/column_type_title"
+        app:layout_constraintTop_toBottomOf="@id/column_data_types_explain3"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/column_data_types_size_valid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="15dp"
+        app:layout_constraintLeft_toLeftOf="@+id/column_data_types_size_input"
+        app:layout_constraintRight_toRightOf="@+id/column_data_types_size_input"
+        app:layout_constraintTop_toBottomOf="@+id/column_data_types_size_input"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/column_data_types_explain4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/nanumsquare_acb"
+        app:layout_constraintRight_toRightOf = "parent"
+        app:layout_constraintTop_toBottomOf="@+id/column_data_types_size_input"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="키 여부"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/column_key_spinner1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/column_is_key"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/column_type_title"
+        app:layout_constraintTop_toBottomOf="@id/column_data_types_explain4"
+        app:layout_constraintRight_toRightOf="@id/column_type_center_line"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/column_key_spinner2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/column_key"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/column_type_center_line"
+        app:layout_constraintTop_toBottomOf="@id/column_data_types_explain4"
+        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btn_column_type_next"
