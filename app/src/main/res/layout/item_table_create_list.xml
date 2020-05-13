@@ -14,7 +14,7 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_percent="0.5"/>
+        app:layout_constraintGuide_percent="0.35"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/table_list_2of3_line"
@@ -23,7 +23,7 @@
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_percent="0.75"/>
+        app:layout_constraintGuide_percent="0.8"/>
 
     <TextView
         android:text="칼럼 이름"
@@ -42,7 +42,7 @@
         android:textColor="#000000"/>
 
     <TextView
-        android:text="INT"
+        android:text="VARCHAR(255)"
         android:padding="5dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

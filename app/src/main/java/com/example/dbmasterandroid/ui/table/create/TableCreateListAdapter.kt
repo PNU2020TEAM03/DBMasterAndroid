@@ -24,7 +24,13 @@ class TableCreateListAdapter(
         val item = viewModel.getColumnListItem(position)
 
         holder.itemView.column_name.text = item.columnName
-        holder.itemView.data_type_name.text = "${item.columnType} (${item.columnSize})"
+
+        if (item.columnSize != "0") {
+            holder.itemView.data_type_name.text = "${item.columnType}(${item.columnSize})"
+        } else {
+            holder.itemView.data_type_name.text = "${item.columnType}"
+        }
+
         holder.itemView.primary_or_foreign_key.text = item.columnKey
     }
 

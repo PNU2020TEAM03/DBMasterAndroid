@@ -80,6 +80,13 @@ class TableColumnTypeFragment: Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 val item = parent?.getItemAtPosition(position).toString()
                 column_data_types_text2.text = item
+
+                if (item == "TEXT") {
+                    column_data_types_size_input.isEnabled = false
+                    column_data_types_size_valid.text = "사이즈를 입력할 수 없는 데이터 타입입니다."
+                    column_data_types_size_valid.setTextColor(Color.RED)
+                }
+
                 dataType = item
             }
         }
