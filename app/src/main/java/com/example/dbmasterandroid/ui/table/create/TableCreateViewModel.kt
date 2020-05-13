@@ -16,8 +16,9 @@ class TableCreateViewModel(
 
     var currentTableName: String? = null
     var currentColumnName: String? = null
+    var dataTypeSize: Int? = null
 
-    val columnInfoList = ArrayList<ColumnInfoDTO>()
+    private val columnInfoList = ArrayList<ColumnInfoDTO>()
 
     private val _tableNameValid: SingleLiveEvent<Any> = SingleLiveEvent()
     val tableNameValid: LiveData<Any> get() = _tableNameValid
@@ -30,6 +31,19 @@ class TableCreateViewModel(
 
     private val _columnNameInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
     val columnNameInvalid: LiveData<Any> get() = _columnNameInvalid
+
+    private val _dataTypeSizeValid: SingleLiveEvent<Any> = SingleLiveEvent()
+    val dataTypeSizeValid: LiveData<Any> get() = _dataTypeSizeValid
+
+    private val _dataTypeSizeInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
+    val dataTypeSizeInvalid: LiveData<Any> get() = _dataTypeSizeInvalid
+
+    private val _listUpdateLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
+    val listUpdateLiveData: LiveData<Any> get() = _listUpdateLiveData
+
+    fun getColumnListSize(): Int = columnInfoList.size
+
+    fun getColumnListItem(position: Int): ColumnInfoDTO = columnInfoList[position]
 
     fun checkTableNameValid(name: String) {
         val valid = RegularExpressionUtil.validCheck(RegularExpressionUtil.Regex.NAME, name)
@@ -52,5 +66,24 @@ class TableCreateViewModel(
         } else {
             _columnNameInvalid.call()
         }
+    }
+
+    fun checkColumnCreateValid(dataType: String, dataKey: String, size: Int) {
+        if (size in 0..255) {
+            addColumnList(dataType, dataKey, size)
+            _dataTypeSizeValid.call()
+        }
+        else {
+            _dataTypeSizeInvalid.call()
+        }
+    }
+
+    private fun addColumnList(dataType: String?, dataKey: String?, size: Int?) {
+        val columnInfoDTO = ColumnInfoDTO(currentColumnName!!, dataType!!, size.toString(), dataKey!!)
+        columnInfoList.add(columnInfoDTO)
+
+        _listUpdateLiveData.call()
+
+        Log.e("COLUMN LIST", "$columnInfoList")
     }
 }

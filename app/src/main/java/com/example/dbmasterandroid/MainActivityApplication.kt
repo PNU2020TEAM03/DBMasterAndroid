@@ -1,10 +1,12 @@
 package com.example.dbmasterandroid
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -47,6 +49,7 @@ class MainActivityApplication : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
+            hideKeyboard()
             when (destination.id) {
                 R.id.signUpIdFragment, R.id.signUpMainFragment,
                 R.id.signUpPwFragment, R.id.signUpFragment->{
@@ -73,5 +76,16 @@ class MainActivityApplication : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return findNavController(R.id.fragment_container).navigateUp()
+    }
+
+    private fun hideKeyboard() {
+        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        // Check if no view has focus
+        val currentFocusedView = this.currentFocus
+        currentFocusedView?.let {
+            inputMethodManager.hideSoftInputFromWindow(
+                    currentFocusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+        }
     }
 }

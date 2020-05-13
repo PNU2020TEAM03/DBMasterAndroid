@@ -4,8 +4,6 @@
         <item>NUMERIC</item>
         <item>DATE/TIME</item>
         <item>CHARACTER/STRING</item>
-        <item>UNICODE CHAR/STR</item>
-        <item>BINARY</item>
         <item>MISCELLANEOUS</item>
     </string-array>
 
@@ -33,18 +31,6 @@
         <item>CHAR</item>
         <item>VARCHAR</item>
         <item>TEXT</item>
-    </string-array>
-
-    <string-array name="column_uCharStr_types">
-        <item>NCHAR</item>
-        <item>NVARCHAR</item>
-        <item>NTEXT</item>
-    </string-array>
-
-    <string-array name="column_binary_types">
-        <item>BINARY</item>
-        <item>VARBINARY</item>
-        <item>IMAGE</item>
     </string-array>
 
     <string-array name="column_miscellaneous_types">
