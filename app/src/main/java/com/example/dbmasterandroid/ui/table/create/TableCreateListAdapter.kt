@@ -3,6 +3,8 @@ package com.example.dbmasterandroid.ui.table.create
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dbmasterandroid.R
 import kotlinx.android.synthetic.main.item_table_create_list.view.*
@@ -24,14 +26,16 @@ class TableCreateListAdapter(
         val item = viewModel.getColumnListItem(position)
 
         holder.itemView.column_name.text = item.columnName
-
         if (item.columnSize != "0") {
             holder.itemView.data_type_name.text = "${item.columnType}(${item.columnSize})"
         } else {
             holder.itemView.data_type_name.text = "${item.columnType}"
         }
-
         holder.itemView.primary_or_foreign_key.text = item.columnKey
+
+        holder.itemView.setOnLongClickListener {
+
+        }
     }
 
 }
