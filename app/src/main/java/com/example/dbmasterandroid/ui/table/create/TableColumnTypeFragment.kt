@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.R
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_column_create_type.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -98,6 +99,7 @@ class TableColumnTypeFragment: Fragment() {
                 when (position) {
                     0->{
                         column_key_spinner2.visibility = View.GONE
+                        dataKey = ""
                     }
                     1->{
                         column_key_spinner2.visibility = View.VISIBLE
@@ -135,7 +137,11 @@ class TableColumnTypeFragment: Fragment() {
             column_data_types_size_valid.setTextColor(Color.RED)
         })
 
-        viewModel.dataTypeSizeValid.observe(viewLifecycleOwner, Observer {
+        viewModel.listUpdateInvalidLiveData.observe(viewLifecycleOwner, Observer {
+            Snackbar.make(view, "Primary Key 가 이미 존재합니다. 다시 한 번 확인해주세요.", Snackbar.LENGTH_SHORT).show()
+        })
+
+        viewModel.listUpdateValidLiveData.observe(viewLifecycleOwner, Observer {
             findNavController().navigate(R.id.action_tableColumnTypeFragment_to_tableCreateInfoFragment)
         })
     }

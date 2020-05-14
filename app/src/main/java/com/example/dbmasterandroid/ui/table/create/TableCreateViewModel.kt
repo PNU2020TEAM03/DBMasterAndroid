@@ -17,6 +17,7 @@ class TableCreateViewModel(
     var currentTableName: String? = null
     var currentColumnName: String? = null
     var dataTypeSize: Int? = null
+    var primaryKeyCount: Int = 0
 
     private val columnInfoList = ArrayList<ColumnInfoDTO>()
 
@@ -32,14 +33,17 @@ class TableCreateViewModel(
     private val _columnNameInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
     val columnNameInvalid: LiveData<Any> get() = _columnNameInvalid
 
-    private val _dataTypeSizeValid: SingleLiveEvent<Any> = SingleLiveEvent()
-    val dataTypeSizeValid: LiveData<Any> get() = _dataTypeSizeValid
-
     private val _dataTypeSizeInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
     val dataTypeSizeInvalid: LiveData<Any> get() = _dataTypeSizeInvalid
 
     private val _listUpdateLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
     val listUpdateLiveData: LiveData<Any> get() = _listUpdateLiveData
+
+    private val _listUpdateValidLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
+    val listUpdateValidLiveData: LiveData<Any> get() = _listUpdateValidLiveData
+
+    private val _listUpdateInvalidLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
+    val listUpdateInvalidLiveData: LiveData<Any> get() = _listUpdateInvalidLiveData
 
     fun getColumnListSize(): Int = columnInfoList.size
 
@@ -71,18 +75,33 @@ class TableCreateViewModel(
     fun checkColumnCreateValid(dataType: String, dataKey: String, size: Int) {
         if (size in 0..255) {
             addColumnList(dataType, dataKey, size)
-            _dataTypeSizeValid.call()
-        }
-        else {
+        } else {
             _dataTypeSizeInvalid.call()
         }
     }
 
+    fun deleteColumnItem(position: Int) {
+        columnInfoList.removeAt(position)
+        _listUpdateLiveData.call()
+    }
+
     private fun addColumnList(dataType: String?, dataKey: String?, size: Int?) {
         val columnInfoDTO = ColumnInfoDTO(currentColumnName!!, dataType!!, size.toString(), dataKey!!)
-        columnInfoList.add(columnInfoDTO)
-
-        _listUpdateLiveData.call()
+        if (dataKey == "PK") {
+            primaryKeyCount++
+            if (primaryKeyCount > 1) {
+                _listUpdateInvalidLiveData.call()
+                primaryKeyCount--
+            } else {
+                columnInfoList.add(columnInfoDTO)
+                _listUpdateLiveData.call()
+                _listUpdateValidLiveData.call()
+            }
+        } else {
+            columnInfoList.add(columnInfoDTO)
+            _listUpdateLiveData.call()
+            _listUpdateValidLiveData.call()
+        }
 
         Log.e("COLUMN LIST", "$columnInfoList")
     }

@@ -1,12 +1,17 @@
 package com.example.dbmasterandroid.ui.table.create
 
+import android.content.Context
+import android.content.DialogInterface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dbmasterandroid.R
+import com.example.dbmasterandroid.utils.Useful
 import kotlinx.android.synthetic.main.item_table_create_list.view.*
 
 class TableCreateListAdapter(
@@ -32,9 +37,17 @@ class TableCreateListAdapter(
             holder.itemView.data_type_name.text = "${item.columnType}"
         }
         holder.itemView.primary_or_foreign_key.text = item.columnKey
-
-        holder.itemView.setOnLongClickListener {
-
+        holder.itemView.setOnClickListener {
+            Log.e("RECYCLER VIEW", item.columnName)
+            val builder = AlertDialog.Builder(it.context)
+            builder.setTitle("칼럼 삭제")
+            builder.setMessage("해당 칼럼을 삭제 하시겠습니까?")
+            builder.setCancelable(false)
+            builder.setPositiveButton("삭제") { _, _ ->
+                viewModel.deleteColumnItem(position)
+            }
+            builder.setNegativeButton("취소") { _, _ -> }
+            builder.show()
         }
     }
 
