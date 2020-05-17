@@ -7,12 +7,12 @@ import retrofit2.http.POST
 
 interface SignUpService {
 
-    @POST("/dbmasterspringboot-1.0/v1/sign-up/check-name")
+    @POST("/v1/sign-up/check-name")
     fun checkNameDuplication(
             @Body name: HashMap<String, String>
     ): Single<ResponseDTO>
 
-    @POST("/dbmasterspringboot-1.0/v1/sign-up/request")
+    @POST("/v1/sign-up/request")
     fun signUp(
             @Body user: HashMap<String, String>
     ): Single<ResponseDTO>

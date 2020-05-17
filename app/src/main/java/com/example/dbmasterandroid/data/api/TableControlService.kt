@@ -7,7 +7,7 @@ import retrofit2.http.POST
 
 interface TableControlService {
 
-    @POST("/dbmasterspringboot-1.0/v1/table/all-tables")
+    @POST("/v1/table/all-tables")
     fun getAllTableList(
             @Body name: HashMap<String, String>
     ): Single<TableListDTO>

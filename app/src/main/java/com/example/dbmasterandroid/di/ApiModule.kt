@@ -16,8 +16,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-val AWS_SERVER_BASE_URL = "http://54.180.95.198:8081"
-val EMULATOR_LOCAL_BASE_URL = "http://10.0.2.2:8081"
+val DB_MASTER_BASE_URL = "https://pnuteam03.herokuapp.com"
 
 val apiModule = module {
     factory { provideOkHttpClient() }
@@ -39,7 +38,7 @@ fun provideOkHttpClient(): OkHttpClient {
 }
 
 fun provideDBMasterRetrofit(okHttpClient: OkHttpClient): Retrofit {
-    return Retrofit.Builder().baseUrl(AWS_SERVER_BASE_URL)
+    return Retrofit.Builder().baseUrl(DB_MASTER_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

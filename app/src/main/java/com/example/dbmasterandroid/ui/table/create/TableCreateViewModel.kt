@@ -105,4 +105,8 @@ class TableCreateViewModel(
 
         Log.e("COLUMN LIST", "$columnInfoList")
     }
+
+    fun createTable() {
+
+    }
 }
