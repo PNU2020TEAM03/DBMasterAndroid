@@ -1,5 +1,6 @@
 package com.example.dbmasterandroid.ui.signup
 
+import android.app.Dialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,16 +10,20 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.R
+import com.example.dbmasterandroid.utils.LoadingIndicator
 import kotlinx.android.synthetic.main.fragment_signup_id.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class SignUpIdFragment : Fragment() {
 
     private val viewModel: SignUpViewModel by sharedViewModel()
+    private var mLoadingIndicator: Dialog? = null
     private var name: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+
+        mLoadingIndicator = context?.let { LoadingIndicator(it) }
 
         return inflater.inflate(R.layout.fragment_signup_id, container, false)
     }
@@ -44,5 +49,29 @@ class SignUpIdFragment : Fragment() {
             id_valid.text = "네트워크 또는 서버문제가 발생했습니다."
             id_valid.setTextColor(Color.RED)
         })
+
+        viewModel.startLoadingLiveData.observe(viewLifecycleOwner, Observer {
+            startLoadingIndicator()
+        })
+
+        viewModel.stopLoadingLiveData.observe(viewLifecycleOwner, Observer {
+            stopLoadingIndicator()
+        })
+    }
+
+    private fun stopLoadingIndicator() {
+        mLoadingIndicator?.let {
+            if (it.isShowing) it.cancel()
+        }
+    }
+
+    private fun startLoadingIndicator() {
+        stopLoadingIndicator()
+        activity?.let {
+            if (!it.isFinishing) {
+                mLoadingIndicator = LoadingIndicator(requireContext())
+                mLoadingIndicator?.show()
+            }
+        }
     }
 }

@@ -37,8 +37,14 @@ class SignUpViewModel(
     private val _signUpValid: SingleLiveEvent<Any> = SingleLiveEvent()
     val signUpValid: LiveData<Any> get() = _signUpValid
 
+    private val _startLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
+    val startLoadingLiveData: LiveData<Any> get() = _startLoadingLiveData
+
+    private val _stopLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
+    val stopLoadingLiveData: LiveData<Any> get() = _stopLoadingLiveData
+
     var currentID: String? = null
-    var currentPW: String? = null
+    private var currentPW: String? = null
 
     fun signUp() {
         if (currentID != null && currentPW != null) {
@@ -49,6 +55,9 @@ class SignUpViewModel(
             compositeDisposable.add(signUpRepository.signUp(userMap)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { _startLoadingLiveData.call() }
+                    .doOnSuccess { _stopLoadingLiveData.call() }
+                    .doOnError { _stopLoadingLiveData.call() }
                     .timeout(5, TimeUnit.SECONDS)
                     .subscribe({ response ->
                         when (response.result) {
@@ -91,6 +100,9 @@ class SignUpViewModel(
             compositeDisposable.add(signUpRepository.checkNameDuplication(nameMap)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { _startLoadingLiveData.call() }
+                    .doOnSuccess { _stopLoadingLiveData.call() }
+                    .doOnError { _stopLoadingLiveData.call() }
                     .timeout(5, TimeUnit.SECONDS)
                     .subscribe({ response ->
                         when (response.result) {
