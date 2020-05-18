@@ -116,9 +116,6 @@ class TableColumnTypeFragment: Fragment() {
                     0->{
                         dataKey = "PK"
                     }
-                    1->{
-                        dataKey = "FK"
-                    }
                 }
             }
         }

@@ -18,5 +18,5 @@ val viewModelPart = module {
     viewModel { SignUpViewModel(get(), get()) }
     viewModel { LoginViewModel(get(), get()) }
     viewModel { TableSelectViewModel(get(), get()) }
-    viewModel { TableCreateViewModel(get(), get()) }
+    viewModel { TableCreateViewModel(get(), get(), get()) }
 }

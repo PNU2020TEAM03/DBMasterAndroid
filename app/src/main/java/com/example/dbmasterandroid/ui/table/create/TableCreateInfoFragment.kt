@@ -41,6 +41,7 @@ class TableCreateInfoFragment: Fragment() {
 
         btn_table_create.setOnClickListener {
             /* TODO viewmodel에 가지고 있는 리스트 가지고 테이블 생성하고 테이블 선택화면으로 넘어가야함. */
+            viewModel.createTable()
         }
 
         viewModel.listUpdateLiveData.observe(viewLifecycleOwner, Observer {

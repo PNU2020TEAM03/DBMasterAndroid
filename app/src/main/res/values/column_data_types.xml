@@ -47,6 +47,5 @@
 
     <string-array name="column_key">
         <item>PRIMARY KEY</item>
-        <item>FOREIGN KEY</item>
     </string-array>
 </resources>

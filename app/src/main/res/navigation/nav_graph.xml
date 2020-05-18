@@ -148,6 +148,15 @@
             app:exitAnim="@anim/slide_exit"
             app:popEnterAnim="@anim/slide_pop_enter"
             app:popExitAnim="@anim/slide_pop_exit" />
+        <action
+            android:id="@+id/action_tableCreateInfoFragment_to_tableSelectFragment"
+            app:destination="@id/tableSelectFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit"
+            app:popUpTo="@id/tableCreateInfoFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/tableColumnNameFragment"

@@ -1,5 +1,6 @@
 package com.example.dbmasterandroid.data.api
 
+import com.example.dbmasterandroid.data.dto.ResponseDTO
 import com.example.dbmasterandroid.data.dto.TableListDTO
 import io.reactivex.Single
 import retrofit2.http.Body
@@ -12,4 +13,8 @@ interface TableControlService {
             @Body name: HashMap<String, String>
     ): Single<TableListDTO>
 
+    @POST("/v1/table/create")
+    fun createTable(
+            @Body columnInfo: HashMap<String, String>
+    ): Single<ResponseDTO>
 }

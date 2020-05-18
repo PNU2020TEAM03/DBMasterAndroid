@@ -1,17 +1,23 @@
 package com.example.dbmasterandroid.ui.table.create
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.dbmasterandroid.data.TableRepository
 import com.example.dbmasterandroid.data.dto.ColumnInfoDTO
+import com.example.dbmasterandroid.utils.PreferenceUtil
 import com.example.dbmasterandroid.utils.RegularExpressionUtil
 import com.example.dbmasterandroid.utils.SingleLiveEvent
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class TableCreateViewModel(
         private val tableRepository: TableRepository,
-        private val compositeDisposable: CompositeDisposable
+        private val compositeDisposable: CompositeDisposable,
+        private val context: Context
 ): ViewModel() {
 
     var currentTableName: String? = null
@@ -107,6 +113,40 @@ class TableCreateViewModel(
     }
 
     fun createTable() {
+        val dbName = PreferenceUtil(context).getName("dbName", "null")
+        val tableName = currentTableName
+        var fieldInfo = ""
+        var primaryKeyColName = ""
+        for (columnInfo in columnInfoList) {
+            fieldInfo += if (columnInfo.columnSize.toInt() != 0) {
+                "${columnInfo.columnName} ${columnInfo.columnType}(${columnInfo.columnSize})"
+            } else {
+                "${columnInfo.columnName} ${columnInfo.columnType}"
+            }
+            if (columnInfo.columnKey == "PK") {
+                primaryKeyColName = columnInfo.columnName
+            }
+            fieldInfo += ", "
+        }
+        fieldInfo += "PRIMARY KEY ($primaryKeyColName)"
 
+        Log.e("CREATE TABLE", fieldInfo)
+
+        val paramHash = HashMap<String, String>()
+        paramHash["name"] = dbName
+        paramHash["tableName"] = tableName!!
+        paramHash["fieldInfo"] = fieldInfo
+
+        compositeDisposable.add(tableRepository.createTable(paramHash)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .timeout(5, TimeUnit.SECONDS)
+                .subscribe({
+                    Log.e("CREATE TABLE SUCCESS!!", "$it")
+                }, {
+                    it.printStackTrace()
+                    Log.e("CREATE TABLE ERROR!!", it.message!!)
+                })
+        )
     }
 }
