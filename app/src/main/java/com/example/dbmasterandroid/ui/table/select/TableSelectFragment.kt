@@ -1,5 +1,6 @@
 package com.example.dbmasterandroid.ui.table.select
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +13,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.R
+import com.example.dbmasterandroid.utils.LoadingIndicator
 import kotlinx.android.synthetic.main.fragment_table_select.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TableSelectFragment: Fragment() {
 
     private val viewModel: TableSelectViewModel by viewModel()
-
+    private var mLoadingIndicator: Dialog? = null
     private val dbName = MainActivityApplication.preferences.getName("dbName", "noName")
 
     private lateinit var adapter: TableSelectListAdapter
@@ -29,6 +31,7 @@ class TableSelectFragment: Fragment() {
         viewModel.getAllTableList(dbName)
 
         adapter = TableSelectListAdapter(viewModel)
+        mLoadingIndicator = context?.let { LoadingIndicator(it) }
 
         return inflater.inflate(R.layout.fragment_table_select, container, false)
     }
@@ -57,8 +60,32 @@ class TableSelectFragment: Fragment() {
             }
         })
 
+        viewModel.startLoadingLiveData.observe(viewLifecycleOwner, Observer {
+            startLoadingIndicator()
+        })
+
+        viewModel.stopLoadingLiveData.observe(viewLifecycleOwner, Observer {
+            stopLoadingIndicator()
+        })
+
         btn_table_create.setOnClickListener {
             findNavController().navigate(R.id.action_tableSelectFragment_to_tableCreateNameFragment)
+        }
+    }
+
+    private fun stopLoadingIndicator() {
+        mLoadingIndicator?.let {
+            if (it.isShowing) it.cancel()
+        }
+    }
+
+    private fun startLoadingIndicator() {
+        stopLoadingIndicator()
+        activity?.let {
+            if (!it.isFinishing) {
+                mLoadingIndicator = LoadingIndicator(requireContext())
+                mLoadingIndicator?.show()
+            }
         }
     }
 }

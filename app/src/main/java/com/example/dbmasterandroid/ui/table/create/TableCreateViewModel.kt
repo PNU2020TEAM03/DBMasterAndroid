@@ -51,6 +51,18 @@ class TableCreateViewModel(
     private val _listUpdateInvalidLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
     val listUpdateInvalidLiveData: LiveData<Any> get() = _listUpdateInvalidLiveData
 
+    private val _tableCreateValid: SingleLiveEvent<Any> = SingleLiveEvent()
+    val tableCreateValid: LiveData<Any> get() = _tableCreateValid
+
+    private val _tableCreateInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
+    val tableCreateInvalid: LiveData<Any> get() = _tableCreateInvalid
+
+    private val _startLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
+    val startLoadingLiveData: LiveData<Any> get() = _startLoadingLiveData
+
+    private val _stopLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
+    val stopLoadingLiveData: LiveData<Any> get() = _stopLoadingLiveData
+
     fun getColumnListSize(): Int = columnInfoList.size
 
     fun getColumnListItem(position: Int): ColumnInfoDTO = columnInfoList[position]
@@ -140,10 +152,19 @@ class TableCreateViewModel(
         compositeDisposable.add(tableRepository.createTable(paramHash)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { _startLoadingLiveData.call() }
+                .doOnSuccess { _stopLoadingLiveData.call() }
+                .doOnError { _stopLoadingLiveData.call() }
                 .timeout(5, TimeUnit.SECONDS)
                 .subscribe({
+                    if (it.result == "E01") {
+                        _tableCreateInvalid.call()
+                    } else {
+                        _tableCreateValid.call()
+                    }
                     Log.e("CREATE TABLE SUCCESS!!", "$it")
                 }, {
+                    _tableCreateInvalid.call()
                     it.printStackTrace()
                     Log.e("CREATE TABLE ERROR!!", it.message!!)
                 })

@@ -1,5 +1,6 @@
 package com.example.dbmasterandroid.ui.table.create
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,15 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.R
+import com.example.dbmasterandroid.utils.LoadingIndicator
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_table_create_info.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class TableCreateInfoFragment: Fragment() {
 
     private val viewModel: TableCreateViewModel by sharedViewModel()
+    private var mLoadingIndicator: Dialog? = null
 
     private lateinit var adapter: TableCreateListAdapter
 
@@ -22,6 +26,7 @@ class TableCreateInfoFragment: Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         adapter = TableCreateListAdapter(viewModel)
+        mLoadingIndicator = context?.let { LoadingIndicator(it) }
 
         return inflater.inflate(R.layout.fragment_table_create_info, container, false)
     }
@@ -40,12 +45,43 @@ class TableCreateInfoFragment: Fragment() {
         }
 
         btn_table_create.setOnClickListener {
-            /* TODO viewmodel에 가지고 있는 리스트 가지고 테이블 생성하고 테이블 선택화면으로 넘어가야함. */
             viewModel.createTable()
         }
 
         viewModel.listUpdateLiveData.observe(viewLifecycleOwner, Observer {
             adapter.notifyDataSetChanged()
         })
+
+        viewModel.tableCreateValid.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(R.id.action_tableCreateInfoFragment_to_tableSelectFragment)
+        })
+
+        viewModel.tableCreateInvalid.observe(viewLifecycleOwner, Observer {
+            Snackbar.make(this.requireView(), "테이블을 생성하지 못하였습니다.", Snackbar.LENGTH_SHORT).show()
+        })
+
+        viewModel.startLoadingLiveData.observe(viewLifecycleOwner, Observer {
+            startLoadingIndicator()
+        })
+
+        viewModel.stopLoadingLiveData.observe(viewLifecycleOwner, Observer {
+            stopLoadingIndicator()
+        })
+    }
+
+    private fun stopLoadingIndicator() {
+        mLoadingIndicator?.let {
+            if (it.isShowing) it.cancel()
+        }
+    }
+
+    private fun startLoadingIndicator() {
+        stopLoadingIndicator()
+        activity?.let {
+            if (!it.isFinishing) {
+                mLoadingIndicator = LoadingIndicator(requireContext())
+                mLoadingIndicator?.show()
+            }
+        }
     }
 }
