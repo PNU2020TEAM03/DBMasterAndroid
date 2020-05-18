@@ -6,6 +6,7 @@ import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.data.ConnectionRepository
 import com.example.dbmasterandroid.utils.SingleLiveEvent
 import com.loopj.android.http.RequestParams
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -28,6 +29,12 @@ class LoginViewModel(
     private val _connectionInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
     val connectionInvalid: LiveData<Any> get() = _connectionInvalid
 
+    private val _startLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
+    val startLoadingLiveData: LiveData<Any> get() = _startLoadingLiveData
+
+    private val _stopLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
+    val stopLoadingLiveData: LiveData<Any> get() = _stopLoadingLiveData
+
     fun connect(name: String, pw: String) {
         val user = HashMap<String, String>()
         user["name"] = name
@@ -37,6 +44,9 @@ class LoginViewModel(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(5, TimeUnit.SECONDS)
+                .doOnSubscribe { _startLoadingLiveData.call() }
+                .doOnSuccess { _stopLoadingLiveData.call() }
+                .doOnError { _stopLoadingLiveData.call() }
                 .subscribe({ result ->
                     if (result.idValid == "available") {
                         if (result.connectionValid == "available") {
