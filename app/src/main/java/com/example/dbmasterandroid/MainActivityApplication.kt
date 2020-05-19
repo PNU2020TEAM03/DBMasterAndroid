@@ -43,7 +43,7 @@ class MainActivityApplication : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(setOf(
                 R.id.loginFragment,
                 R.id.tableSelectFragment,
-                R.id.mainFragment))
+                R.id.mainFragment), drawer_layout)
 
         main_toolbar.navigationIcon?.setTint(Color.WHITE)
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -59,6 +59,7 @@ class MainActivityApplication : AppCompatActivity() {
                 }
                 R.id.mainFragment->{
                     main_toolbar.visibility = View.VISIBLE
+                    toolbar_title.text = ""
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                 }
                 R.id.tableCreateNameFragment, R.id.tableCreateInfoFragment,
@@ -69,13 +70,14 @@ class MainActivityApplication : AppCompatActivity() {
                 }
                 else->{
                     main_toolbar.visibility = View.GONE
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
             }
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return findNavController(R.id.fragment_container).navigateUp()
+        return findNavController(R.id.fragment_container).navigateUp(appBarConfiguration)
     }
 
     private fun hideKeyboard() {
