@@ -17,6 +17,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.dbmasterandroid.utils.PreferenceUtil
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.item_main_drawer.*
 
 class MainActivityApplication : AppCompatActivity() {
 
@@ -59,7 +60,7 @@ class MainActivityApplication : AppCompatActivity() {
                 }
                 R.id.mainFragment->{
                     main_toolbar.visibility = View.VISIBLE
-                    toolbar_title.text = ""
+                    toolbar_title.text = "테이블 관리"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                 }
                 R.id.tableCreateNameFragment, R.id.tableCreateInfoFragment,
@@ -90,4 +91,10 @@ class MainActivityApplication : AppCompatActivity() {
                     currentFocusedView.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
         }
     }
+
+    fun setUserTableName(name: String, table: String) {
+        drawer_id_tv.text = name
+        drawer_table_tv.text = table
+    }
+
 }

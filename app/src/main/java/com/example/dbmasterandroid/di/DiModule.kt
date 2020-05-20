@@ -20,5 +20,5 @@ val viewModelPart = module {
     viewModel { LoginViewModel(get(), get()) }
     viewModel { TableSelectViewModel(get(), get()) }
     viewModel { TableCreateViewModel(get(), get(), get()) }
-    viewModel { MainViewModel(get()) }
+    viewModel { MainViewModel(get(), get(), get()) }
 }

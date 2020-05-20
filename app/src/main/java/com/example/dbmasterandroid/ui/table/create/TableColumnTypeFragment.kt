@@ -14,6 +14,7 @@ import com.example.dbmasterandroid.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_column_create_type.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import java.lang.NumberFormatException
 
 class TableColumnTypeFragment: Fragment() {
 
@@ -123,7 +124,12 @@ class TableColumnTypeFragment: Fragment() {
         btn_column_type_next.setOnClickListener {
             dataTypeSize = column_data_types_size_input.text.toString()
             if (dataTypeSize != "") {
-                viewModel.checkColumnCreateValid(dataType, dataKey, dataTypeSize.toInt())
+                try{
+                    viewModel.checkColumnCreateValid(dataType, dataKey, dataTypeSize.toInt())
+                } catch (e: NumberFormatException) {
+                    column_data_types_size_valid.text = "데이터 사이즈가 유효범위를 벗어났습니다."
+                    column_data_types_size_valid.setTextColor(Color.RED)
+                }
             } else {
                 viewModel.checkColumnCreateValid(dataType, dataKey,0)
             }

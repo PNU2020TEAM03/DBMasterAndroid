@@ -4,6 +4,7 @@ import com.example.dbmasterandroid.data.TableRepository
 import com.example.dbmasterandroid.data.api.TableControlService
 import com.example.dbmasterandroid.data.dto.ResponseDTO
 import com.example.dbmasterandroid.data.dto.TableListDTO
+import com.example.dbmasterandroid.data.dto.TableSelectAllDTO
 import io.reactivex.Single
 
 class TableRepositoryImpl(
@@ -16,5 +17,9 @@ class TableRepositoryImpl(
 
     override fun createTable(columnInfo: HashMap<String, String>): Single<ResponseDTO> {
         return tableControlService.createTable(columnInfo)
+    }
+
+    override fun getAllTableData(name: HashMap<String, String>): Single<TableSelectAllDTO> {
+        return tableControlService.getAllTableData(name)
     }
 }
