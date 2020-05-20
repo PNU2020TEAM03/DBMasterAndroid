@@ -135,6 +135,10 @@ class TableColumnTypeFragment: Fragment() {
             }
         }
 
+        viewModel.columnListSizeInvalid.observe(viewLifecycleOwner, Observer {
+            Snackbar.make(view, "현재 칼럼의 갯수가 10개입니다. 더 이상 칼럼을 추가할 수 없습니다.", Snackbar.LENGTH_SHORT).show()
+        })
+
         viewModel.dataTypeSizeInvalid.observe(viewLifecycleOwner, Observer {
             column_data_types_size_valid.text = "데이터 사이즈가 유효범위를 벗어났습니다."
             column_data_types_size_valid.setTextColor(Color.RED)

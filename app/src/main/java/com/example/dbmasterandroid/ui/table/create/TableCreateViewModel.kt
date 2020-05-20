@@ -22,7 +22,6 @@ class TableCreateViewModel(
 
     var currentTableName: String? = null
     var currentColumnName: String? = null
-    var dataTypeSize: Int? = null
     var primaryKeyCount: Int = 0
 
     private val columnInfoList = ArrayList<ColumnInfoDTO>()
@@ -62,6 +61,9 @@ class TableCreateViewModel(
 
     private val _stopLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
     val stopLoadingLiveData: LiveData<Any> get() = _stopLoadingLiveData
+
+    private val _columnListSizeInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
+    val columnListSizeInvalid: LiveData<Any> get() = _columnListSizeInvalid
 
     fun getColumnListSize(): Int = columnInfoList.size
 
@@ -105,22 +107,25 @@ class TableCreateViewModel(
 
     private fun addColumnList(dataType: String?, dataKey: String?, size: Int?) {
         val columnInfoDTO = ColumnInfoDTO(currentColumnName!!, dataType!!, size.toString(), dataKey!!)
-        if (dataKey == "PK") {
-            primaryKeyCount++
-            if (primaryKeyCount > 1) {
-                _listUpdateInvalidLiveData.call()
-                primaryKeyCount--
+        if (getColumnListSize() == 10) {
+            _columnListSizeInvalid.call()
+        } else {
+            if (dataKey == "PK") {
+                primaryKeyCount++
+                if (primaryKeyCount > 1) {
+                    _listUpdateInvalidLiveData.call()
+                    primaryKeyCount--
+                } else {
+                    columnInfoList.add(columnInfoDTO)
+                    _listUpdateLiveData.call()
+                    _listUpdateValidLiveData.call()
+                }
             } else {
                 columnInfoList.add(columnInfoDTO)
                 _listUpdateLiveData.call()
                 _listUpdateValidLiveData.call()
             }
-        } else {
-            columnInfoList.add(columnInfoDTO)
-            _listUpdateLiveData.call()
-            _listUpdateValidLiveData.call()
         }
-
         Log.e("COLUMN LIST", "$columnInfoList")
     }
 
