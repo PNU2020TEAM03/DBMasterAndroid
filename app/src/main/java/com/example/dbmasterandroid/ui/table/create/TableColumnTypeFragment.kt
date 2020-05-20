@@ -136,7 +136,7 @@ class TableColumnTypeFragment: Fragment() {
         }
 
         viewModel.columnListSizeInvalid.observe(viewLifecycleOwner, Observer {
-            Snackbar.make(view, "현재 칼럼의 갯수가 10개입니다. 더 이상 칼럼을 추가할 수 없습니다.", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view, "칼럼 갯수가 10개입니다. 더 이상 칼럼을 추가할 수 없습니다.", Snackbar.LENGTH_SHORT).show()
         })
 
         viewModel.dataTypeSizeInvalid.observe(viewLifecycleOwner, Observer {
