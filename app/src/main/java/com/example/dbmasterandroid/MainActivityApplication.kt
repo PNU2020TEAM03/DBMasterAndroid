@@ -9,6 +9,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -95,6 +96,12 @@ class MainActivityApplication : AppCompatActivity() {
     fun setUserTableName(name: String, table: String) {
         drawer_id_tv.text = name
         drawer_table_tv.text = table
+    }
+
+    fun setTableChangeButton() {
+        navigation_table_change.setOnClickListener {
+            it.findNavController().navigate(R.id.action_mainFragment_to_tableSelectFragment)
+        }
     }
 
 }

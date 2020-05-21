@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.utils.LoadingIndicator
+import kotlinx.android.synthetic.main.item_main_drawer.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
@@ -33,6 +35,7 @@ class MainFragment : Fragment() {
         val mainActivity = activity as MainActivityApplication
 
         mainActivity.setUserTableName(viewModel.getUserName(), viewModel.getTableName())
+        mainActivity.setTableChangeButton()
 
         viewModel.startLoadingLiveData.observe(viewLifecycleOwner, Observer {
             startLoadingIndicator()

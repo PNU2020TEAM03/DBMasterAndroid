@@ -122,7 +122,17 @@
         android:id="@+id/mainFragment"
         android:name="com.example.dbmasterandroid.ui.main.MainFragment"
         android:label="MainFragment"
-        tools:layout="@layout/fragment_main"/>
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_tableSelectFragment"
+            app:destination="@id/tableSelectFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
     <fragment
         android:id="@+id/tableCreateNameFragment"
         android:name="com.example.dbmasterandroid.ui.table.create.TableCreateNameFragment"
