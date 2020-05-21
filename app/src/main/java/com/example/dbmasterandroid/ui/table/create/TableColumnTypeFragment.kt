@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.R
@@ -149,7 +150,7 @@ class TableColumnTypeFragment: Fragment() {
         })
 
         viewModel.listUpdateValidLiveData.observe(viewLifecycleOwner, Observer {
-            findNavController().navigate(R.id.action_tableColumnTypeFragment_to_tableCreateInfoFragment)
+            findNavController().navigate(R.id.action_tableColumnTypeFragment_pop)
         })
     }
 }

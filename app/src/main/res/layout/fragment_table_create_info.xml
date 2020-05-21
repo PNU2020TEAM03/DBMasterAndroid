@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/table_create_info_text"
+        android:id="@+id/table_create_info_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="현재까지 추가한 테이블의 정보입니다."
@@ -30,13 +30,23 @@
         app:layout_constraintLeft_toLeftOf="@id/table_create_info_title"/>
 
     <TextView
+        android:id="@+id/table_create_info_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="칼럼은 10개 까지만 생성할 수 있습니다."
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/table_create_info_text1"
+        app:layout_constraintLeft_toLeftOf="@id/table_create_info_text1"/>
+
+    <TextView
         android:id="@+id/table_create_info_name"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        app:layout_constraintLeft_toLeftOf="@id/table_create_info_text"
-        app:layout_constraintRight_toRightOf="@id/table_create_info_text"
-        app:layout_constraintTop_toBottomOf="@id/table_create_info_text"
+        app:layout_constraintLeft_toLeftOf="@id/table_create_info_text2"
+        app:layout_constraintTop_toBottomOf="@id/table_create_info_text2"
         android:text="현재 생성중인 테이블 이름"
         android:fontFamily="@font/nanumsquare_acr"
         android:textColor="@color/black"

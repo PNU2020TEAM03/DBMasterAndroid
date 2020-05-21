@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/background_table_list"
-    android:layout_margin="5dp"
+    android:layout_margin="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.Guideline
@@ -27,7 +27,7 @@
 
     <TextView
         android:text="칼럼 이름"
-        android:padding="10dp"
+        android:padding="7dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/column_name"

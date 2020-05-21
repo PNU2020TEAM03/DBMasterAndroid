@@ -179,12 +179,7 @@
         android:label="TableColumnTypeFragment"
         tools:layout="@layout/fragment_column_create_type">
         <action
-            android:id="@+id/action_tableColumnTypeFragment_to_tableCreateInfoFragment"
-            app:destination="@id/tableCreateInfoFragment"
-            app:enterAnim="@anim/slide_enter"
-            app:exitAnim="@anim/slide_exit"
-            app:popEnterAnim="@anim/slide_pop_enter"
-            app:popExitAnim="@anim/slide_pop_exit"
+            android:id="@+id/action_tableColumnTypeFragment_pop"
             app:popUpTo="@id/tableColumnTypeFragment"
             app:popUpToInclusive="true" />
     </fragment>
