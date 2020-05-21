@@ -29,8 +29,8 @@ class TableCreateViewModel(
     private val _tableNameValid: SingleLiveEvent<Any> = SingleLiveEvent()
     val tableNameValid: LiveData<Any> get() = _tableNameValid
 
-    private val _tableNameInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
-    val tableNameInvalid: LiveData<Any> get() = _tableNameInvalid
+    private val _tableNameInvalid: SingleLiveEvent<String> = SingleLiveEvent()
+    val tableNameInvalid: LiveData<String> get() = _tableNameInvalid
 
     private val _columnNameValid: SingleLiveEvent<Any> = SingleLiveEvent()
     val columnNameValid: LiveData<Any> get() = _columnNameValid
@@ -71,13 +71,32 @@ class TableCreateViewModel(
 
     fun checkTableNameValid(name: String) {
         val valid = RegularExpressionUtil.validCheck(RegularExpressionUtil.Regex.NAME, name)
+        val body = HashMap<String, String>()
+
+        body["name"] = PreferenceUtil(context).getName("dbName", "null")
+        body["tableName"] = name
 
         if (valid) {
-            _tableNameValid.call()
-            currentTableName = name
-            Log.e("Sign Up View Model", "$currentTableName")
+            compositeDisposable.add(tableRepository.checkTableNameValid(body)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { _startLoadingLiveData.call() }
+                    .doOnSuccess { _stopLoadingLiveData.call() }
+                    .doOnError { _stopLoadingLiveData.call() }
+                    .subscribe({
+                        if (it.result == "S01") {
+                            _tableNameValid.call()
+                            currentTableName = name
+                        } else {
+                            _tableNameInvalid.postValue(it.message)
+                        }
+                    }, {
+                        it.printStackTrace()
+                        _tableNameInvalid.postValue("네트워크에 문제가 있습니다.")
+                    })
+            )
         } else {
-            _tableNameInvalid.call()
+            _tableNameInvalid.postValue("사용할 수 없는 테이블 이름입니다.")
         }
     }
 

@@ -12,4 +12,6 @@ interface TableRepository {
     fun createTable(columnInfo: HashMap<String, String>): Single<ResponseDTO>
 
     fun getAllTableData(name: HashMap<String, String>): Single<TableSelectAllDTO>
+
+    fun checkTableNameValid(name: HashMap<String, String>): Single<ResponseDTO>
 }

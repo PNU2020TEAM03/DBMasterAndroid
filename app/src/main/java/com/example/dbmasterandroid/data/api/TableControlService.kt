@@ -23,4 +23,9 @@ interface TableControlService {
     fun getAllTableData(
             @Body name: HashMap<String, String>
     ): Single<TableSelectAllDTO>
+
+    @POST("/v1/table/duplicate")
+    fun checkTableNameValid(
+            @Body name: HashMap<String, String>
+    ): Single<ResponseDTO>
 }

@@ -22,4 +22,8 @@ class TableRepositoryImpl(
     override fun getAllTableData(name: HashMap<String, String>): Single<TableSelectAllDTO> {
         return tableControlService.getAllTableData(name)
     }
+
+    override fun checkTableNameValid(name: HashMap<String, String>): Single<ResponseDTO> {
+        return tableControlService.checkTableNameValid(name)
+    }
 }
