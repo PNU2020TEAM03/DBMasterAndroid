@@ -80,6 +80,12 @@ class MainActivityApplication : AppCompatActivity() {
                     toolbar_title.text = "테이블 생성"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
+                R.id.settingFragment->{
+                    main_toolbar.visibility = View.VISIBLE
+                    toolbar_title.text = "환경 설정"
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+
+                }
                 else->{
                     main_toolbar.visibility = View.GONE
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
@@ -92,6 +98,9 @@ class MainActivityApplication : AppCompatActivity() {
                 when (menuItem.itemId) {
                     R.id.navigation_table_change->{
                         navController.navigate(R.id.action_mainFragment_to_tableSelectFragment)
+                    }
+                    R.id.navigation_setting->{
+                        navController.navigate(R.id.action_mainFragment_to_settingFragment)
                     }
                     R.id.navigation_logout->{
                         viewModel.logout()

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.utils.LoadingIndicator
+import kotlinx.android.synthetic.main.fragment_main.*
 import kotlinx.android.synthetic.main.main_drawer_header.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,6 +36,8 @@ class MainFragment : Fragment() {
         val mainActivity = activity as MainActivityApplication
 
         mainActivity.setUserTableName(viewModel.getUserName(), viewModel.getTableName())
+
+        table_main_info.add
 
         viewModel.startLoadingLiveData.observe(viewLifecycleOwner, Observer {
             startLoadingIndicator()
