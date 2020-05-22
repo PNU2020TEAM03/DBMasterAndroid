@@ -14,4 +14,9 @@
         <item name="android:fontFamily">@font/nanumsquare_acb</item>
     </style>
 
+    <style name="NavigationFont" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/nanumsquare_acr</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
 </resources>

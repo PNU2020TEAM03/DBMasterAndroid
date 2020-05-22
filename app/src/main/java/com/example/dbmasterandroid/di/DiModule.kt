@@ -1,5 +1,6 @@
 package com.example.dbmasterandroid.di
 
+import com.example.dbmasterandroid.MainActivityViewModel
 import com.example.dbmasterandroid.ui.login.LoginViewModel
 import com.example.dbmasterandroid.ui.main.MainViewModel
 import com.example.dbmasterandroid.ui.signup.SignUpViewModel
@@ -21,4 +22,5 @@ val viewModelPart = module {
     viewModel { TableSelectViewModel(get(), get()) }
     viewModel { TableCreateViewModel(get(), get(), get()) }
     viewModel { MainViewModel(get(), get(), get()) }
+    viewModel { MainActivityViewModel(get()) }
 }

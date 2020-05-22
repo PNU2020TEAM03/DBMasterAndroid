@@ -5,11 +5,16 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
+import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -17,10 +22,15 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.dbmasterandroid.utils.PreferenceUtil
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_main_drawer.*
+import kotlinx.android.synthetic.main.main_drawer_header.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivityApplication : AppCompatActivity() {
+
+    private val viewModel: MainActivityViewModel by viewModel()
 
     companion object {
         lateinit var preferences: PreferenceUtil
@@ -76,6 +86,22 @@ class MainActivityApplication : AppCompatActivity() {
                 }
             }
         }
+
+        drawer_nav_view.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener {
+            override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+                when (menuItem.itemId) {
+                    R.id.navigation_table_change->{
+                        navController.navigate(R.id.action_mainFragment_to_tableSelectFragment)
+                    }
+                    R.id.navigation_logout->{
+                        viewModel.logout()
+                        navController.navigate(R.id.action_mainFragment_to_loginFragment)
+                    }
+                }
+                drawer_layout.closeDrawer(GravityCompat.START)
+                return true
+            }
+        })
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -94,14 +120,8 @@ class MainActivityApplication : AppCompatActivity() {
     }
 
     fun setUserTableName(name: String, table: String) {
-        drawer_id_tv.text = name
+        drawer_id_tv.text = "$name 님."
         drawer_table_tv.text = table
-    }
-
-    fun setTableChangeButton() {
-        navigation_table_change.setOnClickListener {
-            it.findNavController().navigate(R.id.action_mainFragment_to_tableSelectFragment)
-        }
     }
 
 }

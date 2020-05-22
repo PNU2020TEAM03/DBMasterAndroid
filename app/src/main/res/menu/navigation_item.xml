@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_table_change"
+        android:title="테이블 변경"
+        android:icon="@drawable/ic_right_arrow"
+        android:iconTint="@color/black"/>
+
+    <item
+        android:id="@+id/navigation_table_control"
+        android:title="테이블 관리"
+        android:icon="@drawable/ic_right_arrow"
+        android:iconTint="@color/black"/>
+
+    <item
+        android:id="@+id/navigation_setting"
+        android:title="환경 설정"
+        android:icon="@drawable/ic_right_arrow"
+        android:iconTint="@color/black"/>
+
+    <item
+        android:id="@+id/navigation_logout"
+        android:title="로그아웃"
+        android:icon="@drawable/ic_right_arrow"
+        android:iconTint="@color/black"/>
+</menu>

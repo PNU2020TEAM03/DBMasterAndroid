@@ -14,4 +14,8 @@ class PreferenceUtil(context: Context) {
     fun setName(key: String, name: String) {
         sharedPreferences.edit().putString(key, name).apply()
     }
+
+    fun deletePreference() {
+        sharedPreferences.edit().clear().apply()
+    }
 }
