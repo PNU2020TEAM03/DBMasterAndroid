@@ -22,7 +22,7 @@
         android:id="@+id/table_main_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="현재 테이블의 데이터 목록입니다."
+        android:text="현재 테이블에 대한 정보입니다."
         android:fontFamily="@font/nanumsquare_acr"
         android:textSize="15sp"
         android:layout_marginTop="5dp"
@@ -30,23 +30,96 @@
         app:layout_constraintLeft_toLeftOf="@id/table_main_title"/>
 
     <ScrollView
-        android:layout_width="wrap_content"
+        android:id="@+id/table_info_scroll_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/table_main_text1">
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- 테이블 데이터 (상위 10개)"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nanumsquare_acb"
+                    android:layout_gravity="center"
+                    android:paddingStart="20dp"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <Button
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:id="@+id/btn_table_data_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체 보기"
+                    android:fontFamily="@font/nanumsquare_acr"
+                    android:textColor="@color/darkgray"
+                    android:textSize="15sp"
+                    android:layout_gravity="end"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/table_data_empty_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="테이블에 데이터가 없습니다."
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nanumsquare_acr"
+                android:textSize="15sp"
+                android:visibility="gone"/>
             <TableLayout
-                android:id="@+id/table_main_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp">
+                <TableRow android:id="@+id/table_column_name"/>
+                <TableRow android:id="@+id/table_row1"/>
+                <TableRow android:id="@+id/table_row2"/>
+                <TableRow android:id="@+id/table_row3"/>
+                <TableRow android:id="@+id/table_row4"/>
+                <TableRow android:id="@+id/table_row5"/>
+                <TableRow android:id="@+id/table_row6"/>
+                <TableRow android:id="@+id/table_row7"/>
+                <TableRow android:id="@+id/table_row8"/>
+                <TableRow android:id="@+id/table_row9"/>
+                <TableRow android:id="@+id/table_row10"/>
+            </TableLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- 칼럼 정보"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nanumsquare_acb"
+                android:paddingStart="20dp"/>
+
+            <HorizontalScrollView
+                android:id="@+id/column_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
-            </TableLayout>
-        </HorizontalScrollView>
-    </ScrollView>
+            </HorizontalScrollView>
 
+        </LinearLayout>
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

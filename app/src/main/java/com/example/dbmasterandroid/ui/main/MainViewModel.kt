@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.dbmasterandroid.data.TableRepository
+import com.example.dbmasterandroid.data.dto.TableSelectAllDTO
 import com.example.dbmasterandroid.utils.PreferenceUtil
 import com.example.dbmasterandroid.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -23,12 +24,20 @@ class MainViewModel(
     private val _stopLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
     val stopLoadingLiveData: LiveData<Any> get() = _stopLoadingLiveData
 
+    private val _tableNameLiveData: SingleLiveEvent<String> = SingleLiveEvent()
+    val tableNameLiveData: LiveData<String> get() = _tableNameLiveData
+
+    private val _tableAllDataLiveData: SingleLiveEvent<TableSelectAllDTO> = SingleLiveEvent()
+    val tableAllDataLiveData: LiveData<TableSelectAllDTO> get() = _tableAllDataLiveData
+
     fun getUserName(): String {
         return PreferenceUtil(context).getName("dbName", "DB Master")
     }
 
     fun getTableName(): String {
-        return PreferenceUtil(context).getName("tableName", "DB Master")
+        val tableName = PreferenceUtil(context).getName("tableName", "DB Master")
+        _tableNameLiveData.postValue(tableName)
+        return tableName
     }
 
     fun getAllTableData() {
@@ -43,6 +52,7 @@ class MainViewModel(
                 .doOnSuccess { _stopLoadingLiveData.call() }
                 .doOnError { _stopLoadingLiveData.call() }
                 .subscribe({
+                    _tableAllDataLiveData.postValue(it)
                     Log.e("MAIN VIEW MODEL", "$it")
                 }, {
                     it.printStackTrace()
