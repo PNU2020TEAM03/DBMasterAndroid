@@ -1,6 +1,7 @@
 package com.example.dbmasterandroid.data.api
 
 import com.example.dbmasterandroid.data.dto.ResponseDTO
+import com.example.dbmasterandroid.data.dto.TableColumnInfoDTO
 import com.example.dbmasterandroid.data.dto.TableListDTO
 import com.example.dbmasterandroid.data.dto.TableSelectAllDTO
 import io.reactivex.Single
@@ -19,13 +20,13 @@ interface TableControlService {
             @Body columnInfo: HashMap<String, String>
     ): Single<ResponseDTO>
 
-    @POST("/v1/column/get-all")
-    fun getAllTableData(
-            @Body name: HashMap<String, String>
-    ): Single<TableSelectAllDTO>
-
     @POST("/v1/table/duplicate")
     fun checkTableNameValid(
             @Body name: HashMap<String, String>
     ): Single<ResponseDTO>
+
+    @POST("/v1/table/get-info")
+    fun getTableInfo(
+            @Body name: HashMap<String, String>
+    ): Single<TableColumnInfoDTO>
 }

@@ -1,11 +1,14 @@
 package com.example.dbmasterandroid.di
 
+import com.example.dbmasterandroid.data.ColumnRepository
 import com.example.dbmasterandroid.data.ConnectionRepository
 import com.example.dbmasterandroid.data.SignUpRepository
 import com.example.dbmasterandroid.data.TableRepository
+import com.example.dbmasterandroid.data.api.ColumnControlService
 import com.example.dbmasterandroid.data.api.ConnectionService
 import com.example.dbmasterandroid.data.api.SignUpService
 import com.example.dbmasterandroid.data.api.TableControlService
+import com.example.dbmasterandroid.data.repository.ColumnRepositoryImpl
 import com.example.dbmasterandroid.data.repository.ConnectionRepositoryImpl
 import com.example.dbmasterandroid.data.repository.SignUpRepositoryImpl
 import com.example.dbmasterandroid.data.repository.TableRepositoryImpl
@@ -23,10 +26,12 @@ val apiModule = module {
     factory { provideSignUpService(provideDBMasterRetrofit(get())) }
     factory { provideConnectionService(provideDBMasterRetrofit(get())) }
     factory { provideTableControlService(provideDBMasterRetrofit(get())) }
+    factory { provideColumnControlService(provideDBMasterRetrofit(get())) }
 
     single<SignUpRepository> { SignUpRepositoryImpl(get()) }
     single<ConnectionRepository> { ConnectionRepositoryImpl(get()) }
     single<TableRepository> { TableRepositoryImpl(get()) }
+    single<ColumnRepository> { ColumnRepositoryImpl(get()) }
 }
 
 fun provideOkHttpClient(): OkHttpClient {
@@ -48,3 +53,4 @@ fun provideDBMasterRetrofit(okHttpClient: OkHttpClient): Retrofit {
 fun provideSignUpService(retrofit: Retrofit): SignUpService = retrofit.create(SignUpService::class.java)
 fun provideConnectionService(retrofit: Retrofit): ConnectionService = retrofit.create(ConnectionService::class.java)
 fun provideTableControlService(retrofit: Retrofit): TableControlService = retrofit.create(TableControlService::class.java)
+fun provideColumnControlService(retrofit: Retrofit): ColumnControlService = retrofit.create(ColumnControlService::class.java)

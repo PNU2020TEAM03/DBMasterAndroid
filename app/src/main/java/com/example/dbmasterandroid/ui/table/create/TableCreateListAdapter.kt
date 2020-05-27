@@ -1,17 +1,12 @@
 package com.example.dbmasterandroid.ui.table.create
 
-import android.content.Context
-import android.content.DialogInterface
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.core.os.bundleOf
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dbmasterandroid.R
-import com.example.dbmasterandroid.utils.Useful
 import kotlinx.android.synthetic.main.item_table_create_list.view.*
 
 class TableCreateListAdapter(
