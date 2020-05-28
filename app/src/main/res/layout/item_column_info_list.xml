@@ -59,7 +59,7 @@
         android:textColor="@color/black"/>
 
     <TextView
-        android:id="@+id/primary_or_foreign_key"
+        android:id="@+id/primary_key"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toRightOf="@id/table_list_2of3_line"

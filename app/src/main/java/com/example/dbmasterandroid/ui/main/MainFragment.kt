@@ -11,6 +11,7 @@ import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.utils.LoadingIndicator
@@ -21,6 +22,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : Fragment() {
 
+    private lateinit var adapter: MainColumnInfoAdapter
+
     private val viewModel: MainViewModel by viewModel()
     private var mLoadingIndicator: Dialog? = null
 
@@ -28,6 +31,7 @@ class MainFragment : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
 
         mLoadingIndicator = context?.let { LoadingIndicator(it) }
+        adapter = MainColumnInfoAdapter(viewModel)
 
         viewModel.getAllTableData()
 
@@ -41,12 +45,20 @@ class MainFragment : Fragment() {
 
         mainActivity.setUserTableName(viewModel.getUserName(), viewModel.getTableName())
 
+        main_column_list.adapter = adapter
+        main_column_list.setHasFixedSize(true)
+        main_column_list.layoutManager = LinearLayoutManager(context)
+
         viewModel.startLoadingLiveData.observe(viewLifecycleOwner, Observer {
             startLoadingIndicator()
         })
 
         viewModel.stopLoadingLiveData.observe(viewLifecycleOwner, Observer {
             stopLoadingIndicator()
+        })
+
+        viewModel.columnInfoListUpdateLiveData.observe(viewLifecycleOwner, Observer {
+            adapter.notifyDataSetChanged()
         })
 
         viewModel.tableNameLiveData.observe(viewLifecycleOwner, Observer {

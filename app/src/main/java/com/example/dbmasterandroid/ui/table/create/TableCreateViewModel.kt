@@ -22,7 +22,7 @@ class TableCreateViewModel(
 
     var currentTableName: String? = null
     var currentColumnName: String? = null
-    var primaryKeyCount: Int = 0
+    private var primaryKeyCount: Int = 0
 
     private val columnInfoList = ArrayList<ColumnInfoDTO>()
 

@@ -30,7 +30,7 @@ val apiModule = module {
 
     single<SignUpRepository> { SignUpRepositoryImpl(get()) }
     single<ConnectionRepository> { ConnectionRepositoryImpl(get()) }
-    single<TableRepository> { TableRepositoryImpl(get()) }
+    single<TableRepository> { TableRepositoryImpl(get(), get()) }
     single<ColumnRepository> { ColumnRepositoryImpl(get()) }
 }
 

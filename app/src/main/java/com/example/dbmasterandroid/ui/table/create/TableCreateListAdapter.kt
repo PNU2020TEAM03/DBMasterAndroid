@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dbmasterandroid.R
-import kotlinx.android.synthetic.main.item_table_create_list.view.*
+import kotlinx.android.synthetic.main.item_column_info_list.view.*
 
 class TableCreateListAdapter(
         private val viewModel: TableCreateViewModel
@@ -17,7 +17,7 @@ class TableCreateListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_table_create_list, parent, false))
+                .inflate(R.layout.item_column_info_list, parent, false))
     }
 
     override fun getItemCount(): Int = viewModel.getColumnListSize()
@@ -31,7 +31,7 @@ class TableCreateListAdapter(
         } else {
             holder.itemView.data_type_name.text = "${item.columnType}"
         }
-        holder.itemView.primary_or_foreign_key.text = item.columnKey
+        holder.itemView.primary_key.text = item.columnKey
         holder.itemView.setOnClickListener {
             Log.e("RECYCLER VIEW", item.columnName)
             val builder = AlertDialog.Builder(it.context)

@@ -53,7 +53,7 @@
         android:textSize="20sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        tools:listitem="@layout/item_table_create_list"
+        tools:listitem="@layout/item_column_info_list"
         android:id="@+id/table_create_info_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
