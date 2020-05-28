@@ -6,19 +6,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TableRow
 import android.widget.TextView
-import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.utils.LoadingIndicator
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.main_drawer_header.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.w3c.dom.Text
 
 class MainFragment : Fragment() {
 
@@ -68,23 +66,61 @@ class MainFragment : Fragment() {
         viewModel.tableAllDataLiveData.observe(viewLifecycleOwner, Observer {
             if (it.value.isNotEmpty()) {
                 table_data_empty_text.visibility = View.GONE
-                val columnNames = it.value[0].keys
-                for (columnName in columnNames) {
+                for (columnName in it.value[0].keys) {
                     setColumnNameTextView(columnName)
                 }
                 if (it.value.size < 10) {
                     for (index in it.value.indices) {
-                        Log.e("MAIN FRAGMENT", "${it.value[index]}")
+                        val rowData = it.value[index]
+                        setRowDataTextView(rowData, index)
+                        Log.e("MAIN FRAGMENT < 10", "${it.value[index]}")
                     }
                 } else {
                     for (index in 0..9) {
-                        Log.e("MAIN FRAGMENT", "${it.value[index]}")
+                        val rowData = it.value[index]
+                        setRowDataTextView(rowData, index)
+                        Log.e("MAIN FRAGMENT > 10", "${it.value[index]}")
                     }
                 }
             } else {
                 table_data_empty_text.visibility = View.VISIBLE
             }
         })
+    }
+
+    private fun setRowDataTextView(data: HashMap<String, String>, index: Int) {
+        when (index) {
+            0->setRowColumnDataTextView(table_row0, data)
+            1->setRowColumnDataTextView(table_row1, data)
+            2->setRowColumnDataTextView(table_row2, data)
+            3->setRowColumnDataTextView(table_row3, data)
+            4->setRowColumnDataTextView(table_row4, data)
+            5->setRowColumnDataTextView(table_row5, data)
+            6->setRowColumnDataTextView(table_row6, data)
+            7->setRowColumnDataTextView(table_row7, data)
+            8->setRowColumnDataTextView(table_row8, data)
+            9->setRowColumnDataTextView(table_row9, data)
+        }
+
+    }
+
+    private fun setRowColumnDataTextView(tableRow: TableRow, data: HashMap<String, String>) {
+        val rowDataList = ArrayList<String>()
+        for (columnName in data.keys) {
+            val columnData = data[columnName]
+            rowDataList.add(columnData!!)
+        }
+        for (rowData in rowDataList) {
+            val textView = TextView(context)
+            textView.apply {
+                text = rowData
+                setTextColor(resources.getColor(R.color.black))
+                textSize = 20.0F
+                setPadding(50, 0, 50, 50)
+            }
+            tableRow.addView(textView)
+        }
+        rowDataList.clear()
     }
 
     private fun setColumnNameTextView(columnName: String) {

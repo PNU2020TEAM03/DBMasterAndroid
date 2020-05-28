@@ -23,7 +23,7 @@ class MainColumnInfoAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = viewModel.getColumnInfoListItem(position)
 
-        val primaryKey = item["primaryKey"]
+        val primaryKey = item["ispk"]
         val columnName = item["columnName"]
         val dataType = item["datatype"]
         val columnSize = item["columnsize"]

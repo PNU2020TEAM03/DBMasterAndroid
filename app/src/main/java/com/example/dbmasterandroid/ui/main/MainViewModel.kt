@@ -20,7 +20,7 @@ class MainViewModel(
         private val context: Context
 ): ViewModel() {
 
-    private var columnInfoList = ArrayList<HashMap<String, String>>()
+    private val columnInfoList = ArrayList<HashMap<String, String>>()
 
     private val _columnInfoListUpdateLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
     val columnInfoListUpdateLiveData: LiveData<Any> get() = _columnInfoListUpdateLiveData
@@ -78,7 +78,7 @@ class MainViewModel(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    columnInfoList = it.value as ArrayList<HashMap<String, String>>
+                    columnInfoList.addAll(it.value)
                     _columnInfoListUpdateLiveData.call()
                     Log.e("MAIN GET TABLE", "$columnInfoList")
                 }, {
