@@ -13,37 +13,34 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.R
+import com.example.dbmasterandroid.base.BaseFragment
 import com.example.dbmasterandroid.utils.LoadingIndicator
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_table_select.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TableSelectFragment: Fragment() {
+class TableSelectFragment: BaseFragment<TableSelectViewModel>() {
 
-    private val viewModel: TableSelectViewModel by viewModel()
-    private var mLoadingIndicator: Dialog? = null
+    override val viewModel: TableSelectViewModel by viewModel()
+
     private val dbName = MainActivityApplication.preferences.getName("dbName", "noName")
 
     private lateinit var adapter: TableSelectListAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
+    override val layoutResourceId: Int
+        get() = R.layout.fragment_table_select
 
+    override fun initView() {
         viewModel.getAllTableList(dbName)
 
         adapter = TableSelectListAdapter(viewModel)
-        mLoadingIndicator = context?.let { LoadingIndicator(it) }
-
-        return inflater.inflate(R.layout.fragment_table_select, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         table_select_list.adapter = adapter
         table_select_list.setHasFixedSize(true)
         table_select_list.layoutManager = LinearLayoutManager(context)
+    }
 
+    override fun initData() {
         viewModel.tableListLiveData.observe(viewLifecycleOwner, Observer {
             adapter.notifyDataSetChanged()
         })
@@ -60,36 +57,14 @@ class TableSelectFragment: Fragment() {
                 }
             }
         })
+    }
 
-        viewModel.startLoadingLiveData.observe(viewLifecycleOwner, Observer {
-            startLoadingIndicator()
-        })
-
-        viewModel.stopLoadingLiveData.observe(viewLifecycleOwner, Observer {
-            stopLoadingIndicator()
-        })
-
+    override fun initFinish() {
         btn_table_create.setOnClickListener {
             if (viewModel.getTableSize() >= 10) {
                 Snackbar.make(it, "테이블의 갯수가 10개입니다. 더 이상 생성할 수 없습니다.", Snackbar.LENGTH_SHORT).show()
             } else {
                 findNavController().navigate(R.id.action_tableSelectFragment_to_tableCreateNameFragment)
-            }
-        }
-    }
-
-    private fun stopLoadingIndicator() {
-        mLoadingIndicator?.let {
-            if (it.isShowing) it.cancel()
-        }
-    }
-
-    private fun startLoadingIndicator() {
-        stopLoadingIndicator()
-        activity?.let {
-            if (!it.isFinishing) {
-                mLoadingIndicator = LoadingIndicator(requireContext())
-                mLoadingIndicator?.show()
             }
         }
     }

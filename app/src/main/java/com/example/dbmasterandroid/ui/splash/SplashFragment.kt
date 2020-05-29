@@ -9,21 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.R
+import com.example.dbmasterandroid.base.BaseFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /* TODO Fragment For Single Activity */
-class SplashFragment : Fragment() {
+class SplashFragment : BaseFragment<SplashViewModel>() {
 
-    private val viewModel = SplashViewModel()
+    override val viewModel: SplashViewModel by viewModel()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
+    override val layoutResourceId: Int
+        get() = R.layout.fragment_splash
+
+    override fun initView() {
         viewModel.getSplashNavigationMode()
-        return inflater.inflate(R.layout.fragment_splash, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+    override fun initData() {
         viewModel.splashNavigationModeLiveData.observe(viewLifecycleOwner, Observer {
             when (it) {
                 1 -> {
@@ -34,4 +35,6 @@ class SplashFragment : Fragment() {
             }
         })
     }
+
+    override fun initFinish() {}
 }

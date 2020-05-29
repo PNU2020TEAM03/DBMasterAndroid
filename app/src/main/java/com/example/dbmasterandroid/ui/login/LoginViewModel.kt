@@ -3,6 +3,7 @@ package com.example.dbmasterandroid.ui.login
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.dbmasterandroid.MainActivityApplication
+import com.example.dbmasterandroid.base.BaseViewModel
 import com.example.dbmasterandroid.data.ConnectionRepository
 import com.example.dbmasterandroid.utils.SingleLiveEvent
 import com.loopj.android.http.RequestParams
@@ -13,9 +14,8 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 class LoginViewModel(
-        private val connectionRepository: ConnectionRepository,
-        private val compositeDisposable: CompositeDisposable
-) : ViewModel() {
+        private val connectionRepository: ConnectionRepository
+) : BaseViewModel() {
 
     private val _networkInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
     val networkInvalid: LiveData<Any> get() = _networkInvalid
@@ -29,12 +29,6 @@ class LoginViewModel(
     private val _connectionInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
     val connectionInvalid: LiveData<Any> get() = _connectionInvalid
 
-    private val _startLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
-    val startLoadingLiveData: LiveData<Any> get() = _startLoadingLiveData
-
-    private val _stopLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
-    val stopLoadingLiveData: LiveData<Any> get() = _stopLoadingLiveData
-
     fun connect(name: String, pw: String) {
         val user = HashMap<String, String>()
         user["name"] = name
@@ -44,9 +38,9 @@ class LoginViewModel(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(5, TimeUnit.SECONDS)
-                .doOnSubscribe { _startLoadingLiveData.call() }
-                .doOnSuccess { _stopLoadingLiveData.call() }
-                .doOnError { _stopLoadingLiveData.call() }
+                .doOnSubscribe { startLoadingIndicator() }
+                .doOnSuccess { stopLoadingIndicator() }
+                .doOnError { stopLoadingIndicator() }
                 .subscribe({ result ->
                     if (result.idValid == "available") {
                         if (result.connectionValid == "available") {

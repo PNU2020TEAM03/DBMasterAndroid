@@ -1,53 +1,34 @@
 package com.example.dbmasterandroid.ui.table.create
 
-import android.app.Dialog
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.R
-import com.example.dbmasterandroid.utils.LoadingIndicator
+import com.example.dbmasterandroid.base.BaseFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_table_create_info.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
-class TableCreateInfoFragment: Fragment() {
+class TableCreateInfoFragment: BaseFragment<TableCreateViewModel>() {
 
-    private val viewModel: TableCreateViewModel by sharedViewModel()
-    private var mLoadingIndicator: Dialog? = null
+    override val viewModel: TableCreateViewModel by sharedViewModel()
 
     private lateinit var adapter: TableCreateListAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
+    override val layoutResourceId: Int
+        get() = R.layout.fragment_table_create_info
 
+    override fun initView() {
         adapter = TableCreateListAdapter(viewModel)
-        mLoadingIndicator = context?.let { LoadingIndicator(it) }
-
-        return inflater.inflate(R.layout.fragment_table_create_info, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         table_create_info_name.text = "현재 테이블: ${viewModel.currentTableName}"
 
         table_create_info_list.adapter = adapter
         table_create_info_list.setHasFixedSize(true)
         table_create_info_list.layoutManager = LinearLayoutManager(context)
+    }
 
-        btn_table_info_add.setOnClickListener {
-            findNavController().navigate(R.id.action_tableCreateInfoFragment_to_tableColumnNameFragment)
-        }
-
-        btn_table_create.setOnClickListener {
-            viewModel.createTable()
-        }
-
+    override fun initData() {
         viewModel.listUpdateLiveData.observe(viewLifecycleOwner, Observer {
             adapter.notifyDataSetChanged()
         })
@@ -59,29 +40,15 @@ class TableCreateInfoFragment: Fragment() {
         viewModel.tableCreateInvalid.observe(viewLifecycleOwner, Observer {
             Snackbar.make(this.requireView(), "테이블을 생성하지 못하였습니다.", Snackbar.LENGTH_SHORT).show()
         })
-
-        viewModel.startLoadingLiveData.observe(viewLifecycleOwner, Observer {
-            startLoadingIndicator()
-        })
-
-        viewModel.stopLoadingLiveData.observe(viewLifecycleOwner, Observer {
-            stopLoadingIndicator()
-        })
     }
 
-    private fun stopLoadingIndicator() {
-        mLoadingIndicator?.let {
-            if (it.isShowing) it.cancel()
+    override fun initFinish() {
+        btn_table_info_add.setOnClickListener {
+            findNavController().navigate(R.id.action_tableCreateInfoFragment_to_tableColumnNameFragment)
         }
-    }
 
-    private fun startLoadingIndicator() {
-        stopLoadingIndicator()
-        activity?.let {
-            if (!it.isFinishing) {
-                mLoadingIndicator = LoadingIndicator(requireContext())
-                mLoadingIndicator?.show()
-            }
+        btn_table_create.setOnClickListener {
+            viewModel.createTable()
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.dbmasterandroid.ui.signup
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.example.dbmasterandroid.base.BaseViewModel
 import com.example.dbmasterandroid.data.SignUpRepository
 import com.example.dbmasterandroid.utils.RegularExpressionUtil
 import com.example.dbmasterandroid.utils.SingleLiveEvent
@@ -12,9 +13,8 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 class SignUpViewModel(
-        private val signUpRepository: SignUpRepository,
-        private val compositeDisposable: CompositeDisposable
-) : ViewModel() {
+        private val signUpRepository: SignUpRepository
+) : BaseViewModel() {
 
     private val _networkInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
     val networkInvalid: LiveData<Any> get() = _networkInvalid
@@ -37,12 +37,6 @@ class SignUpViewModel(
     private val _signUpValid: SingleLiveEvent<Any> = SingleLiveEvent()
     val signUpValid: LiveData<Any> get() = _signUpValid
 
-    private val _startLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
-    val startLoadingLiveData: LiveData<Any> get() = _startLoadingLiveData
-
-    private val _stopLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
-    val stopLoadingLiveData: LiveData<Any> get() = _stopLoadingLiveData
-
     var currentID: String? = null
     private var currentPW: String? = null
 
@@ -55,9 +49,9 @@ class SignUpViewModel(
             compositeDisposable.add(signUpRepository.signUp(userMap)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { _startLoadingLiveData.call() }
-                    .doOnSuccess { _stopLoadingLiveData.call() }
-                    .doOnError { _stopLoadingLiveData.call() }
+                    .doOnSubscribe { startLoadingIndicator() }
+                    .doOnSuccess { stopLoadingIndicator() }
+                    .doOnError { stopLoadingIndicator() }
                     .timeout(5, TimeUnit.SECONDS)
                     .subscribe({ response ->
                         when (response.result) {
@@ -100,9 +94,9 @@ class SignUpViewModel(
             compositeDisposable.add(signUpRepository.checkNameDuplication(nameMap)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { _startLoadingLiveData.call() }
-                    .doOnSuccess { _stopLoadingLiveData.call() }
-                    .doOnError { _stopLoadingLiveData.call() }
+                    .doOnSubscribe { startLoadingIndicator() }
+                    .doOnSuccess { stopLoadingIndicator() }
+                    .doOnError { stopLoadingIndicator() }
                     .timeout(5, TimeUnit.SECONDS)
                     .subscribe({ response ->
                         when (response.result) {

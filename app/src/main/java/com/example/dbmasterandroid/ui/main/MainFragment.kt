@@ -13,31 +13,24 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.R
+import com.example.dbmasterandroid.base.BaseFragment
 import com.example.dbmasterandroid.utils.LoadingIndicator
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.w3c.dom.Text
 
-class MainFragment : Fragment() {
+class MainFragment : BaseFragment<MainViewModel>() {
 
     private lateinit var adapter: MainColumnInfoAdapter
 
-    private val viewModel: MainViewModel by viewModel()
-    private var mLoadingIndicator: Dialog? = null
+    override val layoutResourceId: Int
+        get() = R.layout.fragment_main
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
+    override val viewModel: MainViewModel by viewModel()
 
-        mLoadingIndicator = context?.let { LoadingIndicator(it) }
+    override fun initView() {
         adapter = MainColumnInfoAdapter(viewModel)
-
         viewModel.getAllTableData()
-
-        return inflater.inflate(R.layout.fragment_main, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         val mainActivity = activity as MainActivityApplication
 
@@ -46,15 +39,9 @@ class MainFragment : Fragment() {
         main_column_list.adapter = adapter
         main_column_list.setHasFixedSize(true)
         main_column_list.layoutManager = LinearLayoutManager(context)
+    }
 
-        viewModel.startLoadingLiveData.observe(viewLifecycleOwner, Observer {
-            startLoadingIndicator()
-        })
-
-        viewModel.stopLoadingLiveData.observe(viewLifecycleOwner, Observer {
-            stopLoadingIndicator()
-        })
-
+    override fun initData() {
         viewModel.columnInfoListUpdateLiveData.observe(viewLifecycleOwner, Observer {
             adapter.notifyDataSetChanged()
         })
@@ -87,6 +74,8 @@ class MainFragment : Fragment() {
             }
         })
     }
+
+    override fun initFinish() {}
 
     private fun setRowDataTextView(data: HashMap<String, String>, index: Int) {
         when (index) {
@@ -132,21 +121,5 @@ class MainFragment : Fragment() {
             setPadding(50, 0, 50, 50)
         }
         table_column_name.addView(columnNameTextView)
-    }
-
-    private fun stopLoadingIndicator() {
-        mLoadingIndicator?.let {
-            if (it.isShowing) it.cancel()
-        }
-    }
-
-    private fun startLoadingIndicator() {
-        stopLoadingIndicator()
-        activity?.let {
-            if (!it.isFinishing) {
-                mLoadingIndicator = LoadingIndicator(requireContext())
-                mLoadingIndicator?.show()
-            }
-        }
     }
 }

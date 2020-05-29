@@ -1,40 +1,52 @@
 package com.example.dbmasterandroid.ui.table.create
 
 import android.graphics.Color
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.R
+import com.example.dbmasterandroid.base.BaseFragment
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_column_create_type.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import java.lang.NumberFormatException
 
-class TableColumnTypeFragment: Fragment() {
+class TableColumnTypeFragment: BaseFragment<TableCreateViewModel>() {
 
-    private val viewModel: TableCreateViewModel by sharedViewModel()
+    override val viewModel: TableCreateViewModel by sharedViewModel()
 
     private var dataTypeSize: String = ""
     private var dataType: String = ""
     private var dataKey: String = ""
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        super.onCreateView(inflater, container, savedInstanceState)
+    override val layoutResourceId: Int
+        get() = R.layout.fragment_column_create_type
 
-        return inflater.inflate(R.layout.fragment_column_create_type, container, false)
+    override fun initView() {
+        current_column_name.text = "현재 칼럼 이름: ${viewModel.currentColumnName}"
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        current_column_name.text = "현재 칼럼 이름: ${viewModel.currentColumnName}"
+    override fun initData() {
+        viewModel.columnListSizeInvalid.observe(viewLifecycleOwner, Observer {
+            Snackbar.make(requireView(), "칼럼 갯수가 10개입니다. 더 이상 칼럼을 추가할 수 없습니다.", Snackbar.LENGTH_SHORT).show()
+        })
 
+        viewModel.dataTypeSizeInvalid.observe(viewLifecycleOwner, Observer {
+            column_data_types_size_valid.text = "데이터 사이즈가 유효범위를 벗어났습니다."
+            column_data_types_size_valid.setTextColor(Color.RED)
+        })
+
+        viewModel.listUpdateInvalidLiveData.observe(viewLifecycleOwner, Observer {
+            Snackbar.make(requireView(), "Primary Key 가 이미 존재합니다. 다시 한 번 확인해주세요.", Snackbar.LENGTH_SHORT).show()
+        })
+
+        viewModel.listUpdateValidLiveData.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(R.id.action_tableColumnTypeFragment_pop)
+        })
+    }
+
+    override fun initFinish() {
         column_data_types_spinner1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
@@ -135,22 +147,5 @@ class TableColumnTypeFragment: Fragment() {
                 viewModel.checkColumnCreateValid(dataType, dataKey,0)
             }
         }
-
-        viewModel.columnListSizeInvalid.observe(viewLifecycleOwner, Observer {
-            Snackbar.make(view, "칼럼 갯수가 10개입니다. 더 이상 칼럼을 추가할 수 없습니다.", Snackbar.LENGTH_SHORT).show()
-        })
-
-        viewModel.dataTypeSizeInvalid.observe(viewLifecycleOwner, Observer {
-            column_data_types_size_valid.text = "데이터 사이즈가 유효범위를 벗어났습니다."
-            column_data_types_size_valid.setTextColor(Color.RED)
-        })
-
-        viewModel.listUpdateInvalidLiveData.observe(viewLifecycleOwner, Observer {
-            Snackbar.make(view, "Primary Key 가 이미 존재합니다. 다시 한 번 확인해주세요.", Snackbar.LENGTH_SHORT).show()
-        })
-
-        viewModel.listUpdateValidLiveData.observe(viewLifecycleOwner, Observer {
-            findNavController().navigate(R.id.action_tableColumnTypeFragment_pop)
-        })
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.example.dbmasterandroid.base.BaseViewModel
 import com.example.dbmasterandroid.data.TableRepository
 import com.example.dbmasterandroid.data.dto.ColumnInfoDTO
 import com.example.dbmasterandroid.utils.PreferenceUtil
@@ -16,9 +17,8 @@ import java.util.concurrent.TimeUnit
 
 class TableCreateViewModel(
         private val tableRepository: TableRepository,
-        private val compositeDisposable: CompositeDisposable,
         private val context: Context
-): ViewModel() {
+): BaseViewModel() {
 
     var currentTableName: String? = null
     var currentColumnName: String? = null
@@ -56,12 +56,6 @@ class TableCreateViewModel(
     private val _tableCreateInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
     val tableCreateInvalid: LiveData<Any> get() = _tableCreateInvalid
 
-    private val _startLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
-    val startLoadingLiveData: LiveData<Any> get() = _startLoadingLiveData
-
-    private val _stopLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
-    val stopLoadingLiveData: LiveData<Any> get() = _stopLoadingLiveData
-
     private val _columnListSizeInvalid: SingleLiveEvent<Any> = SingleLiveEvent()
     val columnListSizeInvalid: LiveData<Any> get() = _columnListSizeInvalid
 
@@ -80,9 +74,9 @@ class TableCreateViewModel(
             compositeDisposable.add(tableRepository.checkTableNameValid(body)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { _startLoadingLiveData.call() }
-                    .doOnSuccess { _stopLoadingLiveData.call() }
-                    .doOnError { _stopLoadingLiveData.call() }
+                    .doOnSubscribe { startLoadingIndicator() }
+                    .doOnSuccess { stopLoadingIndicator() }
+                    .doOnError { stopLoadingIndicator() }
                     .subscribe({
                         if (it.result == "S01") {
                             _tableNameValid.call()
@@ -176,9 +170,9 @@ class TableCreateViewModel(
         compositeDisposable.add(tableRepository.createTable(paramHash)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { _startLoadingLiveData.call() }
-                .doOnSuccess { _stopLoadingLiveData.call() }
-                .doOnError { _stopLoadingLiveData.call() }
+                .doOnSubscribe { startLoadingIndicator() }
+                .doOnSuccess { stopLoadingIndicator() }
+                .doOnError { stopLoadingIndicator() }
                 .timeout(5, TimeUnit.SECONDS)
                 .subscribe({
                     if (it.result == "E01") {

@@ -3,9 +3,10 @@ package com.example.dbmasterandroid.ui.splash
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.dbmasterandroid.base.BaseViewModel
 
 /* TODO MVVM ViewModel Part */
-class SplashViewModel : ViewModel() {
+class SplashViewModel : BaseViewModel() {
 
     private val _splashNavigationModeLiveData = MutableLiveData<Int>()
     val splashNavigationModeLiveData: LiveData<Int> get() = _splashNavigationModeLiveData

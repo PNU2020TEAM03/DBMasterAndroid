@@ -1,7 +1,7 @@
 package com.example.dbmasterandroid.ui.setting
 
-import androidx.lifecycle.ViewModel
+import com.example.dbmasterandroid.base.BaseViewModel
 
-class SettingViewModel: ViewModel() {
+class SettingViewModel: BaseViewModel() {
 
 }

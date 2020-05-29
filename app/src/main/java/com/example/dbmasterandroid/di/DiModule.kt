@@ -18,11 +18,11 @@ val compositeDisposable = module {
 
 val viewModelPart = module {
     viewModel { SplashViewModel() }
-    viewModel { SignUpViewModel(get(), get()) }
-    viewModel { LoginViewModel(get(), get()) }
-    viewModel { TableSelectViewModel(get(), get()) }
-    viewModel { TableCreateViewModel(get(), get(), get()) }
-    viewModel { MainViewModel(get(), get(), get(), get()) }
+    viewModel { SignUpViewModel(get()) }
+    viewModel { LoginViewModel(get()) }
+    viewModel { TableSelectViewModel(get()) }
+    viewModel { TableCreateViewModel(get(), get()) }
+    viewModel { MainViewModel(get(), get(), get()) }
     viewModel { MainActivityViewModel(get()) }
     viewModel { SettingViewModel() }
 }

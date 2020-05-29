@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.example.dbmasterandroid.base.BaseViewModel
 import com.example.dbmasterandroid.data.ColumnRepository
 import com.example.dbmasterandroid.data.TableRepository
 import com.example.dbmasterandroid.data.dto.TableSelectAllDTO
@@ -16,20 +17,13 @@ import io.reactivex.schedulers.Schedulers
 class MainViewModel(
         private val tableRepository: TableRepository,
         private val columnRepository: ColumnRepository,
-        private val compositeDisposable: CompositeDisposable,
         private val context: Context
-): ViewModel() {
+): BaseViewModel() {
 
     private val columnInfoList = ArrayList<HashMap<String, String>>()
 
     private val _columnInfoListUpdateLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
     val columnInfoListUpdateLiveData: LiveData<Any> get() = _columnInfoListUpdateLiveData
-
-    private val _startLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
-    val startLoadingLiveData: LiveData<Any> get() = _startLoadingLiveData
-
-    private val _stopLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
-    val stopLoadingLiveData: LiveData<Any> get() = _stopLoadingLiveData
 
     private val _tableNameLiveData: SingleLiveEvent<String> = SingleLiveEvent()
     val tableNameLiveData: LiveData<String> get() = _tableNameLiveData
@@ -56,11 +50,11 @@ class MainViewModel(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
-                    _startLoadingLiveData.call()
+                    startLoadingIndicator()
                     getTableInfo()
                 }
-                .doOnSuccess { _stopLoadingLiveData.call() }
-                .doOnError { _stopLoadingLiveData.call() }
+                .doOnSuccess { stopLoadingIndicator() }
+                .doOnError { stopLoadingIndicator() }
                 .subscribe({
                     _tableAllDataLiveData.postValue(it)
                     Log.e("MAIN VIEW MODEL", "$it")

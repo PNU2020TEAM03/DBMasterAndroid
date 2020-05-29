@@ -3,6 +3,7 @@ package com.example.dbmasterandroid.ui.table.select
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.dbmasterandroid.base.BaseViewModel
 import com.example.dbmasterandroid.data.TableRepository
 import com.example.dbmasterandroid.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,9 +11,8 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class TableSelectViewModel(
-        private val tableRepository: TableRepository,
-        private val compositeDisposable: CompositeDisposable
-) : ViewModel() {
+        private val tableRepository: TableRepository
+) : BaseViewModel() {
 
     private var tableList = ArrayList<String>()
 
@@ -22,12 +22,6 @@ class TableSelectViewModel(
     private val _tableListSizeLiveData = MutableLiveData<Int>()
     val tableListSizeLiveData: LiveData<Int> get() = _tableListSizeLiveData
 
-    private val _startLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
-    val startLoadingLiveData: LiveData<Any> get() = _startLoadingLiveData
-
-    private val _stopLoadingLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
-    val stopLoadingLiveData: LiveData<Any> get() = _stopLoadingLiveData
-
     fun getAllTableList(name: String) {
         val dbName = HashMap<String, String>()
         dbName["name"] = name
@@ -35,9 +29,9 @@ class TableSelectViewModel(
         compositeDisposable.add(tableRepository.getAllTableList(dbName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { _startLoadingLiveData.call() }
-                .doOnSuccess { _stopLoadingLiveData.call() }
-                .doOnError { _stopLoadingLiveData.call() }
+                .doOnSubscribe { startLoadingIndicator() }
+                .doOnSuccess { stopLoadingIndicator() }
+                .doOnError { stopLoadingIndicator() }
                 .subscribe({ result ->
                     tableList = result.value
                     _tableListLiveData.postValue(result.value)
