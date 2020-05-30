@@ -223,7 +223,7 @@
         tools:layout="@layout/fragment_setting"/>
     <fragment
         android:id="@+id/tableDataFragment"
-        android:name="com.example.dbmasterandroid.ui.table.data.TableDataFragment"
+        android:name="com.example.dbmasterandroid.ui.main.MainTableDataFragment"
         android:label="TableDataFragment"
         tools:layout="@layout/fragment_table_all_data"/>
 </navigation>

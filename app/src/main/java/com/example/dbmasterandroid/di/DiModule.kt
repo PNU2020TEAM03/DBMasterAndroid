@@ -7,7 +7,6 @@ import com.example.dbmasterandroid.ui.setting.SettingViewModel
 import com.example.dbmasterandroid.ui.signup.SignUpViewModel
 import com.example.dbmasterandroid.ui.splash.SplashViewModel
 import com.example.dbmasterandroid.ui.table.create.TableCreateViewModel
-import com.example.dbmasterandroid.ui.table.data.TableDataViewModel
 import com.example.dbmasterandroid.ui.table.select.TableSelectViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -18,7 +17,6 @@ val viewModelPart = module {
     viewModel { LoginViewModel(get()) }
     viewModel { TableSelectViewModel(get()) }
     viewModel { TableCreateViewModel(get(), get()) }
-    viewModel { TableDataViewModel() }
     viewModel { MainViewModel(get(), get(), get()) }
     viewModel { MainActivityViewModel(get()) }
     viewModel { SettingViewModel() }
