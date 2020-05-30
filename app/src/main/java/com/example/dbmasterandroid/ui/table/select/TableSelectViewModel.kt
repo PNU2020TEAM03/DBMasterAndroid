@@ -14,7 +14,7 @@ class TableSelectViewModel(
         private val tableRepository: TableRepository
 ) : BaseViewModel() {
 
-    private var tableList = ArrayList<String>()
+    private val tableList = ArrayList<String>()
 
     private val _tableListLiveData = MutableLiveData<List<String>>()
     val tableListLiveData: LiveData<List<String>> get() = _tableListLiveData
@@ -26,23 +26,25 @@ class TableSelectViewModel(
         val dbName = HashMap<String, String>()
         dbName["name"] = name
 
-        compositeDisposable.add(tableRepository.getAllTableList(dbName)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { startLoadingIndicator() }
-                .doOnSuccess { stopLoadingIndicator() }
-                .doOnError { stopLoadingIndicator() }
-                .subscribe({ result ->
-                    tableList = result.value
-                    _tableListLiveData.postValue(result.value)
-                    _tableListSizeLiveData.postValue(tableList.size)
-                }, { t ->
-                    t.printStackTrace()
-                })
-        )
+        if (tableList.isEmpty()) {
+            compositeDisposable.add(tableRepository.getAllTableList(dbName)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe { startLoadingIndicator() }
+                    .doOnSuccess { stopLoadingIndicator() }
+                    .doOnError { stopLoadingIndicator() }
+                    .subscribe({ result ->
+                        tableList.addAll(result.value)
+                        _tableListLiveData.postValue(result.value)
+                        _tableListSizeLiveData.postValue(tableList.size)
+                    }, { t ->
+                        t.printStackTrace()
+                    })
+            )
+        }
+
     }
 
     fun getTableSize(): Int = tableList.size
-
     fun getTableItem(position: Int): String = tableList[position]
 }

@@ -7,14 +7,10 @@ import com.example.dbmasterandroid.ui.setting.SettingViewModel
 import com.example.dbmasterandroid.ui.signup.SignUpViewModel
 import com.example.dbmasterandroid.ui.splash.SplashViewModel
 import com.example.dbmasterandroid.ui.table.create.TableCreateViewModel
+import com.example.dbmasterandroid.ui.table.data.TableDataViewModel
 import com.example.dbmasterandroid.ui.table.select.TableSelectViewModel
-import io.reactivex.disposables.CompositeDisposable
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
-
-val compositeDisposable = module {
-    factory { CompositeDisposable() }
-}
 
 val viewModelPart = module {
     viewModel { SplashViewModel() }
@@ -22,7 +18,9 @@ val viewModelPart = module {
     viewModel { LoginViewModel(get()) }
     viewModel { TableSelectViewModel(get()) }
     viewModel { TableCreateViewModel(get(), get()) }
+    viewModel { TableDataViewModel() }
     viewModel { MainViewModel(get(), get(), get()) }
     viewModel { MainActivityViewModel(get()) }
     viewModel { SettingViewModel() }
+
 }

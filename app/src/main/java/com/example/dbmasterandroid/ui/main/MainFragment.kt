@@ -10,6 +10,7 @@ import android.widget.TableRow
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.R
@@ -75,7 +76,12 @@ class MainFragment : BaseFragment<MainViewModel>() {
         })
     }
 
-    override fun initFinish() {}
+    override fun initFinish() {
+        btn_table_data_all.setOnClickListener {
+            findNavController().navigate(R.id.action_mainFragment_to_tableDataFragment)
+            viewModel.clearColumnInfoList()
+        }
+    }
 
     private fun setRowDataTextView(data: HashMap<String, String>, index: Int) {
         when (index) {

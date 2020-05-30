@@ -84,7 +84,11 @@ class MainActivityApplication : AppCompatActivity() {
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "환경 설정"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-
+                }
+                R.id.tableDataFragment->{
+                    main_toolbar.visibility = View.VISIBLE
+                    toolbar_title.text = "전체 보기"
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
                 else->{
                     main_toolbar.visibility = View.GONE
@@ -93,24 +97,22 @@ class MainActivityApplication : AppCompatActivity() {
             }
         }
 
-        drawer_nav_view.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener {
-            override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-                when (menuItem.itemId) {
-                    R.id.navigation_table_change->{
-                        navController.navigate(R.id.action_mainFragment_to_tableSelectFragment)
-                    }
-                    R.id.navigation_setting->{
-                        navController.navigate(R.id.action_mainFragment_to_settingFragment)
-                    }
-                    R.id.navigation_logout->{
-                        viewModel.logout()
-                        navController.navigate(R.id.action_mainFragment_to_loginFragment)
-                    }
+        drawer_nav_view.setNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.navigation_table_change->{
+                    navController.navigate(R.id.action_mainFragment_to_tableSelectFragment)
                 }
-                drawer_layout.closeDrawer(GravityCompat.START)
-                return true
+                R.id.navigation_setting->{
+                    navController.navigate(R.id.action_mainFragment_to_settingFragment)
+                }
+                R.id.navigation_logout->{
+                    viewModel.logout()
+                    navController.navigate(R.id.action_mainFragment_to_loginFragment)
+                }
             }
-        })
+            drawer_layout.closeDrawer(GravityCompat.START)
+            true
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

@@ -83,4 +83,7 @@ class MainViewModel(
 
     fun getColumnInfoListSize(): Int = columnInfoList.size
     fun getColumnInfoListItem(position: Int): HashMap<String, String> = columnInfoList[position]
+    fun clearColumnInfoList() {
+        columnInfoList.clear()
+    }
 }
