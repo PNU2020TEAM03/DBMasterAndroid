@@ -11,4 +11,9 @@ interface AuthService {
     fun authRequest(
             @Body email: HashMap<String, String>
     ): Single<ResponseDTO>
+
+    @POST("/v1/auth/check")
+    fun authCheck(
+            @Body authInfo: HashMap<String, String>
+    ): Single<ResponseDTO>
 }

@@ -23,4 +23,8 @@ class SignUpRepositoryImpl (
         return authService.authRequest(email)
     }
 
+    override fun authCheck(authInfo: HashMap<String, String>): Single<ResponseDTO> {
+        return authService.authCheck(authInfo)
+    }
+
 }

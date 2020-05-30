@@ -13,6 +13,8 @@ class SignUpEmailViewModel(
         private val signUpRepository: SignUpRepository
 ): BaseViewModel() {
 
+    private var currentEmail = "ex@example.com"
+
     private val _emailValid: SingleLiveEvent<String> = SingleLiveEvent()
     val emailValid: LiveData<String> get() = _emailValid
 
@@ -22,11 +24,15 @@ class SignUpEmailViewModel(
     private val _networkInvalid: SingleLiveEvent<String> = SingleLiveEvent()
     val networkInvalid: LiveData<String> get() = _networkInvalid
 
-    fun requestEmailAuth(email: HashMap<String, String>) {
-        if (!RegularExpressionUtil.validCheck(RegularExpressionUtil.Regex.EMAIL, email["email"])) {
+    fun requestEmailAuth(email: String) {
+        val emailInfo = HashMap<String, String>()
+        emailInfo["email"] = email
+
+        if (!RegularExpressionUtil.validCheck(RegularExpressionUtil.Regex.EMAIL, email)) {
             _emailInvalid.postValue("이메일 형식이 잘못되었습니다.")
         } else {
-            compositeDisposable.add(signUpRepository.authRequest(email)
+            currentEmail = email
+            compositeDisposable.add(signUpRepository.authRequest(emailInfo)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .timeout(5, TimeUnit.SECONDS)
@@ -42,5 +48,13 @@ class SignUpEmailViewModel(
                     })
             )
         }
+    }
+
+    fun checkEmailAuth(authNumber: Int) {
+        val authInfo = HashMap<String, String>()
+        authInfo["email"] = currentEmail
+        authInfo["authNum"] = authNumber.toString()
+
+
     }
 }

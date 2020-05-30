@@ -25,7 +25,7 @@ class SignUpEmailFragment: BaseFragment<SignUpEmailViewModel>() {
         viewModel.emailInvalid.observe(viewLifecycleOwner, Observer {
             setEmailValidText(it, Color.RED)
         })
-        /* 이메일 형식 맞을 때. (REGEX 체크 및 인증번호 발송 */
+        /* 이메일 형식 맞을 때. (REGEX 체크 및 인증번호 발송) */
         viewModel.emailValid.observe(viewLifecycleOwner, Observer {
             setEmailValidText(it, Color.BLUE)
             email_input.visibility = View.INVISIBLE
@@ -40,6 +40,9 @@ class SignUpEmailFragment: BaseFragment<SignUpEmailViewModel>() {
             val email = HashMap<String, String>()
             email["email"] = email_input.text.toString()
             viewModel.requestEmailAuth(email)
+        }
+        btn_signup_next_email.setOnClickListener {
+
         }
     }
 
