@@ -4,10 +4,7 @@ import com.example.dbmasterandroid.data.ColumnRepository
 import com.example.dbmasterandroid.data.ConnectionRepository
 import com.example.dbmasterandroid.data.SignUpRepository
 import com.example.dbmasterandroid.data.TableRepository
-import com.example.dbmasterandroid.data.api.ColumnControlService
-import com.example.dbmasterandroid.data.api.ConnectionService
-import com.example.dbmasterandroid.data.api.SignUpService
-import com.example.dbmasterandroid.data.api.TableControlService
+import com.example.dbmasterandroid.data.api.*
 import com.example.dbmasterandroid.data.repository.ColumnRepositoryImpl
 import com.example.dbmasterandroid.data.repository.ConnectionRepositoryImpl
 import com.example.dbmasterandroid.data.repository.SignUpRepositoryImpl
@@ -23,12 +20,14 @@ val DB_MASTER_BASE_URL = "https://pnuteam03.herokuapp.com"
 
 val apiModule = module {
     factory { provideOkHttpClient() }
+
     factory { provideSignUpService(provideDBMasterRetrofit(get())) }
     factory { provideConnectionService(provideDBMasterRetrofit(get())) }
     factory { provideTableControlService(provideDBMasterRetrofit(get())) }
     factory { provideColumnControlService(provideDBMasterRetrofit(get())) }
+    factory { provideAuthService(provideDBMasterRetrofit(get())) }
 
-    single<SignUpRepository> { SignUpRepositoryImpl(get()) }
+    single<SignUpRepository> { SignUpRepositoryImpl(get(), get()) }
     single<ConnectionRepository> { ConnectionRepositoryImpl(get()) }
     single<TableRepository> { TableRepositoryImpl(get(), get()) }
     single<ColumnRepository> { ColumnRepositoryImpl(get()) }
@@ -50,6 +49,7 @@ fun provideDBMasterRetrofit(okHttpClient: OkHttpClient): Retrofit {
             .build()
 }
 
+fun provideAuthService(retrofit: Retrofit): AuthService = retrofit.create(AuthService::class.java)
 fun provideSignUpService(retrofit: Retrofit): SignUpService = retrofit.create(SignUpService::class.java)
 fun provideConnectionService(retrofit: Retrofit): ConnectionService = retrofit.create(ConnectionService::class.java)
 fun provideTableControlService(retrofit: Retrofit): TableControlService = retrofit.create(TableControlService::class.java)

@@ -64,7 +64,8 @@ class MainActivityApplication : AppCompatActivity() {
             hideKeyboard()
             when (destination.id) {
                 R.id.signUpIdFragment, R.id.signUpMainFragment,
-                R.id.signUpPwFragment, R.id.signUpFragment->{
+                R.id.signUpPwFragment, R.id.signUpFragment,
+                R.id.signUpEmailFragment->{
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "회원가입"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)

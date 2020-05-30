@@ -8,4 +8,6 @@ interface SignUpRepository {
     fun checkNameDuplication(name: HashMap<String, String>): Single<ResponseDTO>
 
     fun signUp(user: HashMap<String, String>): Single<ResponseDTO>
+
+    fun authRequest(email: HashMap<String, String>): Single<ResponseDTO>
 }

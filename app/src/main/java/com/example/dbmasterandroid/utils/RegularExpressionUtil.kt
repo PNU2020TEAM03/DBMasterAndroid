@@ -14,11 +14,11 @@ object RegularExpressionUtil {
             Regex.NAME -> "^[0-9a-zA-Z\$_]+$"
             Regex.CONFIRM_NUMBER -> "\\d{6}"
             Regex.PASSWORD -> "((?=.*\\d)(?=.*[a-z,A-Z])(?=.*[-~!@#\$%^&*()_+`|\"':;,<.>/?\\\\]).{8,16})"
-            else -> ""
+            Regex.EMAIL -> "^[a-z0-9_+.-]+@([a-z0-9-]+\\.)+[a-z0-9]{2,4}$"
         }
     }
 
     enum class Regex {
-        NAME, PHONE, CONFIRM_NUMBER, PASSWORD
+        NAME, EMAIL, CONFIRM_NUMBER, PASSWORD
     }
 }

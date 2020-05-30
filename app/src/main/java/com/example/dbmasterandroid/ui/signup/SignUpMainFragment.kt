@@ -19,7 +19,7 @@ class SignUpMainFragment: BaseFragment<SignUpViewModel>() {
 
     override fun initFinish() {
         btn_signup_next_main.setOnClickListener {
-            findNavController().navigate(R.id.action_signUpMainFragment_to_signUpIdFragment)
+            findNavController().navigate(R.id.action_signUpMainFragment_to_signUpEmailFragment)
         }
     }
 }

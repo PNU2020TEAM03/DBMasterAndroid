@@ -83,8 +83,8 @@
         android:label="SignUpMainFragment"
         tools:layout="@layout/fragment_signup_main">
         <action
-            android:id="@+id/action_signUpMainFragment_to_signUpIdFragment"
-            app:destination="@id/signUpIdFragment"
+            android:id="@+id/action_signUpMainFragment_to_signUpEmailFragment"
+            app:destination="@id/signUpEmailFragment"
             app:enterAnim="@anim/slide_enter"
             app:exitAnim="@anim/slide_exit"
             app:popEnterAnim="@anim/slide_pop_enter"
@@ -226,4 +226,17 @@
         android:name="com.example.dbmasterandroid.ui.main.MainTableDataFragment"
         android:label="TableDataFragment"
         tools:layout="@layout/fragment_table_all_data"/>
+    <fragment
+        android:id="@+id/signUpEmailFragment"
+        android:name="com.example.dbmasterandroid.ui.signup.emailauth.SignUpEmailFragment"
+        android:label="SignUpEmailFragment"
+        tools:layout="@layout/fragment_signup_email_auth">
+        <action
+            android:id="@+id/action_signUpEmailFragment_to_signUpIdFragment"
+            app:destination="@id/signUpIdFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
+    </fragment>
 </navigation>
