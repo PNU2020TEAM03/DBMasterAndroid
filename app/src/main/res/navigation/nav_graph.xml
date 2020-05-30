@@ -148,6 +148,13 @@
             app:exitAnim="@anim/slide_exit"
             app:popEnterAnim="@anim/slide_pop_enter"
             app:popExitAnim="@anim/slide_pop_exit" />
+        <action
+            android:id="@+id/action_mainFragment_to_tableDataFragment"
+            app:destination="@id/tableDataFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
     </fragment>
     <fragment
         android:id="@+id/tableCreateNameFragment"
@@ -214,4 +221,9 @@
         android:name="com.example.dbmasterandroid.ui.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting"/>
+    <fragment
+        android:id="@+id/tableDataFragment"
+        android:name="com.example.dbmasterandroid.ui.table.data.TableDataFragment"
+        android:label="TableDataFragment"
+        tools:layout="@layout/fragment_table_all_data"/>
 </navigation>

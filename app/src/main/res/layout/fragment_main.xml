@@ -46,13 +46,15 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/background_main_text_view"
                 android:text="- 칼럼 정보"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/nanumsquare_acb"
-                android:paddingStart="20dp"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -66,7 +68,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:background="@drawable/background_main_text_view"
+                android:orientation="horizontal"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -75,8 +80,7 @@
                     android:textSize="20sp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nanumsquare_acb"
-                    android:layout_gravity="center"
-                    android:paddingStart="20dp"/>
+                    android:layout_gravity="center"/>
 
                 <View
                     android:layout_width="0dp"
