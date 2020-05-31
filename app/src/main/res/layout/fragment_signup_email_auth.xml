@@ -44,7 +44,20 @@
         app:layout_constraintTop_toBottomOf="@id/id_input_label"
         android:background="@drawable/background_edittext"
         android:paddingStart="20dp"
-        android:hint="이메일을 입력하세요."/>
+        android:hint="이메일을 입력하세요."
+        android:importantForAutofill="no" />
+
+    <TextView
+        android:id="@+id/email_valid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingStart="15dp"
+        app:layout_constraintLeft_toLeftOf="@id/email_input"
+        app:layout_constraintRight_toRightOf="@id/email_input"
+        app:layout_constraintTop_toBottomOf="@id/email_input"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textSize="15sp"/>
 
     <EditText
         android:visibility="invisible"
@@ -59,20 +72,20 @@
         android:inputType="number"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/id_input_label"
+        app:layout_constraintTop_toBottomOf="@id/email_valid"
         android:background="@drawable/background_edittext"
         android:paddingStart="20dp"
         android:hint="인증번호를 입력하세요."/>
 
     <TextView
-        android:id="@+id/email_valid"
+        android:id="@+id/auth_valid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:paddingStart="15dp"
-        app:layout_constraintLeft_toLeftOf="@id/email_input"
-        app:layout_constraintRight_toRightOf="@id/email_input"
-        app:layout_constraintTop_toBottomOf="@id/email_input"
+        app:layout_constraintLeft_toLeftOf="@id/auth_input"
+        app:layout_constraintRight_toRightOf="@id/auth_input"
+        app:layout_constraintTop_toBottomOf="@id/auth_input"
         android:fontFamily="@font/nanumsquare_acr"
         android:textSize="15sp"/>
 

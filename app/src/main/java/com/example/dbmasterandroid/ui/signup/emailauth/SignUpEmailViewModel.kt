@@ -21,6 +21,12 @@ class SignUpEmailViewModel(
     private val _emailInvalid: SingleLiveEvent<String> = SingleLiveEvent()
     val emailInvalid: LiveData<String> get() = _emailInvalid
 
+    private val _authNumberValid: SingleLiveEvent<Any> = SingleLiveEvent()
+    val authNumberValid: LiveData<Any> get() = _authNumberValid
+
+    private val _authNumberInvalid: SingleLiveEvent<String> = SingleLiveEvent()
+    val authNumberInvalid: LiveData<String> get() = _authNumberInvalid
+
     private val _networkInvalid: SingleLiveEvent<String> = SingleLiveEvent()
     val networkInvalid: LiveData<String> get() = _networkInvalid
 
@@ -33,6 +39,9 @@ class SignUpEmailViewModel(
         } else {
             currentEmail = email
             compositeDisposable.add(signUpRepository.authRequest(emailInfo)
+                    .doOnSubscribe { startLoadingIndicator() }
+                    .doOnSuccess { stopLoadingIndicator() }
+                    .doOnError { stopLoadingIndicator() }
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .timeout(5, TimeUnit.SECONDS)
@@ -50,11 +59,27 @@ class SignUpEmailViewModel(
         }
     }
 
-    fun checkEmailAuth(authNumber: Int) {
+    fun checkEmailAuth(authNumber: String) {
         val authInfo = HashMap<String, String>()
         authInfo["email"] = currentEmail
-        authInfo["authNum"] = authNumber.toString()
+        authInfo["authNum"] = authNumber
 
-
+        compositeDisposable.add(signUpRepository.authCheck(authInfo)
+                .doOnSubscribe { startLoadingIndicator() }
+                .doOnSuccess { stopLoadingIndicator() }
+                .doOnError { stopLoadingIndicator() }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if (it.result == "S01") {
+                        _authNumberValid.call()
+                    } else {
+                        _authNumberInvalid.postValue(it.message)
+                    }
+                }, {
+                    it.printStackTrace()
+                    _networkInvalid.postValue("네트워크 문제가 발생하였습니다.")
+                })
+        )
     }
 }

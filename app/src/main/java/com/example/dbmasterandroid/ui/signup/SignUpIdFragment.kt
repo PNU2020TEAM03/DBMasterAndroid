@@ -16,9 +16,7 @@ class SignUpIdFragment : BaseFragment<SignUpViewModel>() {
     override val layoutResourceId: Int
         get() = R.layout.fragment_signup_id
 
-    override fun initView() {
-        TODO("Not yet implemented")
-    }
+    override fun initView() {}
 
     override fun initData() {
         viewModel.nameValid.observe(viewLifecycleOwner, Observer {

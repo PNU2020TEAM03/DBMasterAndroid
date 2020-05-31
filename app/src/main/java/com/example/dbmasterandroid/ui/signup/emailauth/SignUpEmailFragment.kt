@@ -3,6 +3,7 @@ package com.example.dbmasterandroid.ui.signup.emailauth
 import android.graphics.Color
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_signup_email_auth.*
@@ -28,21 +29,29 @@ class SignUpEmailFragment: BaseFragment<SignUpEmailViewModel>() {
         /* 이메일 형식 맞을 때. (REGEX 체크 및 인증번호 발송) */
         viewModel.emailValid.observe(viewLifecycleOwner, Observer {
             setEmailValidText(it, Color.BLUE)
-            email_input.visibility = View.INVISIBLE
             btn_signup_auth_email.visibility = View.INVISIBLE
-            auth_input.visibility = View.VISIBLE
             btn_signup_next_email.visibility = View.VISIBLE
+            auth_input.visibility = View.VISIBLE
+        })
+        /* 인증번호 맞지 않을 때. */
+        viewModel.authNumberInvalid.observe(viewLifecycleOwner, Observer {
+            auth_valid.text = it
+            auth_valid.setTextColor(Color.RED)
+        })
+        /* 인증번호 맞을 때 */
+        viewModel.authNumberValid.observe(viewLifecycleOwner, Observer {
+            findNavController().navigate(R.id.action_signUpEmailFragment_to_signUpIdFragment)
         })
     }
 
     override fun initFinish() {
         btn_signup_auth_email.setOnClickListener {
-            val email = HashMap<String, String>()
-            email["email"] = email_input.text.toString()
+            val email = email_input.text.toString()
             viewModel.requestEmailAuth(email)
         }
         btn_signup_next_email.setOnClickListener {
-
+            val authNumber = auth_input.text.toString()
+            viewModel.checkEmailAuth(authNumber)
         }
     }
 
