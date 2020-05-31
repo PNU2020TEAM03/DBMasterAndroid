@@ -8,6 +8,7 @@ import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
 
+/* 메인 테이블 제어 서비스 */
 interface TableControlService {
 
     @POST("/v1/table/all-tables")

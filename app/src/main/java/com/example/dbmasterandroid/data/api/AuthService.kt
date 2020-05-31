@@ -5,6 +5,7 @@ import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
 
+/* 이메일 인증 서비스 */
 interface AuthService {
 
     @POST("/v1/auth/request")

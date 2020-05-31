@@ -106,11 +106,10 @@ class SignUpViewModel(
                             "S01" -> {
                                 currentID = name
                                 _nameValid.call()
-                                Log.e("Sign Up View Model", "$currentID, $currentPW")
                             }
                         }
                     }, { t ->
-                        Log.e("Sign Up ViewModel", "${t.message}")
+                        t.printStackTrace()
                         _networkInvalid.call()
                     })
             )

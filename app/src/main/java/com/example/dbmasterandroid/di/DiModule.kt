@@ -12,6 +12,7 @@ import com.example.dbmasterandroid.ui.table.select.TableSelectViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
+/* ViewModel DI */
 val viewModelPart = module {
     viewModel { SplashViewModel() }
     viewModel { SignUpViewModel(get()) }

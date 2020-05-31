@@ -5,6 +5,7 @@ import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
 
+/* 회원가입 서비스 */
 interface SignUpService {
 
     @POST("/v1/sign-up/check-name")
