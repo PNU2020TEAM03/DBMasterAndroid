@@ -14,12 +14,6 @@
         android:iconTint="@color/black"/>
 
     <item
-        android:id="@+id/navigation_table_search"
-        android:title="데이터 검색"
-        android:icon="@drawable/ic_right_arrow"
-        android:iconTint="@color/black"/>
-
-    <item
         android:id="@+id/navigation_setting"
         android:title="환경 설정"
         android:icon="@drawable/ic_right_arrow"

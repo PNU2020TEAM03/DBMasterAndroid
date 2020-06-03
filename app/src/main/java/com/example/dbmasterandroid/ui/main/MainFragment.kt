@@ -1,6 +1,5 @@
 package com.example.dbmasterandroid.ui.main
 
-import android.util.Log
 import android.view.View
 import android.widget.TableRow
 import android.widget.TextView
@@ -11,7 +10,7 @@ import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainFragment : BaseFragment<MainViewModel>() {
 
@@ -20,7 +19,7 @@ class MainFragment : BaseFragment<MainViewModel>() {
     override val layoutResourceId: Int
         get() = R.layout.fragment_main
 
-    override val viewModel: MainViewModel by sharedViewModel()
+    override val viewModel: MainViewModel by viewModel()
 
     override fun initView() {
         adapter = MainColumnInfoAdapter(viewModel)
