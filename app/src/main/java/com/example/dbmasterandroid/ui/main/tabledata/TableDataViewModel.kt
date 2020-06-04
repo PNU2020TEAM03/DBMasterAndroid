@@ -52,6 +52,6 @@ class TableDataViewModel(
         return PreferenceUtil(context).getName("tableName", "DB Master")
     }
 
-    private fun getTableListSize(): Int = tableAllDataList.size
-    private fun getTableListItem(position: Int) = tableAllDataList[position]
+    fun getTableListSize(): Int = tableAllDataList.size
+    fun getTableListItem(position: Int) = tableAllDataList[position]
 }

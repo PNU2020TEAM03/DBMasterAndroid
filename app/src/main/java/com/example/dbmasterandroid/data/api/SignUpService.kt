@@ -17,4 +17,10 @@ interface SignUpService {
     fun signUp(
             @Body user: HashMap<String, String>
     ): Single<ResponseDTO>
+
+    /* TODO 비밀번호 수정 API */
+    @POST("/v1/pw/change")
+    fun changePassWord(
+            @Body pwInfo: HashMap<String, String>
+    ): Single<ResponseDTO>
 }

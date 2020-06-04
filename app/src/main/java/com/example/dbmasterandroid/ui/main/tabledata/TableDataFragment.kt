@@ -1,5 +1,7 @@
 package com.example.dbmasterandroid.ui.main.tabledata
 
+import android.widget.TableRow
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.base.BaseFragment
@@ -18,7 +20,10 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
 
     override fun initData() {
         viewModel.tableDataListLiveData.observe(viewLifecycleOwner, Observer {
+            val tableDataListSize = viewModel.getTableListSize()
+            for (index in 0 until tableDataListSize) {
 
+            }
         })
     }
 
@@ -32,6 +37,15 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
                 return false
             }
 
+        })
+    }
+
+    private fun setTableRowData(rowData: HashMap<String, String>) {
+        val tableRow = TableRow(context)
+        val rowDataTextView = TextView(context)
+
+        tableRow.addView(rowDataTextView.apply {
+            text = rowData.toString()
         })
     }
 

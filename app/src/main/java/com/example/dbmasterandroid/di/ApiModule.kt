@@ -26,11 +26,13 @@ val apiModule = module {
     factory { provideTableControlService(provideDBMasterRetrofit(get())) }
     factory { provideColumnControlService(provideDBMasterRetrofit(get())) }
     factory { provideAuthService(provideDBMasterRetrofit(get())) }
+    factory { provideQueryControlService(provideDBMasterRetrofit(get())) }
 
     single<SignUpRepository> { SignUpRepositoryImpl(get(), get()) }
     single<ConnectionRepository> { ConnectionRepositoryImpl(get()) }
     single<TableRepository> { TableRepositoryImpl(get(), get()) }
     single<ColumnRepository> { ColumnRepositoryImpl(get()) }
+    single {  }
 }
 
 fun provideOkHttpClient(): OkHttpClient {
@@ -54,3 +56,4 @@ fun provideSignUpService(retrofit: Retrofit): SignUpService = retrofit.create(Si
 fun provideConnectionService(retrofit: Retrofit): ConnectionService = retrofit.create(ConnectionService::class.java)
 fun provideTableControlService(retrofit: Retrofit): TableControlService = retrofit.create(TableControlService::class.java)
 fun provideColumnControlService(retrofit: Retrofit): ColumnControlService = retrofit.create(ColumnControlService::class.java)
+fun provideQueryControlService(retrofit: Retrofit): QueryService = retrofit.create(QueryService::class.java)
