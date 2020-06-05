@@ -3,7 +3,6 @@ package com.example.dbmasterandroid.ui.table.create
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import com.example.dbmasterandroid.base.BaseViewModel
 import com.example.dbmasterandroid.data.TableRepository
 import com.example.dbmasterandroid.data.dto.ColumnInfoDTO
@@ -11,7 +10,6 @@ import com.example.dbmasterandroid.utils.PreferenceUtil
 import com.example.dbmasterandroid.utils.RegularExpressionUtil
 import com.example.dbmasterandroid.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 

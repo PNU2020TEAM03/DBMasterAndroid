@@ -19,9 +19,4 @@
         android:icon="@drawable/ic_right_arrow"
         android:iconTint="@color/black"/>
 
-    <item
-        android:id="@+id/navigation_logout"
-        android:title="로그아웃"
-        android:icon="@drawable/ic_right_arrow"
-        android:iconTint="@color/black"/>
 </menu>

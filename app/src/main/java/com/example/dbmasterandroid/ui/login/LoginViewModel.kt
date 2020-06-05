@@ -1,15 +1,11 @@
 package com.example.dbmasterandroid.ui.login
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.base.BaseViewModel
 import com.example.dbmasterandroid.data.ConnectionRepository
 import com.example.dbmasterandroid.utils.SingleLiveEvent
-import com.loopj.android.http.RequestParams
-import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 

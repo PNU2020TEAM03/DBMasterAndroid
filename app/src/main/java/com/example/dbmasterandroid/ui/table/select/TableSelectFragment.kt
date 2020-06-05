@@ -1,20 +1,12 @@
 package com.example.dbmasterandroid.ui.table.select
 
-import android.app.Dialog
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.MainActivityApplication
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.base.BaseFragment
-import com.example.dbmasterandroid.utils.LoadingIndicator
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_table_select.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
