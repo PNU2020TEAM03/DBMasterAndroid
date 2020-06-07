@@ -211,7 +211,15 @@
         android:id="@+id/settingFragment"
         android:name="com.example.dbmasterandroid.ui.setting.SettingFragment"
         android:label="SettingFragment"
-        tools:layout="@layout/fragment_setting"/>
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_settingPasswordFragment"
+            app:destination="@id/settingPasswordFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
+    </fragment>
     <fragment
         android:id="@+id/tableDataFragment"
         android:name="com.example.dbmasterandroid.ui.main.tabledata.TableDataFragment"
@@ -229,5 +237,20 @@
             app:exitAnim="@anim/slide_exit"
             app:popEnterAnim="@anim/slide_pop_enter"
             app:popExitAnim="@anim/slide_pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingPasswordFragment"
+        android:name="com.example.dbmasterandroid.ui.setting.pw.SettingPasswordFragment"
+        android:label="SettingPasswordFragment"
+        tools:layout="@layout/fragment_setting_password">
+        <action
+            android:id="@+id/action_settingPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit"
+            app:popUpTo="@id/settingPasswordFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

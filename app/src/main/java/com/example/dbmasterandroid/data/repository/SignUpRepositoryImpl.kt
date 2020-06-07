@@ -27,4 +27,8 @@ class SignUpRepositoryImpl (
         return authService.authCheck(authInfo)
     }
 
+    override fun changePassword(passwordInfo: HashMap<String, String>): Single<ResponseDTO> {
+        return signUpService.changePassWord(passwordInfo)
+    }
+
 }

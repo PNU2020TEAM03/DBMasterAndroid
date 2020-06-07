@@ -34,9 +34,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanumsquare_acr"
-        android:text="8자 이상 16자 이하, 영문/숫자/특수문자 조합이 가능해요."
+        android:text="@string/password_condition_str"
         android:textSize="15sp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintLeft_toLeftOf="@id/pw_input_title"
         app:layout_constraintTop_toBottomOf="@id/pw_input_label1"/>
 
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@id/pw_input_label2"
         android:background="@drawable/background_edittext"
         android:paddingStart="20dp"
-        android:hint="비밀번호를 입력해주세요."/>
+        android:hint="@string/sign_up_password_hint"/>
 
     <TextView
         android:id="@+id/pw_valid"

@@ -12,4 +12,6 @@ interface SignUpRepository {
     fun authRequest(email: HashMap<String, String>): Single<ResponseDTO>
 
     fun authCheck(authInfo: HashMap<String, String>): Single<ResponseDTO>
+
+    fun changePassword(passwordInfo: HashMap<String, String>): Single<ResponseDTO>
 }

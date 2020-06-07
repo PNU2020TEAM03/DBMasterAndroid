@@ -76,6 +76,11 @@ class MainActivityApplication : AppCompatActivity() {
                     toolbar_title.text = "환경 설정"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
+                R.id.settingPasswordFragment->{
+                    main_toolbar.visibility = View.VISIBLE
+                    toolbar_title.text = "비밀번호 변경"
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
                 R.id.tableDataFragment->{
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "전체 보기"
