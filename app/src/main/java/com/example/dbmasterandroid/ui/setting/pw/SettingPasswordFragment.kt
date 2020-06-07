@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.base.BaseFragment
 import com.example.dbmasterandroid.utils.PreferenceUtil
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_setting_password.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -34,6 +35,9 @@ class SettingPasswordFragment: BaseFragment<SettingPasswordViewModel>() {
 
             /* 3. Navigate */
             findNavController().navigate(R.id.action_settingPasswordFragment_to_loginFragment)
+
+            /* 4. Notification */
+            Snackbar.make(requireView(), "새로운 비밀번호로 다시 로그인 해주세요.", Snackbar.LENGTH_SHORT).show()
         })
     }
 

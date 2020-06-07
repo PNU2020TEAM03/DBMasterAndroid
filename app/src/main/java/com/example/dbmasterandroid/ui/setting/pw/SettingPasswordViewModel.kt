@@ -29,7 +29,9 @@ class SettingPasswordViewModel(
             } else {
                 _passwordInvalid.postValue("사용할 수 없는 비밀번호입니다.")
             }
-        } else {
+        } else if (newPassword == oldPassword){
+            _passwordInvalid.postValue("새로운 비밀번호가 현재 비밀번호와 같습니다.")
+        } else if (newPassword != newPasswordCheck) {
             _passwordInvalid.postValue("새로운 비밀번호가 일치하지 않습니다.")
         }
     }
