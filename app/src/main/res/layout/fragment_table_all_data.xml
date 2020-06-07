@@ -51,10 +51,12 @@
         <TableLayout
             android:id="@+id/table_data_main"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+            <TableRow android:id="@+id/table_data_main_column"/>
+        </TableLayout>
 
     </HorizontalScrollView>
-
 
     <TextView
         app:layout_constraintLeft_toLeftOf="parent"

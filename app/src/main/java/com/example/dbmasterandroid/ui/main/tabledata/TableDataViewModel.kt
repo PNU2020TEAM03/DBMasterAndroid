@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.dbmasterandroid.base.BaseViewModel
 import com.example.dbmasterandroid.data.ColumnRepository
+import com.example.dbmasterandroid.data.TableRepository
 import com.example.dbmasterandroid.utils.PreferenceUtil
 import com.example.dbmasterandroid.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 
 class TableDataViewModel(
         private val columnRepository: ColumnRepository,
+        private val tableRepository: TableRepository,
         private val context: Context
 ): BaseViewModel() {
 
@@ -19,6 +21,16 @@ class TableDataViewModel(
 
     private val _tableDataListLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
     val tableDataListLiveData: LiveData<Any> get() = _tableDataListLiveData
+
+    fun searchTableData(keyWord: String) {
+        val keywordInfo = HashMap<String, String>()
+
+        compositeDisposable.add(tableRepository.searchTableData(keywordInfo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+        )
+    }
 
     fun getAllTableData() {
         val name = HashMap<String, String>()
@@ -54,4 +66,5 @@ class TableDataViewModel(
 
     fun getTableListSize(): Int = tableAllDataList.size
     fun getTableListItem(position: Int) = tableAllDataList[position]
+    fun getTableColumnNames(): MutableSet<String> = tableAllDataList[0].keys
 }

@@ -24,5 +24,5 @@ val viewModelPart = module {
     viewModel { MainActivityViewModel(get()) }
     viewModel { SettingViewModel() }
     viewModel { SignUpEmailViewModel(get()) }
-    viewModel { TableDataViewModel(get(), get()) }
+    viewModel { TableDataViewModel(get(), get(), get()) }
 }

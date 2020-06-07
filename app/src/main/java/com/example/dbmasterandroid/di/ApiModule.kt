@@ -30,9 +30,8 @@ val apiModule = module {
 
     single<SignUpRepository> { SignUpRepositoryImpl(get(), get()) }
     single<ConnectionRepository> { ConnectionRepositoryImpl(get()) }
-    single<TableRepository> { TableRepositoryImpl(get(), get()) }
+    single<TableRepository> { TableRepositoryImpl(get()) }
     single<ColumnRepository> { ColumnRepositoryImpl(get()) }
-    single {  }
 }
 
 fun provideOkHttpClient(): OkHttpClient {

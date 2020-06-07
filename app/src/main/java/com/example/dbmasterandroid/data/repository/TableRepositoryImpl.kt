@@ -1,17 +1,14 @@
 package com.example.dbmasterandroid.data.repository
 
 import com.example.dbmasterandroid.data.TableRepository
-import com.example.dbmasterandroid.data.api.ColumnControlService
 import com.example.dbmasterandroid.data.api.TableControlService
 import com.example.dbmasterandroid.data.dto.ResponseDTO
 import com.example.dbmasterandroid.data.dto.TableColumnInfoDTO
 import com.example.dbmasterandroid.data.dto.TableListDTO
-import com.example.dbmasterandroid.data.dto.TableSelectAllDTO
 import io.reactivex.Single
 
 class TableRepositoryImpl(
-        private val tableControlService: TableControlService,
-        private val columnControlService: ColumnControlService
+        private val tableControlService: TableControlService
 ): TableRepository {
 
     override fun getAllTableList(name: HashMap<String, String>): Single<TableListDTO> {
@@ -28,5 +25,9 @@ class TableRepositoryImpl(
 
     override fun getTableInfo(name: HashMap<String, String>): Single<TableColumnInfoDTO> {
         return tableControlService.getTableInfo(name)
+    }
+
+    override fun searchTableData(keywordInfo: HashMap<String, String>): Single<TableColumnInfoDTO> {
+        return tableControlService.searchTableData(keywordInfo)
     }
 }
