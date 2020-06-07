@@ -35,7 +35,7 @@ interface TableControlService {
             @Body tableInfo: HashMap<String, String>
     ): Single<ResponseDTO>
 
-    /* TODO 테이블 RENAME API */
+    /* 테이블 RENAME API */
     @POST("/v1/table/rename")
     fun renameTable(
             @Body tableInfo: HashMap<String, String>

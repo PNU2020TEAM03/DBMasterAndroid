@@ -30,4 +30,8 @@ class TableRepositoryImpl(
     override fun searchTableData(keywordInfo: HashMap<String, String>): Single<TableColumnInfoDTO> {
         return tableControlService.searchTableData(keywordInfo)
     }
+
+    override fun renameTable(tableInfo: HashMap<String, String>): Single<ResponseDTO> {
+        return tableControlService.renameTable(tableInfo)
+    }
 }

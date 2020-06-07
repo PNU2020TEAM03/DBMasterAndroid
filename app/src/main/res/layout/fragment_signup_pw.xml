@@ -9,7 +9,7 @@
         android:id="@+id/pw_input_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="비밀번호 입력."
+        android:text="@string/sign_up_password_title"
         android:textSize="36sp"
         android:fontFamily="@font/nanumsquare_aceb"
         android:textColor="@color/black"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanumsquare_acr"
-        android:text="DB Master에서 사용할 비밀번호를 입력해주세요."
+        android:text="@string/sign_up_password_label"
         android:textSize="15sp"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="@id/pw_input_title"
@@ -77,7 +77,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:backgroundTint="@color/black"
         android:textColor="@color/white"
-        android:text="다음으로"
+        android:text="@string/btn_next_string"
         android:textSize="20sp"
         android:fontFamily="@font/nanumsquare_acb"/>
 

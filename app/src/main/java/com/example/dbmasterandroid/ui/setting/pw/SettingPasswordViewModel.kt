@@ -56,6 +56,7 @@ class SettingPasswordViewModel(
                         _passwordInvalid.postValue(result.message)
                     }
                 }, {
+                    it.printStackTrace()
                     _passwordInvalid.postValue("네트워크 문제가 발생하였습니다.")
                 })
         )

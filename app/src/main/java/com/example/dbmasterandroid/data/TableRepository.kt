@@ -17,4 +17,6 @@ interface TableRepository {
     fun getTableInfo(name: HashMap<String, String>): Single<TableColumnInfoDTO>
 
     fun searchTableData(keywordInfo: HashMap<String, String>): Single<TableColumnInfoDTO>
+
+    fun renameTable(tableInfo: HashMap<String, String>): Single<ResponseDTO>
 }

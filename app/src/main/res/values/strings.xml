@@ -9,7 +9,13 @@
     <string name="table_empty_str">생성된 테이블이 없습니다.\n 아래 버튼을 눌러 테이블을 생성해주세요.</string>
     <string name="password_condition_str">비밀번호는 8자 이상 16자 이하 \n영문/숫자/특수문자 조합이 가능합니다.</string>
     <string name="current_password_hint">현재 비밀번호를 입력해주세요.</string>
-    <string name="sign_up_password_hint">비밀번호를 입력해주세요.</string>
+
     <string name="new_password_hint">새로운 비밀번호를 입력해주세요.</string>
     <string name="new_password_check_hint">새로운 비밀번호를 다시 입력해주세요.</string>
+
+    <string name="sign_up_password_title">비밀번호 입력.</string>
+    <string name="sign_up_password_label">DB Master에서 사용할 비밀번호를 입력해주세요.</string>
+    <string name="sign_up_password_hint">비밀번호를 입력해주세요.</string>
+    <string name="btn_next_string">다음으로</string>
+    <string name="setting_table_name_title">테이블 이름 변경.</string>
 </resources>
