@@ -79,7 +79,35 @@
         android:fontFamily="@font/nanumsquare_acr"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/background_nav_button"
+        android:background="@drawable/background_setting_button"
         app:layout_constraintTop_toBottomOf="@+id/setting_table_name"/>
+
+    <Button
+        android:id="@+id/btn_setting_change_table_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="테이블 이름 변경"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/background_setting_button"
+        app:layout_constraintTop_toBottomOf="@+id/btn_setting_change_pw"/>
+
+    <Button
+        android:id="@+id/btn_setting_table_drop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="테이블 삭제"
+        android:textSize="20sp"
+        android:textColor="@color/crimson"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/background_warning_button"
+        app:layout_constraintTop_toBottomOf="@+id/btn_setting_change_table_name"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

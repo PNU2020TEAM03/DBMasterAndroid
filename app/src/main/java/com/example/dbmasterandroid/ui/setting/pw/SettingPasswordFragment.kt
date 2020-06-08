@@ -30,7 +30,6 @@ class SettingPasswordFragment: BaseFragment<SettingPasswordViewModel>() {
             PreferenceUtil(requireContext()).deletePreference()
             
             /* 2. Fragment Back Stack 모두 제거 */
-            /* TODO 테스트 필요. */
             clearBackStack()
 
             /* 3. Navigate */

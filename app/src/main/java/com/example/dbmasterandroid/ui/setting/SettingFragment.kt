@@ -22,8 +22,14 @@ class SettingFragment: BaseFragment<SettingViewModel>() {
     override fun initData() {}
 
     override fun initFinish() {
+        /* 비밀번호 변경 */
         btn_setting_change_pw.setOnClickListener {
             findNavController().navigate(R.id.action_settingFragment_to_settingPasswordFragment)
+        }
+
+        /* 테이블 이름 변경 */
+        btn_setting_change_table_name.setOnClickListener {
+            findNavController().navigate(R.id.action_settingFragment_to_settingNameFragment)
         }
     }
 }

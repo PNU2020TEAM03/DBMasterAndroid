@@ -18,4 +18,6 @@
     <string name="sign_up_password_hint">비밀번호를 입력해주세요.</string>
     <string name="btn_next_string">다음으로</string>
     <string name="setting_table_name_title">테이블 이름 변경.</string>
+    <string name="setting_table_name_label">테이블 이름을 변경하세요.</string>
+    <string name="setting_table_name_input">새로운 테이블 이름을 입력하세요.</string>
 </resources>
