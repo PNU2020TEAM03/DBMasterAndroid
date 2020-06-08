@@ -5,6 +5,7 @@ import com.example.dbmasterandroid.ui.login.LoginViewModel
 import com.example.dbmasterandroid.ui.main.MainViewModel
 import com.example.dbmasterandroid.ui.main.tabledata.TableDataViewModel
 import com.example.dbmasterandroid.ui.setting.SettingViewModel
+import com.example.dbmasterandroid.ui.setting.drop.SettingDropViewModel
 import com.example.dbmasterandroid.ui.setting.pw.SettingPasswordViewModel
 import com.example.dbmasterandroid.ui.setting.tablename.SettingNameViewModel
 import com.example.dbmasterandroid.ui.signup.emailauth.SignUpEmailViewModel
@@ -27,6 +28,7 @@ val viewModelPart = module {
     viewModel { SettingViewModel() }
     viewModel { SettingPasswordViewModel(get(), get()) }
     viewModel { SettingNameViewModel(get(), get()) }
+    viewModel { SettingDropViewModel(get()) }
     viewModel { SignUpEmailViewModel(get()) }
     viewModel { TableDataViewModel(get(), get(), get()) }
 }

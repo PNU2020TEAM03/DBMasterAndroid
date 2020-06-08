@@ -226,6 +226,13 @@
             app:exitAnim="@anim/slide_exit"
             app:popEnterAnim="@anim/slide_pop_enter"
             app:popExitAnim="@anim/slide_pop_exit" />
+        <action
+            android:id="@+id/action_settingFragment_to_settingDropFragment"
+            app:destination="@id/settingDropFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
     </fragment>
     <fragment
         android:id="@+id/tableDataFragment"
@@ -273,6 +280,21 @@
             app:popEnterAnim="@anim/slide_pop_enter"
             app:popExitAnim="@anim/slide_pop_exit"
             app:popUpTo="@id/settingNameFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingDropFragment"
+        android:name="com.example.dbmasterandroid.ui.setting.drop.SettingDropFragment"
+        android:label="SettingDropFragment"
+        tools:layout="@layout/fragment_setting_table_drop">
+        <action
+            android:id="@+id/action_settingDropFragment_to_tableSelectFragment"
+            app:destination="@id/tableSelectFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit"
+            app:popUpTo="@id/settingDropFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>

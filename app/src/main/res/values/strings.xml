@@ -17,7 +17,13 @@
     <string name="sign_up_password_label">DB Master에서 사용할 비밀번호를 입력해주세요.</string>
     <string name="sign_up_password_hint">비밀번호를 입력해주세요.</string>
     <string name="btn_next_string">다음으로</string>
+
     <string name="setting_table_name_title">테이블 이름 변경.</string>
-    <string name="setting_table_name_label">테이블 이름을 변경하세요.</string>
+    <string name="setting_table_name_label">테이블 이름을 변경합니다.</string>
     <string name="setting_table_name_input">새로운 테이블 이름을 입력하세요.</string>
+
+    <string name="setting_table_drop_title">테이블 삭제.</string>
+    <string name="setting_table_drop_label1">현재 관리중인 테이블을 삭제합니다.</string>
+    <string name="setting_table_drop_hint">현재 테이블 이름을 입력해주세요.</string>
+    <string name="setting_table_drop_label2">테이블을 삭제하기 위해 \n현재 테이블의 이름을 입력해주세요.</string>
 </resources>

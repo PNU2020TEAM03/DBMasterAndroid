@@ -31,5 +31,10 @@ class SettingFragment: BaseFragment<SettingViewModel>() {
         btn_setting_change_table_name.setOnClickListener {
             findNavController().navigate(R.id.action_settingFragment_to_settingNameFragment)
         }
+
+        /* 테이블 삭제 */
+        btn_setting_table_drop.setOnClickListener {
+            findNavController().navigate(R.id.action_settingFragment_to_settingDropFragment)
+        }
     }
 }
