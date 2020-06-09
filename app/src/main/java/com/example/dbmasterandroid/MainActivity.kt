@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_drawer_header.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivityApplication : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainActivityViewModel by viewModel()
 
@@ -84,6 +84,11 @@ class MainActivityApplication : AppCompatActivity() {
                 R.id.settingNameFragment->{
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "테이블 이름 변경"
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
+                R.id.settingDropFragment->{
+                    main_toolbar.visibility = View.VISIBLE
+                    toolbar_title.text = "테이블 삭제"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
                 R.id.tableDataFragment->{

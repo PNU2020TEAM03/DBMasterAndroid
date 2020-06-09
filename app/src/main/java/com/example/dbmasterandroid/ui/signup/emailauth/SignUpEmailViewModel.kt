@@ -70,6 +70,7 @@ class SignUpEmailViewModel(
                 .doOnError { stopLoadingIndicator() }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .timeout(5, TimeUnit.SECONDS)
                 .subscribe({
                     if (it.result == "S01") {
                         _authNumberValid.call()

@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.dbmasterandroid.MainActivityApplication
+import com.example.dbmasterandroid.MainActivity
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -25,7 +25,7 @@ class MainFragment : BaseFragment<MainViewModel>() {
         adapter = MainColumnInfoAdapter(viewModel)
         viewModel.getAllTableData()
 
-        val mainActivity = activity as MainActivityApplication
+        val mainActivity = activity as MainActivity
 
         mainActivity.setUserTableName(viewModel.getUserName(), viewModel.getTableName())
 

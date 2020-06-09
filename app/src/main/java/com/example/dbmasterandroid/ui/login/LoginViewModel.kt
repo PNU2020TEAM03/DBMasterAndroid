@@ -1,7 +1,7 @@
 package com.example.dbmasterandroid.ui.login
 
 import androidx.lifecycle.LiveData
-import com.example.dbmasterandroid.MainActivityApplication
+import com.example.dbmasterandroid.MainActivity
 import com.example.dbmasterandroid.base.BaseViewModel
 import com.example.dbmasterandroid.data.ConnectionRepository
 import com.example.dbmasterandroid.utils.SingleLiveEvent
@@ -41,7 +41,7 @@ class LoginViewModel(
                     if (result.idValid == "available") {
                         if (result.connectionValid == "available") {
                             _connectionValid.call()
-                            MainActivityApplication.preferences.setName("dbName", name)
+                            MainActivity.preferences.setName("dbName", name)
                         } else {
                             _connectionInvalid.call()
                         }

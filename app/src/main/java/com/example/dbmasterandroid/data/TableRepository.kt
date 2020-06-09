@@ -5,6 +5,7 @@ import com.example.dbmasterandroid.data.dto.TableColumnInfoDTO
 import com.example.dbmasterandroid.data.dto.TableListDTO
 import com.example.dbmasterandroid.data.dto.TableSelectAllDTO
 import io.reactivex.Single
+import retrofit2.http.Body
 
 interface TableRepository {
 
@@ -19,4 +20,6 @@ interface TableRepository {
     fun searchTableData(keywordInfo: HashMap<String, String>): Single<TableColumnInfoDTO>
 
     fun renameTable(tableInfo: HashMap<String, String>): Single<ResponseDTO>
+
+    fun dropTable(tableInfo: HashMap<String, String>): Single<ResponseDTO>
 }

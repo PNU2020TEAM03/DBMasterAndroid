@@ -3,7 +3,6 @@ package com.example.dbmasterandroid.data.api
 import com.example.dbmasterandroid.data.dto.ResponseDTO
 import com.example.dbmasterandroid.data.dto.TableColumnInfoDTO
 import com.example.dbmasterandroid.data.dto.TableListDTO
-import com.example.dbmasterandroid.data.dto.TableSelectAllDTO
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -29,7 +28,7 @@ interface TableControlService {
             @Body rowData: HashMap<String, String>
     ): Single<ResponseDTO>
 
-    /* TODO 테이블 DROP API */
+    /* 테이블 DROP API */
     @POST("/v1/table/drop")
     fun dropTable(
             @Body tableInfo: HashMap<String, String>

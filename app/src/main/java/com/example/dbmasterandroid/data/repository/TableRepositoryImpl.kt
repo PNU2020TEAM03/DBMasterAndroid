@@ -34,4 +34,8 @@ class TableRepositoryImpl(
     override fun renameTable(tableInfo: HashMap<String, String>): Single<ResponseDTO> {
         return tableControlService.renameTable(tableInfo)
     }
+
+    override fun dropTable(tableInfo: HashMap<String, String>): Single<ResponseDTO> {
+        return tableControlService.dropTable(tableInfo)
+    }
 }

@@ -4,7 +4,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.dbmasterandroid.MainActivityApplication
+import com.example.dbmasterandroid.MainActivity
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.base.BaseFragment
 import com.google.android.material.snackbar.Snackbar
@@ -15,7 +15,7 @@ class TableSelectFragment: BaseFragment<TableSelectViewModel>() {
 
     override val viewModel: TableSelectViewModel by viewModel()
 
-    private val dbName = MainActivityApplication.preferences.getName("dbName", "noName")
+    private val dbName = MainActivity.preferences.getName("dbName", "noName")
 
     private lateinit var adapter: TableSelectListAdapter
 

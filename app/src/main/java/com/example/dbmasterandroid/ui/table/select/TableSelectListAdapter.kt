@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dbmasterandroid.MainActivityApplication
+import com.example.dbmasterandroid.MainActivity
 import com.example.dbmasterandroid.R
 import kotlinx.android.synthetic.main.item_table_select_list.view.*
 
@@ -29,10 +29,10 @@ class TableSelectListAdapter(
         holder.itemView.table_name.text = tableItem
         holder.itemView.setOnClickListener {
             it.findNavController().navigate(R.id.action_tableSelectFragment_to_mainFragment)
-            MainActivityApplication.preferences.setName("tableName", tableItem)
+            MainActivity.preferences.setName("tableName", tableItem)
 
-            val dbname = MainActivityApplication.preferences.getName("dbName", "nodb")
-            val tablename = MainActivityApplication.preferences.getName("tableName", "notable")
+            val dbname = MainActivity.preferences.getName("dbName", "nodb")
+            val tablename = MainActivity.preferences.getName("tableName", "notable")
 
             Log.e("DB TABLE", "$dbname / $tablename")
         }

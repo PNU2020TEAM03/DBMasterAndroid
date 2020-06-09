@@ -28,7 +28,7 @@ val viewModelPart = module {
     viewModel { SettingViewModel() }
     viewModel { SettingPasswordViewModel(get(), get()) }
     viewModel { SettingNameViewModel(get(), get()) }
-    viewModel { SettingDropViewModel(get()) }
+    viewModel { SettingDropViewModel(get(), get()) }
     viewModel { SignUpEmailViewModel(get()) }
     viewModel { TableDataViewModel(get(), get(), get()) }
 }
