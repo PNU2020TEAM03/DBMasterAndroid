@@ -46,8 +46,12 @@ class TableDataViewModel(
                     .doOnSuccess { stopLoadingIndicator() }
                     .doOnError { stopLoadingIndicator() }
                     .subscribe({
-                        tableAllDataList.addAll(it.value)
-                        _tableDataListLiveData.call()
+                        if (it.value != null) {
+                            tableAllDataList.addAll(it.value)
+                            _tableDataListLiveData.call()
+                        } else {
+                            _tableDataListLiveData.call()
+                        }
                         Log.e("MAIN VIEW MODEL", "$it")
                     }, {
                         it.printStackTrace()
