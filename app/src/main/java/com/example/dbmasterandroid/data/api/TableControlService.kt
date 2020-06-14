@@ -9,7 +9,7 @@ import retrofit2.http.POST
 
 /* 메인 테이블 제어 서비스 */
 interface TableControlService {
-
+    
     /* 테이블 생성 API */
     @POST("/v1/table/create")
     fun createTable(

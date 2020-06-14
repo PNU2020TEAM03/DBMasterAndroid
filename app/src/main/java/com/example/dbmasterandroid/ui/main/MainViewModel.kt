@@ -6,7 +6,6 @@ import androidx.lifecycle.LiveData
 import com.example.dbmasterandroid.base.BaseViewModel
 import com.example.dbmasterandroid.data.ColumnRepository
 import com.example.dbmasterandroid.data.TableRepository
-import com.example.dbmasterandroid.data.dto.TableSelectAllDTO
 import com.example.dbmasterandroid.utils.PreferenceUtil
 import com.example.dbmasterandroid.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
