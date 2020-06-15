@@ -40,7 +40,22 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/background_search_view"/>
 
+    <TextView
+        android:id="@+id/table_all_data_empty_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/table_data_search_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="테이블에 데이터가 없습니다."
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:visibility="gone"/>
+
     <HorizontalScrollView
+        android:id="@+id/table_data_main_scroll_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"

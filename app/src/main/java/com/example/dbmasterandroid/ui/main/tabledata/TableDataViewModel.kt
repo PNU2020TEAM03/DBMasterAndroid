@@ -18,17 +18,37 @@ class TableDataViewModel(
 ): BaseViewModel() {
 
     private val tableAllDataList = ArrayList<HashMap<String, String>>()
+    private val tableSearchDataList = ArrayList<HashMap<String, String>>()
 
     private val _tableDataListLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
     val tableDataListLiveData: LiveData<Any> get() = _tableDataListLiveData
 
+    private val _tableSearchComplete: SingleLiveEvent<Any> = SingleLiveEvent()
+    val tableSearchComplete: LiveData<Any> get() = _tableSearchComplete
+
+    private val _networkInvalidLiveData: SingleLiveEvent<String> = SingleLiveEvent()
+    val networkInvalidLiveData: LiveData<String> get() = _networkInvalidLiveData
+
     fun searchTableData(keyWord: String) {
         val keywordInfo = HashMap<String, String>()
+
+        tableSearchDataList.clear()
+
+        keywordInfo["name"] = getUserName()
+        keywordInfo["tableName"] = getTableName()
+        keywordInfo["keyword"] = keyWord
 
         compositeDisposable.add(tableRepository.searchTableData(keywordInfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe()
+                .subscribe({
+                    Log.d("Search Process", "$it")
+                    tableSearchDataList.addAll(it.value)
+                    _tableSearchComplete.call()
+                }, { error ->
+                    error.printStackTrace()
+                    _networkInvalidLiveData.postValue("네트워크에 문제가 발생하였습니다.")
+                })
         )
     }
 
@@ -67,6 +87,9 @@ class TableDataViewModel(
     private fun getTableName(): String {
         return PreferenceUtil(context).getName("tableName", "DB Master")
     }
+
+    fun getSearchTableListSize(): Int = tableSearchDataList.size
+    fun getSearchTableListItem(position: Int) = tableSearchDataList[position]
 
     fun getTableListSize(): Int = tableAllDataList.size
     fun getTableListItem(position: Int) = tableAllDataList[position]

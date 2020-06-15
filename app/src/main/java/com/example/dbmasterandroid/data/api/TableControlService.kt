@@ -46,7 +46,7 @@ interface TableControlService {
             @Body name: HashMap<String, String>
     ): Single<ResponseDTO>
 
-    /* TODO 테이블 내 데이터 검색 API */
+    /* 테이블 내 데이터 검색 API */
     @POST("/v1/table/search")
     fun searchTableData(
             @Body keywordInfo: HashMap<String, String>

@@ -1,5 +1,7 @@
 package com.example.dbmasterandroid.ui.main.tabledata
 
+import android.util.Log
+import android.view.View
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -20,31 +22,69 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
     }
 
     override fun initData() {
+        viewModel.tableSearchComplete.observe(viewLifecycleOwner, Observer {
+            val searchTableDataListSize = viewModel.getSearchTableListSize()
+            val tableColumnNames = viewModel.getTableColumnNames()
+
+            if (searchTableDataListSize == 0) {
+                table_all_data_empty_text.text = "검색된 데이터가 없습니다."
+                table_all_data_empty_text.visibility = View.VISIBLE
+                table_data_main_scroll_view.visibility = View.GONE
+            } else {
+                table_all_data_empty_text.visibility = View.GONE
+                table_data_main_scroll_view.visibility = View.VISIBLE
+
+                for (columnName in tableColumnNames) {
+                    setColumnNameTextView(columnName)
+                }
+
+                for (position in 0 until searchTableDataListSize) {
+                    val tableDataItem = viewModel.getSearchTableListItem(position)
+                    setRowColumnDataTextView(tableDataItem)
+                }
+            }
+        })
+        viewModel.networkInvalidLiveData.observe(viewLifecycleOwner, Observer {
+            table_all_data_empty_text.visibility = View.VISIBLE
+            table_all_data_empty_text.text = it
+            table_data_main_scroll_view.visibility = View.GONE
+        })
         viewModel.tableDataListLiveData.observe(viewLifecycleOwner, Observer {
             val tableDataListSize = viewModel.getTableListSize()
             val tableColumnNames = viewModel.getTableColumnNames()
 
-            for (columnName in tableColumnNames) {
-                setColumnNameTextView(columnName)
-            }
+            if (tableDataListSize == 0) {
+                table_all_data_empty_text.visibility = View.VISIBLE
+                table_data_main_scroll_view.visibility = View.GONE
+            } else {
+                table_all_data_empty_text.visibility = View.GONE
+                table_data_main_scroll_view.visibility = View.VISIBLE
 
-            for (position in 0 until tableDataListSize) {
-                val tableDataItem = viewModel.getTableListItem(position)
-                setRowColumnDataTextView(tableDataItem)
+                for (columnName in tableColumnNames) {
+                    setColumnNameTextView(columnName)
+                }
+
+                for (position in 0 until tableDataListSize) {
+                    val tableDataItem = viewModel.getTableListItem(position)
+                    setRowColumnDataTextView(tableDataItem)
+                }
             }
         })
     }
 
     override fun initFinish() {
         table_data_search_view.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            /* 검색 버튼 눌렀을 때 제출되는 쿼리 */
             override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.searchTableData(query.toString())
+                Log.e("Search Process Query", query.toString())
                 return false
             }
 
+            /* 현재 타이핑 중인 쿼리 */
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false
             }
-
         })
     }
 
