@@ -11,6 +11,7 @@ import com.example.dbmasterandroid.ui.setting.tablename.SettingNameViewModel
 import com.example.dbmasterandroid.ui.signup.emailauth.SignUpEmailViewModel
 import com.example.dbmasterandroid.ui.signup.SignUpViewModel
 import com.example.dbmasterandroid.ui.splash.SplashViewModel
+import com.example.dbmasterandroid.ui.table.control.TableControlViewModel
 import com.example.dbmasterandroid.ui.table.create.TableCreateViewModel
 import com.example.dbmasterandroid.ui.table.select.TableSelectViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -31,4 +32,5 @@ val viewModelPart = module {
     viewModel { SettingDropViewModel(get(), get()) }
     viewModel { SignUpEmailViewModel(get()) }
     viewModel { TableDataViewModel(get(), get(), get()) }
+    viewModel { TableControlViewModel() }
 }

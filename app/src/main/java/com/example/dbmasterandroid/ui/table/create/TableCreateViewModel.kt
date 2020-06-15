@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 class TableCreateViewModel(
         private val tableRepository: TableRepository,
         private val context: Context
-): BaseViewModel() {
+) : BaseViewModel() {
 
     var currentTableName: String? = null
     var currentColumnName: String? = null
@@ -145,7 +145,8 @@ class TableCreateViewModel(
         val tableName = currentTableName
         var fieldInfo = ""
         var primaryKeyColName = ""
-        for (columnInfo in columnInfoList) {
+        for (index in columnInfoList.indices) {
+            val columnInfo = columnInfoList[index]
             fieldInfo += if (columnInfo.columnSize.toInt() != 0) {
                 "${columnInfo.columnName} ${columnInfo.columnType}(${columnInfo.columnSize})"
             } else {
@@ -154,9 +155,13 @@ class TableCreateViewModel(
             if (columnInfo.columnKey == "PK") {
                 primaryKeyColName = columnInfo.columnName
             }
-            fieldInfo += ", "
+            if (index != columnInfoList.size - 1) {
+                fieldInfo += ", "
+            }
         }
-        fieldInfo += "PRIMARY KEY ($primaryKeyColName)"
+        if (primaryKeyColName != "") {
+            fieldInfo += "PRIMARY KEY ($primaryKeyColName)"
+        }
 
         Log.e("CREATE TABLE", fieldInfo)
 
