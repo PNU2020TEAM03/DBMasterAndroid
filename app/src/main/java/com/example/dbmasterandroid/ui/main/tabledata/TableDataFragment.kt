@@ -29,25 +29,28 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
             if (searchTableDataListSize == 0) {
                 table_all_data_empty_text.text = "검색된 데이터가 없습니다."
                 table_all_data_empty_text.visibility = View.VISIBLE
-                table_data_main_scroll_view.visibility = View.GONE
+                table_data_main_scroll_view.visibility = View.INVISIBLE
+                table_data_search_scroll_view.visibility = View.INVISIBLE
             } else {
-                table_all_data_empty_text.visibility = View.GONE
-                table_data_main_scroll_view.visibility = View.VISIBLE
+                table_all_data_empty_text.visibility = View.INVISIBLE
+                table_data_main_scroll_view.visibility = View.INVISIBLE
+                table_data_search_scroll_view.visibility = View.VISIBLE
 
                 for (columnName in tableColumnNames) {
-                    setColumnNameTextView(columnName)
+                    setColumnNameTextView(columnName, "search")
                 }
 
                 for (position in 0 until searchTableDataListSize) {
                     val tableDataItem = viewModel.getSearchTableListItem(position)
-                    setRowColumnDataTextView(tableDataItem)
+                    setRowColumnDataTextView(tableDataItem, "search")
                 }
             }
         })
         viewModel.networkInvalidLiveData.observe(viewLifecycleOwner, Observer {
             table_all_data_empty_text.visibility = View.VISIBLE
             table_all_data_empty_text.text = it
-            table_data_main_scroll_view.visibility = View.GONE
+            table_data_main_scroll_view.visibility = View.INVISIBLE
+            table_data_search_scroll_view.visibility = View.INVISIBLE
         })
         viewModel.tableDataListLiveData.observe(viewLifecycleOwner, Observer {
             val tableDataListSize = viewModel.getTableListSize()
@@ -55,18 +58,20 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
 
             if (tableDataListSize == 0) {
                 table_all_data_empty_text.visibility = View.VISIBLE
-                table_data_main_scroll_view.visibility = View.GONE
+                table_data_main_scroll_view.visibility = View.INVISIBLE
+                table_data_search_scroll_view.visibility = View.INVISIBLE
             } else {
-                table_all_data_empty_text.visibility = View.GONE
+                table_all_data_empty_text.visibility = View.INVISIBLE
                 table_data_main_scroll_view.visibility = View.VISIBLE
+                table_data_search_scroll_view.visibility = View.INVISIBLE
 
                 for (columnName in tableColumnNames) {
-                    setColumnNameTextView(columnName)
+                    setColumnNameTextView(columnName, "main")
                 }
 
                 for (position in 0 until tableDataListSize) {
                     val tableDataItem = viewModel.getTableListItem(position)
-                    setRowColumnDataTextView(tableDataItem)
+                    setRowColumnDataTextView(tableDataItem, "main")
                 }
             }
         })
@@ -88,7 +93,7 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
         })
     }
 
-    private fun setRowColumnDataTextView(data: HashMap<String, String>) {
+    private fun setRowColumnDataTextView(data: HashMap<String, String>, flag: String) {
         val tableRow = TableRow(context)
         val rowDataList = ArrayList<String>()
         for (columnName in data.keys) {
@@ -105,11 +110,20 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
             }
             tableRow.addView(textView)
         }
-        table_data_main.addView(tableRow)
-        rowDataList.clear()
+
+        when (flag) {
+            "main"->{
+                table_data_main.addView(tableRow)
+                rowDataList.clear()
+            }
+            "search"->{
+                table_data_search.addView(tableRow)
+                rowDataList.clear()
+            }
+        }
     }
 
-    private fun setColumnNameTextView(columnName: String) {
+    private fun setColumnNameTextView(columnName: String, flag: String) {
         val columnNameTextView = TextView(context)
         columnNameTextView.apply {
             text = columnName
@@ -117,6 +131,10 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
             textSize = 20.0F
             setPadding(50, 0, 50, 50)
         }
-        table_data_main_column.addView(columnNameTextView)
+        when (flag) {
+            "main"->table_data_main_column.addView(columnNameTextView)
+            "search"->table_data_search_column.addView(columnNameTextView)
+        }
     }
+
 }
