@@ -108,6 +108,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_table_change->{
                     navController.navigate(R.id.action_mainFragment_to_tableSelectFragment)
                 }
+                R.id.navigation_table_control->{
+                    navController.navigate(R.id.action_mainFragment_to_tableControlFragment)
+                }
                 R.id.navigation_setting->{
                     navController.navigate(R.id.action_mainFragment_to_settingFragment)
                 }
