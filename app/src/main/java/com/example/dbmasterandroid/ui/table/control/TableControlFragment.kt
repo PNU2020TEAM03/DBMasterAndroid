@@ -1,5 +1,6 @@
 package com.example.dbmasterandroid.ui.table.control
 
+import androidx.navigation.fragment.findNavController
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_table_control.*
@@ -38,7 +39,7 @@ class TableControlFragment: BaseFragment<TableControlViewModel>() {
         }
         /* export */
         btn_table_control_export.setOnClickListener {
-
+            findNavController().navigate(R.id.action_tableControlFragment_to_dataExportFragment)
         }
     }
 

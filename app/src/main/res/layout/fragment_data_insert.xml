@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/data_export_title"
+        android:id="@+id/data_insert_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="데이터 추가."
@@ -19,15 +19,26 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/data_export_text1"
+        android:id="@+id/data_insert_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="현재 테이블에 데이터를 추가할 수 있습니다."
         android:fontFamily="@font/nanumsquare_acr"
         android:textSize="15sp"
         android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/data_export_title"
-        app:layout_constraintLeft_toLeftOf="@id/data_export_title"/>
+        app:layout_constraintTop_toBottomOf="@id/data_insert_title"
+        app:layout_constraintLeft_toLeftOf="@id/data_insert_title"/>
 
+    <Button
+        android:id="@+id/btn_data_insert"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        android:text="데이터 추가"
+        android:textSize="20sp"
+        android:fontFamily="@font/nanumsquare_acb"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
