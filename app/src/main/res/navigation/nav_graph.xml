@@ -315,5 +315,18 @@
         android:id="@+id/tableControlFragment"
         android:name="com.example.dbmasterandroid.ui.table.control.TableControlFragment"
         android:label="TableControlFragment"
-        tools:layout="@layout/fragment_table_control"/>
+        tools:layout="@layout/fragment_table_control">
+        <action
+            android:id="@+id/action_tableControlFragment_to_dataExportFragment"
+            app:destination="@id/dataExportFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/dataExportFragment"
+        android:name="com.example.dbmasterandroid.ui.export.DataExportFragment"
+        android:label="DataExportFragment"
+        tools:layout="@layout/fragment_data_export"/>
 </navigation>

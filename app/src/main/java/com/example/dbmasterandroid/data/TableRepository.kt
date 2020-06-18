@@ -22,4 +22,6 @@ interface TableRepository {
     fun renameTable(tableInfo: HashMap<String, String>): Single<ResponseDTO>
 
     fun dropTable(tableInfo: HashMap<String, String>): Single<ResponseDTO>
+
+    fun exportTable(tableInfo: HashMap<String, String>): Single<ResponseDTO>
 }

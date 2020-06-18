@@ -38,4 +38,8 @@ class TableRepositoryImpl(
     override fun dropTable(tableInfo: HashMap<String, String>): Single<ResponseDTO> {
         return tableControlService.dropTable(tableInfo)
     }
+
+    override fun exportTable(tableInfo: HashMap<String, String>): Single<ResponseDTO> {
+        return tableControlService.exportTable(tableInfo)
+    }
 }

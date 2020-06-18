@@ -1,6 +1,7 @@
 package com.example.dbmasterandroid.di
 
 import com.example.dbmasterandroid.MainActivityViewModel
+import com.example.dbmasterandroid.ui.export.DataExportViewModel
 import com.example.dbmasterandroid.ui.login.LoginViewModel
 import com.example.dbmasterandroid.ui.main.MainViewModel
 import com.example.dbmasterandroid.ui.main.tabledata.TableDataViewModel
@@ -33,4 +34,5 @@ val viewModelPart = module {
     viewModel { SignUpEmailViewModel(get()) }
     viewModel { TableDataViewModel(get(), get(), get()) }
     viewModel { TableControlViewModel() }
+    viewModel { DataExportViewModel(get(), get()) }
 }

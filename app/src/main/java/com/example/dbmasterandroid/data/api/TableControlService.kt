@@ -52,7 +52,7 @@ interface TableControlService {
             @Body keywordInfo: HashMap<String, String>
     ): Single<TableColumnInfoDTO>
 
-    /* TODO 테이블 데이터 csv 파일로 export 하는 API */
+    /* 테이블 데이터 csv 파일로 export 하는 API */
     @POST("/v1/table/export")
     fun exportTable(
             @Body tableInfo: HashMap<String, String>

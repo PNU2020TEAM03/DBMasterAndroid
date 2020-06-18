@@ -96,6 +96,11 @@ class MainActivity : AppCompatActivity() {
                     toolbar_title.text = "전체 보기"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
+                R.id.dataExportFragment->{
+                    main_toolbar.visibility = View.VISIBLE
+                    toolbar_title.text = "테이블 추출"
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
                 else->{
                     main_toolbar.visibility = View.GONE
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
