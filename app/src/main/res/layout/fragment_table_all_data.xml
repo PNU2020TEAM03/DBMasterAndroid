@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/table_data_title"
@@ -44,14 +46,14 @@
         android:id="@+id/table_all_data_empty_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@+id/table_data_search_view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:text="테이블에 데이터가 없습니다."
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textColor="@color/black"
-        android:fontFamily="@font/nanumsquare_acr"
+        android:fontFamily="@font/nanumsquare_acb"
         android:visibility="gone"/>
 
     <HorizontalScrollView
@@ -63,48 +65,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/table_data_search_view">
 
-        <TableLayout
-            android:id="@+id/table_data_main"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/table_data_main_recycler_view"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TableRow android:id="@+id/table_data_main_column"/>
-        </TableLayout>
-
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_table_row_data"/>
     </HorizontalScrollView>
-
-    <HorizontalScrollView
-        android:id="@+id/table_data_search_scroll_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/table_data_search_view">
-
-        <TableLayout
-            android:id="@+id/table_data_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TableRow android:id="@+id/table_data_search_column"/>
-        </TableLayout>
-
-    </HorizontalScrollView>
-
-    <TextView
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/table_data_search_view"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/table_data_main_empty_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="테이블에 데이터가 없습니다."
-        android:layout_gravity="center"
-        android:textColor="@color/black"
-        android:fontFamily="@font/nanumsquare_acr"
-        android:textSize="20sp"
-        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

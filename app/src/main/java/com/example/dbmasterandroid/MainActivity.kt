@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.tableDataFragment->{
                     main_toolbar.visibility = View.VISIBLE
                     toolbar_title.text = "전체 보기"
-                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
                 }
                 R.id.dataExportFragment->{
                     main_toolbar.visibility = View.VISIBLE
