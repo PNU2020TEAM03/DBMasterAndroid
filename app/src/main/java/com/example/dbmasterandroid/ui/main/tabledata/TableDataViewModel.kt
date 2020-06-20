@@ -93,5 +93,6 @@ class TableDataViewModel(
 
     fun getTableListSize(): Int = tableAllDataList.size
     fun getTableListItem(position: Int) = tableAllDataList[position]
+
     fun getTableColumnNames(): MutableSet<String> = tableAllDataList[0].keys
 }

@@ -72,4 +72,20 @@
             tools:listitem="@layout/item_table_row_data"/>
     </HorizontalScrollView>
 
+    <HorizontalScrollView
+        android:id="@+id/table_data_search_scroll_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/table_data_search_view">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/table_data_search_recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_table_row_data"/>
+    </HorizontalScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
