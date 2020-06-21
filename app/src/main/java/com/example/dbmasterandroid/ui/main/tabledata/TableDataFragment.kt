@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.base.BaseFragment
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_table_all_data.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -78,6 +79,10 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
             setTextColor(Color.BLACK)
             textSize = 20.0F
             setPadding(50, 0, 50, 50)
+
+            setOnClickListener {
+                Snackbar.make(it, columnName, Snackbar.LENGTH_SHORT).show()
+            }
         }
         table_data_main_column_name.addView(columnNameTextView)
     }
