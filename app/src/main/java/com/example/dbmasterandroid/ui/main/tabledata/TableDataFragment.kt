@@ -1,8 +1,8 @@
 package com.example.dbmasterandroid.ui.main.tabledata
 
 import android.graphics.Color
-import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.R
@@ -37,8 +37,8 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
 
     override fun initData() {
         viewModel.tableSearchComplete.observe(viewLifecycleOwner, Observer {
-            table_data_main_scroll_view.visibility = View.GONE
-            table_data_search_scroll_view.visibility = View.VISIBLE
+            table_data_main_recycler_view.visibility = View.GONE
+            table_data_search_recycler_view.visibility = View.VISIBLE
             searchDataAdapter.notifyDataSetChanged()
         })
         viewModel.networkInvalidLiveData.observe(viewLifecycleOwner, Observer {
@@ -46,6 +46,10 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
             table_all_data_empty_text.setTextColor(Color.RED)
         })
         viewModel.tableDataListLiveData.observe(viewLifecycleOwner, Observer {
+            val columnNames = viewModel.getTableColumnNames()
+            for (columnName in columnNames) {
+                setColumnNameTextView(columnName)
+            }
             adapter.notifyDataSetChanged()
         })
     }
@@ -60,11 +64,22 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
 
             /* 현재 타이핑 중인 쿼리 */
             override fun onQueryTextChange(newText: String?): Boolean {
-                table_data_main_scroll_view.visibility = View.VISIBLE
-                table_data_search_scroll_view.visibility = View.GONE
+                table_data_main_recycler_view.visibility = View.VISIBLE
+                table_data_search_recycler_view.visibility = View.GONE
                 return false
             }
         })
+    }
+
+    private fun setColumnNameTextView(columnName: String) {
+        val columnNameTextView = TextView(context)
+        columnNameTextView.apply {
+            text = columnName
+            setTextColor(Color.BLACK)
+            textSize = 20.0F
+            setPadding(50, 0, 50, 50)
+        }
+        table_data_main_column_name.addView(columnNameTextView)
     }
 
 }

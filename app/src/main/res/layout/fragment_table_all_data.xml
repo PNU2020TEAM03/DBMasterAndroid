@@ -65,27 +65,31 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/table_data_search_view">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/table_data_main_recycler_view"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_table_row_data"/>
-    </HorizontalScrollView>
+            android:layout_height="match_parent">
 
-    <HorizontalScrollView
-        android:id="@+id/table_data_search_scroll_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/table_data_search_view">
+            <TableLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/table_data_search_recycler_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/item_table_row_data"/>
+                <TableRow android:id="@+id/table_data_main_column_name"/>
+            </TableLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/table_data_main_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_table_row_data"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/table_data_search_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_table_row_data"/>
+
+        </LinearLayout>
     </HorizontalScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
