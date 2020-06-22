@@ -19,6 +19,7 @@ class TableDataViewModel(
 
     private val tableAllDataList = ArrayList<HashMap<String, String>>()
     private val tableSearchDataList = ArrayList<HashMap<String, String>>()
+    private val tableSortedDataList = ArrayList<HashMap<String, String>>()
 
     private val _tableDataListLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
     val tableDataListLiveData: LiveData<Any> get() = _tableDataListLiveData
@@ -28,6 +29,29 @@ class TableDataViewModel(
 
     private val _networkInvalidLiveData: SingleLiveEvent<String> = SingleLiveEvent()
     val networkInvalidLiveData: LiveData<String> get() = _networkInvalidLiveData
+
+    fun sortedTableData(columnName: String, direction: String) {
+        val tableSortInfo = HashMap<String, String>()
+
+        tableSortedDataList.clear()
+
+        tableSortInfo["name"] = getUserName()
+        tableSortInfo["tableName"] = getTableName()
+        tableSortInfo["sortColumn"] = columnName
+        tableSortInfo["direction"] = direction
+
+        compositeDisposable.add(tableRepository.sortTable(tableSortInfo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+
+                }, {
+                    it.printStackTrace()
+                    _networkInvalidLiveData.postValue("네트워크에 문제가 발생하였습니다.")
+                })
+        )
+
+    }
 
     fun searchTableData(keyWord: String) {
         val keywordInfo = HashMap<String, String>()

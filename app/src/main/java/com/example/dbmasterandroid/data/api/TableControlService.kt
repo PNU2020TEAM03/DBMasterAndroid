@@ -1,7 +1,7 @@
 package com.example.dbmasterandroid.data.api
 
 import com.example.dbmasterandroid.data.dto.ResponseDTO
-import com.example.dbmasterandroid.data.dto.TableColumnInfoDTO
+import com.example.dbmasterandroid.data.dto.TableRowDataDTO
 import com.example.dbmasterandroid.data.dto.TableListDTO
 import io.reactivex.Single
 import retrofit2.http.Body
@@ -50,7 +50,7 @@ interface TableControlService {
     @POST("/v1/table/search")
     fun searchTableData(
             @Body keywordInfo: HashMap<String, String>
-    ): Single<TableColumnInfoDTO>
+    ): Single<TableRowDataDTO>
 
     /* 테이블 데이터 csv 파일로 export 하는 API */
     @POST("/v1/table/export")
@@ -62,17 +62,17 @@ interface TableControlService {
     @POST("/v1/table/join")
     fun joinTable(
             @Body tableJoinInfo: HashMap<String, String>
-    ): Single<TableColumnInfoDTO>
+    ): Single<TableRowDataDTO>
 
-    /* TODO 특정 칼럼 기준 정렬 API */
+    /* 특정 칼럼 기준 정렬 API */
     @POST("/v1/table/sort")
     fun sortTable(
             @Body tableSortInfo: HashMap<String, String>
-    ): Single<TableColumnInfoDTO>
+    ): Single<TableRowDataDTO>
 
     /* 테이블 정보 받기 API */
     @POST("/v1/table/get-info")
     fun getTableInfo(
             @Body name: HashMap<String, String>
-    ): Single<TableColumnInfoDTO>
+    ): Single<TableRowDataDTO>
 }

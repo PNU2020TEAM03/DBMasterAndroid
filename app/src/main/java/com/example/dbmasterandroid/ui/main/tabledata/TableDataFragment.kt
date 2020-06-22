@@ -75,12 +75,21 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
     private fun setColumnNameTextView(columnName: String) {
         val columnNameTextView = TextView(context)
         columnNameTextView.apply {
+            var isClicked = 0
+
             text = columnName
             setTextColor(Color.BLACK)
             textSize = 20.0F
             setPadding(50, 0, 50, 50)
 
             setOnClickListener {
+                isClicked++
+                when (isClicked) {
+                    0->{
+                        table_data_main_recycler_view.visibility = View.VISIBLE
+
+                    }
+                }
                 Snackbar.make(it, columnName, Snackbar.LENGTH_SHORT).show()
             }
         }

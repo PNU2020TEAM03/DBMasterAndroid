@@ -1,6 +1,6 @@
 package com.example.dbmasterandroid.data.api
 
-import com.example.dbmasterandroid.data.dto.TableColumnInfoDTO
+import com.example.dbmasterandroid.data.dto.TableRowDataDTO
 import io.reactivex.Single
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -12,5 +12,5 @@ interface QueryService {
     @POST("/v1/query/custom")
     fun queryCustom(
             @Body queryInfo: HashMap<String, String>
-    ): Single<TableColumnInfoDTO>
+    ): Single<TableRowDataDTO>
 }
