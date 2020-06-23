@@ -17,17 +17,13 @@ class TableControlFragment: BaseFragment<TableControlViewModel>() {
     override fun initData() {}
 
     override fun initFinish() {
+        /* Custom */
+        btn_table_control_custom.setOnClickListener {
+
+        }
         /* insert */
         btn_table_control_insert.setOnClickListener {
             findNavController().navigate(R.id.action_tableControlFragment_to_dataInsertFragment)
-        }
-        /* update */
-        btn_table_control_update.setOnClickListener {
-
-        }
-        /* delete */
-        btn_table_control_delete.setOnClickListener {
-
         }
         /* join */
         btn_table_control_join.setOnClickListener {

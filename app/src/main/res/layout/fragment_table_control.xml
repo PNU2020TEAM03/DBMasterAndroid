@@ -30,11 +30,11 @@
         app:layout_constraintLeft_toLeftOf="@id/table_control_title"/>
 
     <Button
-        android:id="@+id/btn_table_control_insert"
+        android:id="@+id/btn_table_control_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="데이터 INSERT"
+        android:text="직접 QUERY 입력 및 실행"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:fontFamily="@font/nanumsquare_acr"
@@ -44,38 +44,24 @@
         app:layout_constraintTop_toBottomOf="@+id/table_control_text1"/>
 
     <Button
-        android:id="@+id/btn_table_control_update"
+        android:id="@+id/btn_table_control_insert"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="데이터 UPDATE"
+        android:text="데이터 INSERT"
         android:textSize="20sp"
         android:textColor="@color/black"
         android:fontFamily="@font/nanumsquare_acr"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/background_setting_button"
-        app:layout_constraintTop_toBottomOf="@+id/btn_table_control_insert"/>
-
-    <Button
-        android:id="@+id/btn_table_control_delete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="데이터 DELETE"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/nanumsquare_acr"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/background_setting_button"
-        app:layout_constraintTop_toBottomOf="@+id/btn_table_control_update"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_table_control_custom"/>
 
     <Button
         android:id="@+id/btn_table_control_join"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="테이블 JOIN"
         android:textSize="20sp"
         android:textColor="@color/black"
@@ -83,7 +69,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/background_setting_button"
-        app:layout_constraintTop_toBottomOf="@+id/btn_table_control_delete"/>
+        app:layout_constraintTop_toBottomOf="@+id/btn_table_control_insert"/>
 
     <Button
         android:id="@+id/btn_table_control_export"
