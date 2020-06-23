@@ -323,10 +323,22 @@
             app:exitAnim="@anim/slide_exit"
             app:popEnterAnim="@anim/slide_pop_enter"
             app:popExitAnim="@anim/slide_pop_exit" />
+        <action
+            android:id="@+id/action_tableControlFragment_to_dataInsertFragment"
+            app:destination="@id/dataInsertFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
     </fragment>
     <fragment
         android:id="@+id/dataExportFragment"
         android:name="com.example.dbmasterandroid.ui.export.DataExportFragment"
         android:label="DataExportFragment"
         tools:layout="@layout/fragment_data_export"/>
+    <fragment
+        android:id="@+id/dataInsertFragment"
+        android:name="com.example.dbmasterandroid.ui.insert.DataInsertFragment"
+        android:label="DataInsertFragment"
+        tools:layout="@layout/fragment_data_insert"/>
 </navigation>

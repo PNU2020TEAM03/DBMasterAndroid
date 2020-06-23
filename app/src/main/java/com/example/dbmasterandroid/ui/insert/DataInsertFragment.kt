@@ -1,9 +1,11 @@
 package com.example.dbmasterandroid.ui.insert
 
-import androidx.recyclerview.widget.RecyclerView
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dbmasterandroid.R
 import com.example.dbmasterandroid.base.BaseFragment
 import com.example.dbmasterandroid.data.dto.ColumnInfoDTO
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_data_insert.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -11,24 +13,32 @@ class DataInsertFragment: BaseFragment<DataInsertViewModel>() {
     override val layoutResourceId: Int
         get() = R.layout.fragment_data_insert
 
-
     override val viewModel: DataInsertViewModel by viewModel()
 
+    private lateinit var adapter: DataInsertAdapter
+
     override fun initView() {
-        val sampleColumnArrayList = ArrayList<ColumnInfoDTO>()
-        val item1 = ColumnInfoDTO("예시칼럼1","정수","12","ㄷㄱ")
-        val item2 = ColumnInfoDTO("예시칼럼2","정수","12","ㄷㄱ")
-        val item3 = ColumnInfoDTO("예시칼럼3","정수","12","ㄷㄱ")
-        sampleColumnArrayList.add(item1)
-        sampleColumnArrayList.add(item2)
-        sampleColumnArrayList.add(item3)
+        viewModel.getTableInfo()
 
+        adapter = DataInsertAdapter(viewModel)
 
-        var adapter = InserRecyclerAdapter(sampleColumnArrayList)
         recycler_insert.adapter = adapter
+        recycler_insert.setHasFixedSize(true)
+        recycler_insert.layoutManager = LinearLayoutManager(context)
     }
 
-    override fun initData() {}
+    override fun initData() {
+        viewModel.networkInvalid.observe(viewLifecycleOwner, Observer {
+            Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
+        })
+        viewModel.tableInfoValid.observe(viewLifecycleOwner, Observer {
+            adapter.notifyDataSetChanged()
+        })
+    }
 
-    override fun initFinish() {}
+    override fun initFinish() {
+        btn_data_insert.setOnClickListener {
+
+        }
+    }
 }

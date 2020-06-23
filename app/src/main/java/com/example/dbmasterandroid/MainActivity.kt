@@ -101,6 +101,16 @@ class MainActivity : AppCompatActivity() {
                     toolbar_title.text = "테이블 추출"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
+                R.id.dataInsertFragment->{
+                    main_toolbar.visibility = View.VISIBLE
+                    toolbar_title.text = "데이터 추가"
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
+                R.id.tableControlFragment->{
+                    main_toolbar.visibility = View.VISIBLE
+                    toolbar_title.text = "테이블 관리"
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
                 else->{
                     main_toolbar.visibility = View.GONE
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)

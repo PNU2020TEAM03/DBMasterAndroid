@@ -12,18 +12,14 @@ class TableControlFragment: BaseFragment<TableControlViewModel>() {
 
     override val viewModel: TableControlViewModel by viewModel()
 
-    override fun initView() {
-        TODO("Not yet implemented")
-    }
+    override fun initView() {}
 
-    override fun initData() {
-        TODO("Not yet implemented")
-    }
+    override fun initData() {}
 
     override fun initFinish() {
         /* insert */
         btn_table_control_insert.setOnClickListener {
-
+            findNavController().navigate(R.id.action_tableControlFragment_to_dataInsertFragment)
         }
         /* update */
         btn_table_control_update.setOnClickListener {
