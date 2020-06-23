@@ -19,11 +19,11 @@ class TableSortedDataAdapter(
                 .inflate(R.layout.item_table_row_data, parent, false))
     }
 
-    override fun getItemCount(): Int = viewModel.getSearchTableListSize()
+    override fun getItemCount(): Int = viewModel.getSortedTableListSize()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val columnNames = viewModel.getTableColumnNames()
-        val rowData = viewModel.getSearchTableListItem(position)
+        val rowData = viewModel.getSortedTableListItem(position)
         val rowDataList = ArrayList<String>()
 
         for (columnName in columnNames) {

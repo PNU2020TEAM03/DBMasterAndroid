@@ -30,6 +30,9 @@ class TableDataViewModel(
     private val _networkInvalidLiveData: SingleLiveEvent<String> = SingleLiveEvent()
     val networkInvalidLiveData: LiveData<String> get() = _networkInvalidLiveData
 
+    private val _tableSortComplete: SingleLiveEvent<Any> = SingleLiveEvent()
+    val tableSortComplete: LiveData<Any> get() = _tableSortComplete
+
     fun sortedTableData(columnName: String, direction: String) {
         val tableSortInfo = HashMap<String, String>()
 
@@ -43,8 +46,12 @@ class TableDataViewModel(
         compositeDisposable.add(tableRepository.sortTable(tableSortInfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { startLoadingIndicator() }
+                .doOnSuccess { stopLoadingIndicator() }
+                .doOnError { stopLoadingIndicator() }
                 .subscribe({
-
+                    tableSortedDataList.addAll(it.value)
+                    _tableSortComplete.call()
                 }, {
                     it.printStackTrace()
                     _networkInvalidLiveData.postValue("네트워크에 문제가 발생하였습니다.")
@@ -65,6 +72,9 @@ class TableDataViewModel(
         compositeDisposable.add(tableRepository.searchTableData(keywordInfo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { startLoadingIndicator() }
+                .doOnSuccess { stopLoadingIndicator() }
+                .doOnError { stopLoadingIndicator() }
                 .subscribe({
                     Log.d("Search Process", "$it")
                     tableSearchDataList.addAll(it.value)
@@ -117,6 +127,9 @@ class TableDataViewModel(
 
     fun getTableListSize(): Int = tableAllDataList.size
     fun getTableListItem(position: Int) = tableAllDataList[position]
+
+    fun getSortedTableListSize(): Int = tableSortedDataList.size
+    fun getSortedTableListItem(position: Int) = tableSortedDataList[position]
 
     fun getTableColumnNames(): MutableSet<String> = tableAllDataList[0].keys
 }

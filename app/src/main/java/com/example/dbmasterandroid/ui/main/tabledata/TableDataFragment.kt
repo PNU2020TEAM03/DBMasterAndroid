@@ -1,6 +1,7 @@
 package com.example.dbmasterandroid.ui.main.tabledata
 
 import android.graphics.Color
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -15,6 +16,7 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
 
     private lateinit var adapter: TableDataAdapter
     private lateinit var searchDataAdapter: TableSearchDataAdapter
+    private lateinit var sortedDataAdapter: TableSortedDataAdapter
 
     override val layoutResourceId: Int
         get() = R.layout.fragment_table_all_data
@@ -24,6 +26,7 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
     override fun initView() {
         adapter = TableDataAdapter(viewModel)
         searchDataAdapter = TableSearchDataAdapter(viewModel)
+        sortedDataAdapter = TableSortedDataAdapter(viewModel)
 
         table_data_main_recycler_view.adapter = adapter
         table_data_main_recycler_view.setHasFixedSize(true)
@@ -33,6 +36,10 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
         table_data_search_recycler_view.setHasFixedSize(true)
         table_data_search_recycler_view.layoutManager = LinearLayoutManager(context)
 
+        table_data_sorted_recycler_view.adapter = sortedDataAdapter
+        table_data_sorted_recycler_view.setHasFixedSize(true)
+        table_data_sorted_recycler_view.layoutManager = LinearLayoutManager(context)
+
         viewModel.getAllTableData()
     }
 
@@ -40,7 +47,14 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
         viewModel.tableSearchComplete.observe(viewLifecycleOwner, Observer {
             table_data_main_recycler_view.visibility = View.GONE
             table_data_search_recycler_view.visibility = View.VISIBLE
+            table_data_sorted_recycler_view.visibility = View.GONE
             searchDataAdapter.notifyDataSetChanged()
+        })
+        viewModel.tableSortComplete.observe(viewLifecycleOwner, Observer {
+            table_data_main_recycler_view.visibility = View.GONE
+            table_data_search_recycler_view.visibility = View.GONE
+            table_data_sorted_recycler_view.visibility = View.VISIBLE
+            sortedDataAdapter.notifyDataSetChanged()
         })
         viewModel.networkInvalidLiveData.observe(viewLifecycleOwner, Observer {
             table_all_data_empty_text.text = it
@@ -66,6 +80,7 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
             /* 현재 타이핑 중인 쿼리 */
             override fun onQueryTextChange(newText: String?): Boolean {
                 table_data_main_recycler_view.visibility = View.VISIBLE
+                table_data_sorted_recycler_view.visibility = View.GONE
                 table_data_search_recycler_view.visibility = View.GONE
                 return false
             }
@@ -84,13 +99,24 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
 
             setOnClickListener {
                 isClicked++
-                when (isClicked) {
-                    0->{
+                when (isClicked % 3) {
+                    1 -> {
+                        val direction = "DESC"
+                        viewModel.sortedTableData(columnName, direction)
+                        Snackbar.make(it, "$columnName 칼럼을 내림차순으로 정렬합니다.", Snackbar.LENGTH_SHORT).show()
+                    }
+                    2 -> {
+                        val direction = "ASC"
+                        viewModel.sortedTableData(columnName, direction)
+                        Snackbar.make(it, "$columnName 칼럼을 오름차순으로 정렬합니다.", Snackbar.LENGTH_SHORT).show()
+                    }
+                    0 -> {
                         table_data_main_recycler_view.visibility = View.VISIBLE
-
+                        table_data_search_recycler_view.visibility = View.GONE
+                        table_data_sorted_recycler_view.visibility = View.GONE
+                        Snackbar.make(it, "원래 상태의 테이블로 되돌립니다.", Snackbar.LENGTH_SHORT).show()
                     }
                 }
-                Snackbar.make(it, columnName, Snackbar.LENGTH_SHORT).show()
             }
         }
         table_data_main_column_name.addView(columnNameTextView)
