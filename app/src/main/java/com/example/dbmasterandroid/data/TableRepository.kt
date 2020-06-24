@@ -4,6 +4,7 @@ import com.example.dbmasterandroid.data.dto.ResponseDTO
 import com.example.dbmasterandroid.data.dto.TableListDTO
 import com.example.dbmasterandroid.data.dto.TableRowDataDTO
 import io.reactivex.Single
+import retrofit2.http.Body
 
 interface TableRepository {
 
@@ -24,4 +25,6 @@ interface TableRepository {
     fun exportTable(tableInfo: HashMap<String, String>): Single<ResponseDTO>
 
     fun sortTable(tableSortInfo: HashMap<String, String>): Single<TableRowDataDTO>
+
+    fun insertRowData(rowData: HashMap<String, String>): Single<ResponseDTO>
 }

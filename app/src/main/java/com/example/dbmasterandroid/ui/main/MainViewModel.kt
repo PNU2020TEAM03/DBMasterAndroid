@@ -96,5 +96,11 @@ class MainViewModel(
 
     fun getTableDataListSize(): Int = tableAllDataList.size
     fun getTableDataListItem(position: Int): HashMap<String, String> = tableAllDataList[position]
+
     fun getTableColumnNames(): MutableSet<String> = tableAllDataList[0].keys
+
+    fun clearList() {
+        columnInfoList.clear()
+        tableAllDataList.clear()
+    }
 }

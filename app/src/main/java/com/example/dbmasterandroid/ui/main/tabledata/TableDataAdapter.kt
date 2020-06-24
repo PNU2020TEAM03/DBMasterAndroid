@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dbmasterandroid.R
 import kotlinx.android.synthetic.main.item_table_row_data.view.*
@@ -27,11 +28,26 @@ class TableDataAdapter(
         val rowData = viewModel.getTableListItem(position)
         val rowDataList = ArrayList<String>()
 
+        /* 길게 클릭하면 삭제. */
+        holder.itemView.setOnLongClickListener {
+            val primaryKey = viewModel.getTablePrimaryKey()
+            val primaryData = rowData[primaryKey].toString()
+
+            Log.d("PK INFO", "$primaryKey / $primaryData")
+            deleteRowData(it, primaryKey, primaryData)
+            false
+        }
+
+        holder.itemView.setOnClickListener {
+            Log.d("RECYCLER ITEM", "SHORT CLICK")
+        }
+
         for (columnName in columnNames) {
             val data = rowData[columnName].toString()
             rowDataList.add(data)
-            Log.e("DATA", "$data / $rowDataList")
+            Log.d("DATA", "$data / $rowDataList")
         }
+
         when (columnNames.size) {
             1 -> setRowData(holder.itemView.table_row_data1, rowDataList, 0)
             2 -> {
@@ -115,5 +131,22 @@ class TableDataAdapter(
             visibility = View.VISIBLE
             text = rowData[position]
         }
+    }
+
+    private fun deleteRowData(view: View, primaryKey: String, primaryData: String) {
+        val builder = AlertDialog.Builder(view.context)
+        builder.setTitle("데이터 삭제")
+        builder.setMessage("해당 데이터를 삭제 하시겠습니까?")
+        builder.setCancelable(false)
+        builder.setPositiveButton("삭제") { _, _ ->
+            viewModel.deleteTableData(primaryKey, primaryData)
+            viewModel.getAllTableData()
+        }
+        builder.setNegativeButton("취소") { _, _ -> }
+        builder.show()
+    }
+
+    private fun moveToUpdateScreen() {
+
     }
 }

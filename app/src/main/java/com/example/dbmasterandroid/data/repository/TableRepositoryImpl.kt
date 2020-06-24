@@ -46,4 +46,8 @@ class TableRepositoryImpl(
     override fun sortTable(tableSortInfo: HashMap<String, String>): Single<TableRowDataDTO> {
         return tableControlService.sortTable(tableSortInfo)
     }
+
+    override fun insertRowData(rowData: HashMap<String, String>): Single<ResponseDTO> {
+        return tableControlService.insertRowData(rowData)
+    }
 }

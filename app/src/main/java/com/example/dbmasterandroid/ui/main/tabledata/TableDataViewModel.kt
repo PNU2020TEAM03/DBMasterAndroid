@@ -33,6 +33,56 @@ class TableDataViewModel(
     private val _tableSortComplete: SingleLiveEvent<Any> = SingleLiveEvent()
     val tableSortComplete: LiveData<Any> get() = _tableSortComplete
 
+    private val _dataDeleteComplete: SingleLiveEvent<String> = SingleLiveEvent()
+    val dataDeleteComplete: LiveData<String> get() = _dataDeleteComplete
+
+    private val _dataDeleteInvalid: SingleLiveEvent<String> = SingleLiveEvent()
+    val dataDeleteInvalid: LiveData<String> get() = _dataDeleteInvalid
+
+    private var tablePrimaryKey = ""
+
+    private fun getTableInfo() {
+        val info = HashMap<String, String>()
+        info["tableName"] = getTableName()
+        info["name"] = getUserName()
+
+        compositeDisposable.add(tableRepository.getTableInfo(info)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSuccess { stopLoadingIndicator() }
+                .doOnError { stopLoadingIndicator() }
+                .subscribe({
+                    getPrimaryKey(it.value)
+                }, {
+                    it.printStackTrace()
+                    _networkInvalidLiveData.postValue("네트워크에 문제가 발생했습니다.")
+                })
+        )
+    }
+
+    fun deleteTableData(primaryKey: String, primaryData: String) {
+        val deleteInfo = HashMap<String, String>()
+
+        deleteInfo["name"] = getUserName()
+        deleteInfo["tableName"] = getTableName()
+        deleteInfo["primary_key_name"] = primaryKey
+        deleteInfo["primary_key_value"] = primaryData
+
+        compositeDisposable.add(columnRepository.deleteData(deleteInfo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    when (it.result) {
+                        "S01"->_dataDeleteComplete.postValue(it.message)
+                        else->_dataDeleteInvalid.postValue(it.message)
+                    }
+                }, {
+                    it.printStackTrace()
+                    _networkInvalidLiveData.postValue("네트워크에 문제가 발생했습니다.")
+                })
+        )
+    }
+
     fun sortedTableData(columnName: String, direction: String) {
         val tableSortInfo = HashMap<String, String>()
 
@@ -96,9 +146,10 @@ class TableDataViewModel(
             compositeDisposable.add(columnRepository.getAllTableData(name)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe { startLoadingIndicator() }
-                    .doOnSuccess { stopLoadingIndicator() }
-                    .doOnError { stopLoadingIndicator() }
+                    .doOnSubscribe {
+                        startLoadingIndicator()
+                        getTableInfo()
+                    }
                     .subscribe({
                         if (it.value != null) {
                             tableAllDataList.addAll(it.value)
@@ -109,6 +160,7 @@ class TableDataViewModel(
                         Log.e("MAIN VIEW MODEL", "$it")
                     }, {
                         it.printStackTrace()
+                        _networkInvalidLiveData.postValue("네트워크에 문제가 발생했습니다.")
                     })
             )
         }
@@ -121,6 +173,16 @@ class TableDataViewModel(
     private fun getTableName(): String {
         return PreferenceUtil(context).getName("tableName", "DB Master")
     }
+
+    private fun getPrimaryKey(list: List<HashMap<String, String>>) {
+        for (item in list) {
+            if (item["ispk"] == "Y") {
+                tablePrimaryKey = item["columnName"].toString()
+            }
+        }
+    }
+
+    fun getTablePrimaryKey(): String = tablePrimaryKey
 
     fun getSearchTableListSize(): Int = tableSearchDataList.size
     fun getSearchTableListItem(position: Int) = tableSearchDataList[position]

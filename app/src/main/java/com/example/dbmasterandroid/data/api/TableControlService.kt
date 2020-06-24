@@ -22,7 +22,7 @@ interface TableControlService {
             @Body name: HashMap<String, String>
     ): Single<TableListDTO>
 
-    /* TODO 테이블에 데이터 INSERT API */
+    /* 테이블에 데이터 INSERT API */
     @POST("/v1/table/insert")
     fun insertRowData(
             @Body rowData: HashMap<String, String>

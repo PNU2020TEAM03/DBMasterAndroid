@@ -45,12 +45,12 @@
         android:id="@+id/table_data_text3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="데이터를 길게 클릭하면 삭제, 짧게 클릭하면 갱신 할 수 있어요."
+        android:text="데이터를 길게 클릭하면 삭제, 짧게 클릭하면 갱신 할 수 있습니다."
         android:fontFamily="@font/nanumsquare_acr"
         android:textSize="15sp"
         android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/table_data_text1"
-        app:layout_constraintLeft_toLeftOf="@id/table_data_text1"/>
+        app:layout_constraintTop_toBottomOf="@id/table_data_text2"
+        app:layout_constraintLeft_toLeftOf="@id/table_data_text2"/>
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/table_data_search_view"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         app:queryHint="검색어를 입력하세요."
-        app:layout_constraintTop_toBottomOf="@+id/table_data_text2"
+        app:layout_constraintTop_toBottomOf="@+id/table_data_text3"
         android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"

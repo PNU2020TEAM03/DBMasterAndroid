@@ -1,7 +1,7 @@
 package com.example.dbmasterandroid.ui.main.tabledata
 
 import android.graphics.Color
-import android.util.Log
+import android.os.Handler
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -48,15 +48,22 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
             table_data_main_recycler_view.visibility = View.GONE
             table_data_search_recycler_view.visibility = View.VISIBLE
             table_data_sorted_recycler_view.visibility = View.GONE
+            table_all_data_empty_text.visibility = View.GONE
             searchDataAdapter.notifyDataSetChanged()
         })
         viewModel.tableSortComplete.observe(viewLifecycleOwner, Observer {
             table_data_main_recycler_view.visibility = View.GONE
             table_data_search_recycler_view.visibility = View.GONE
             table_data_sorted_recycler_view.visibility = View.VISIBLE
+            table_all_data_empty_text.visibility = View.GONE
             sortedDataAdapter.notifyDataSetChanged()
         })
         viewModel.networkInvalidLiveData.observe(viewLifecycleOwner, Observer {
+            table_data_main_recycler_view.visibility = View.GONE
+            table_data_search_recycler_view.visibility = View.GONE
+            table_data_sorted_recycler_view.visibility = View.GONE
+
+            table_all_data_empty_text.visibility = View.VISIBLE
             table_all_data_empty_text.text = it
             table_all_data_empty_text.setTextColor(Color.RED)
         })
@@ -66,6 +73,15 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
                 setColumnNameTextView(columnName)
             }
             adapter.notifyDataSetChanged()
+        })
+        viewModel.dataDeleteComplete.observe(viewLifecycleOwner, Observer {
+            Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
+            Handler().postDelayed({
+                viewModel.getAllTableData()
+            }, 500)
+        })
+        viewModel.dataDeleteInvalid.observe(viewLifecycleOwner, Observer {
+            Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
         })
     }
 
@@ -82,6 +98,7 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
                 table_data_main_recycler_view.visibility = View.VISIBLE
                 table_data_sorted_recycler_view.visibility = View.GONE
                 table_data_search_recycler_view.visibility = View.GONE
+                table_all_data_empty_text.visibility = View.GONE
                 return false
             }
         })
@@ -104,17 +121,21 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
                         val direction = "DESC"
                         viewModel.sortedTableData(columnName, direction)
                         Snackbar.make(it, "$columnName 칼럼을 내림차순으로 정렬합니다.", Snackbar.LENGTH_SHORT).show()
+                        setBackgroundColor(Color.CYAN)
                     }
                     2 -> {
                         val direction = "ASC"
                         viewModel.sortedTableData(columnName, direction)
                         Snackbar.make(it, "$columnName 칼럼을 오름차순으로 정렬합니다.", Snackbar.LENGTH_SHORT).show()
+                        setBackgroundColor(Color.YELLOW)
                     }
                     0 -> {
                         table_data_main_recycler_view.visibility = View.VISIBLE
                         table_data_search_recycler_view.visibility = View.GONE
                         table_data_sorted_recycler_view.visibility = View.GONE
+                        table_all_data_empty_text.visibility = View.GONE
                         Snackbar.make(it, "원래 상태의 테이블로 되돌립니다.", Snackbar.LENGTH_SHORT).show()
+                        setBackgroundColor(Color.WHITE)
                     }
                 }
             }

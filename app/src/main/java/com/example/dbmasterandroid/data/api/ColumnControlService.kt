@@ -21,7 +21,7 @@ interface ColumnControlService {
             @Body updateInfo: HashMap<String, String>
     ): Single<ResponseDTO>
 
-    /* TODO 테이블 데이터 DELETE API */
+    /* 테이블 데이터 DELETE API */
     @POST("/v1/column/delete")
     fun deleteData(
             @Body deleteInfo: HashMap<String, String>

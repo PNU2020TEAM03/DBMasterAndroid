@@ -33,6 +33,14 @@
         android:layout_marginStart="20dp"
         android:fontFamily="@font/nanumsquare_acr"
         android:text="테이블의 Primary Key는 파란색으로 표시됩니다."
+        android:textSize="15sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:text="(문자열 데이터는 ' ' 로 감싸서 입력해주세요.)"
         android:textSize="15sp"
         android:layout_marginBottom="15dp"/>
 

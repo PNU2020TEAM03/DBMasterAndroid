@@ -1,5 +1,6 @@
 package com.example.dbmasterandroid.ui.main
 
+import android.util.Log
 import android.view.View
 import android.widget.TableRow
 import android.widget.TextView
@@ -76,6 +77,12 @@ class MainFragment : BaseFragment<MainViewModel>() {
         btn_table_data_all.setOnClickListener {
             findNavController().navigate(R.id.action_mainFragment_to_tableDataFragment)
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.clearList()
+        Log.e("ON PAUSE", "ON PAUSE")
     }
 
     private fun setRowDataTextView(data: HashMap<String, String>, index: Int) {
