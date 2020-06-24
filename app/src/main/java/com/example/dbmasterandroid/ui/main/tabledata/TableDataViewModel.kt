@@ -24,6 +24,9 @@ class TableDataViewModel(
     private val _tableDataListLiveData: SingleLiveEvent<Any> = SingleLiveEvent()
     val tableDataListLiveData: LiveData<Any> get() = _tableDataListLiveData
 
+    private val _tableDataListAfterDelete: SingleLiveEvent<Any> = SingleLiveEvent()
+    val tableDataListAfterDelete: LiveData<Any> get() = _tableDataListAfterDelete
+
     private val _tableSearchComplete: SingleLiveEvent<Any> = SingleLiveEvent()
     val tableSearchComplete: LiveData<Any> get() = _tableSearchComplete
 
@@ -136,6 +139,34 @@ class TableDataViewModel(
         )
     }
 
+    fun getAllTableDataAfterDelete() {
+        val name = HashMap<String, String>()
+
+        name["name"] = getUserName()
+        name["tableName"] = getTableName()
+
+        compositeDisposable.add(columnRepository.getAllTableData(name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
+                    startLoadingIndicator()
+                    getTableInfo()
+                }
+                .subscribe({
+                    if (it.value != null) {
+                        tableAllDataList.addAll(it.value)
+                        _tableDataListAfterDelete.call()
+                    } else {
+                        _tableDataListAfterDelete.call()
+                    }
+                    Log.e("MAIN VIEW MODEL", "$it")
+                }, {
+                    it.printStackTrace()
+                    _networkInvalidLiveData.postValue("네트워크에 문제가 발생했습니다.")
+                })
+        )
+    }
+
     fun getAllTableData() {
         val name = HashMap<String, String>()
 
@@ -194,4 +225,8 @@ class TableDataViewModel(
     fun getSortedTableListItem(position: Int) = tableSortedDataList[position]
 
     fun getTableColumnNames(): MutableSet<String> = tableAllDataList[0].keys
+
+    fun clearList() {
+        tableAllDataList.clear()
+    }
 }

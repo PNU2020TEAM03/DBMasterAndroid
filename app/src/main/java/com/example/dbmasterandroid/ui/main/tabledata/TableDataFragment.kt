@@ -67,6 +67,9 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
             table_all_data_empty_text.text = it
             table_all_data_empty_text.setTextColor(Color.RED)
         })
+        viewModel.tableDataListAfterDelete.observe(viewLifecycleOwner, Observer {
+            adapter.notifyDataSetChanged()
+        })
         viewModel.tableDataListLiveData.observe(viewLifecycleOwner, Observer {
             val columnNames = viewModel.getTableColumnNames()
             for (columnName in columnNames) {
@@ -77,7 +80,8 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
         viewModel.dataDeleteComplete.observe(viewLifecycleOwner, Observer {
             Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
             Handler().postDelayed({
-                viewModel.getAllTableData()
+                viewModel.clearList()
+                viewModel.getAllTableDataAfterDelete()
             }, 500)
         })
         viewModel.dataDeleteInvalid.observe(viewLifecycleOwner, Observer {

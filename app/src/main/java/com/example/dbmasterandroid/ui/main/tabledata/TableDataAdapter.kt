@@ -140,7 +140,6 @@ class TableDataAdapter(
         builder.setCancelable(false)
         builder.setPositiveButton("삭제") { _, _ ->
             viewModel.deleteTableData(primaryKey, primaryData)
-            viewModel.getAllTableData()
         }
         builder.setNegativeButton("취소") { _, _ -> }
         builder.show()
