@@ -252,7 +252,15 @@
         android:id="@+id/tableDataFragment"
         android:name="com.example.dbmasterandroid.ui.main.tabledata.TableDataFragment"
         android:label="TableDataFragment"
-        tools:layout="@layout/fragment_table_all_data"/>
+        tools:layout="@layout/fragment_table_all_data">
+        <action
+            android:id="@+id/action_tableDataFragment_to_dataUpdateFragment"
+            app:destination="@id/dataUpdateFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
+    </fragment>
     <fragment
         android:id="@+id/signUpEmailFragment"
         android:name="com.example.dbmasterandroid.ui.signup.emailauth.SignUpEmailFragment"
@@ -341,4 +349,9 @@
         android:name="com.example.dbmasterandroid.ui.insert.DataInsertFragment"
         android:label="DataInsertFragment"
         tools:layout="@layout/fragment_data_insert"/>
+    <fragment
+        android:id="@+id/dataUpdateFragment"
+        android:name="com.example.dbmasterandroid.ui.update.DataUpdateFragment"
+        android:label="DataUpdateFragment"
+        tools:layout="@layout/fragment_data_update"/>
 </navigation>

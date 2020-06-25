@@ -108,6 +108,11 @@ class TableDataFragment : BaseFragment<TableDataViewModel>() {
         })
     }
 
+    override fun onPause() {
+        super.onPause()
+        viewModel.clearList()
+    }
+
     private fun setColumnNameTextView(columnName: String) {
         val columnNameTextView = TextView(context)
         columnNameTextView.apply {

@@ -18,4 +18,8 @@ class ColumnRepositoryImpl(
         return columnControlService.deleteData(deleteInfo)
     }
 
+    override fun updateData(updateInfo: HashMap<String, String>): Single<ResponseDTO> {
+        return columnControlService.updateData(updateInfo)
+    }
+
 }

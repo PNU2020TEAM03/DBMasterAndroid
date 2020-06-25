@@ -15,7 +15,7 @@ interface ColumnControlService {
             @Body name: HashMap<String, String>
     ): Single<TableSelectAllDTO>
 
-    /* TODO 테이블 데이터 UPDATE API */
+    /* 테이블 데이터 UPDATE API */
     @POST("/v1/column/update")
     fun updateData(
             @Body updateInfo: HashMap<String, String>

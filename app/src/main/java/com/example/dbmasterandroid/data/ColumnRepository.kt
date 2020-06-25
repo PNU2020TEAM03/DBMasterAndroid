@@ -10,4 +10,6 @@ interface ColumnRepository {
     fun getAllTableData(name: HashMap<String, String>): Single<TableSelectAllDTO>
 
     fun deleteData(deleteInfo: HashMap<String, String>): Single<ResponseDTO>
+
+    fun updateData(updateInfo: HashMap<String, String>): Single<ResponseDTO>
 }

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dbmasterandroid.R
 import kotlinx.android.synthetic.main.item_table_row_data.view.*
@@ -33,13 +35,20 @@ class TableDataAdapter(
             val primaryKey = viewModel.getTablePrimaryKey()
             val primaryData = rowData[primaryKey].toString()
 
-            Log.d("PK INFO", "$primaryKey / $primaryData")
             deleteRowData(it, primaryKey, primaryData)
             false
         }
 
+        /* 짧게 클릭하면 화면 이동 */
         holder.itemView.setOnClickListener {
-            Log.d("RECYCLER ITEM", "SHORT CLICK")
+            val primaryKey = viewModel.getTablePrimaryKey()
+            val primaryData = rowData[primaryKey].toString()
+
+            val primaryInfo = HashMap<String, String>()
+            primaryInfo["pkName"] = primaryKey
+            primaryInfo["pkValue"] = primaryData
+
+            moveToUpdateScreen(it, rowData, primaryInfo)
         }
 
         for (columnName in columnNames) {
@@ -145,7 +154,8 @@ class TableDataAdapter(
         builder.show()
     }
 
-    private fun moveToUpdateScreen() {
-
+    private fun moveToUpdateScreen(view: View, rowData: HashMap<String, String>, pkInfo: HashMap<String, String>) {
+        val bundle = bundleOf("rowData" to rowData, "pkInfo" to pkInfo)
+        view.findNavController().navigate(R.id.action_tableDataFragment_to_dataUpdateFragment, bundle)
     }
 }

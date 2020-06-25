@@ -111,6 +111,11 @@ class MainActivity : AppCompatActivity() {
                     toolbar_title.text = "테이블 관리"
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
                 }
+                R.id.dataUpdateFragment->{
+                    main_toolbar.visibility = View.VISIBLE
+                    toolbar_title.text = "데이터 갱신"
+                    drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                }
                 else->{
                     main_toolbar.visibility = View.GONE
                     drawer_layout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)

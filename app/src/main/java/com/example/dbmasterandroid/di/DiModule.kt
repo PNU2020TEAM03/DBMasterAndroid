@@ -16,6 +16,7 @@ import com.example.dbmasterandroid.ui.splash.SplashViewModel
 import com.example.dbmasterandroid.ui.table.control.TableControlViewModel
 import com.example.dbmasterandroid.ui.table.create.TableCreateViewModel
 import com.example.dbmasterandroid.ui.table.select.TableSelectViewModel
+import com.example.dbmasterandroid.ui.update.DataUpdateViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -37,4 +38,5 @@ val viewModelPart = module {
     viewModel { TableControlViewModel() }
     viewModel { DataInsertViewModel(get(), get()) }
     viewModel { DataExportViewModel(get(), get()) }
+    viewModel { DataUpdateViewModel(get(), get()) }
 }
