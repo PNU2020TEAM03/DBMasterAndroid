@@ -28,4 +28,23 @@
         app:layout_constraintTop_toBottomOf="@id/data_update_title"
         app:layout_constraintLeft_toLeftOf="@id/data_update_title"/>
 
+    <TextView
+        android:id="@+id/data_update_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(문자열 데이터는 ' ' 로 감싸서 입력해주세요.)"
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/data_update_text1"
+        app:layout_constraintLeft_toLeftOf="@id/data_update_text1"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/data_update_column_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@+id/data_update_title"
+        app:layout_constraintTop_toBottomOf="@id/data_update_text2"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
