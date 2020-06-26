@@ -1,6 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/table_join_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="테이블 조인."
+        android:textSize="36sp"
+        android:fontFamily="@font/nanumsquare_aceb"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/table_join_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="현재 테이블과 다른 테이블을 조인할 수 있습니다."
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/table_join_title"
+        app:layout_constraintLeft_toLeftOf="@id/table_join_title"/>
+
+    <TextView
+        android:id="@+id/table_join_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="테이블을 선택하고 조인 할 칼럼을 선택하세요."
+        android:fontFamily="@font/nanumsquare_acr"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/table_join_text1"
+        app:layout_constraintLeft_toLeftOf="@id/table_join_text1"/>
+
+    <TextView
+        android:id="@+id/table_join_table_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="테이블 선택"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanumsquare_acb"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/table_join_text2"
+        app:layout_constraintTop_toBottomOf="@id/table_join_text2"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/table_join_table_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/table_join_title"
+        app:layout_constraintTop_toBottomOf="@id/table_join_table_title"/>
+
+    <TextView
+        android:id="@+id/table_join_column_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="대상 칼럼 선택"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanumsquare_acb"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="@id/table_join_table_spinner"
+        app:layout_constraintTop_toBottomOf="@id/table_join_table_spinner"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/table_join_column_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/table_join_column_title"
+        app:layout_constraintTop_toBottomOf="@id/table_join_column_title"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/table_join_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/table_join_column_spinner"/>
+
+    <Button
+        android:id="@+id/btn_table_join"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/nanumsquare_acb"
+        android:text="테이블 조인"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

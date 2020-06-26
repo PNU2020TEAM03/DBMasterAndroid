@@ -338,6 +338,13 @@
             app:exitAnim="@anim/slide_exit"
             app:popEnterAnim="@anim/slide_pop_enter"
             app:popExitAnim="@anim/slide_pop_exit" />
+        <action
+            android:id="@+id/action_tableControlFragment_to_tableJoinFragment"
+            app:destination="@id/tableJoinFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
     </fragment>
     <fragment
         android:id="@+id/dataExportFragment"
@@ -354,4 +361,9 @@
         android:name="com.example.dbmasterandroid.ui.update.DataUpdateFragment"
         android:label="DataUpdateFragment"
         tools:layout="@layout/fragment_data_update"/>
+    <fragment
+        android:id="@+id/tableJoinFragment"
+        android:name="com.example.dbmasterandroid.ui.join.TableJoinFragment"
+        android:label="TableJoinFragment"
+        tools:layout="@layout/fragment_table_join"/>
 </navigation>

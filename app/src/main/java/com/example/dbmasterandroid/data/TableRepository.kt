@@ -27,4 +27,6 @@ interface TableRepository {
     fun sortTable(tableSortInfo: HashMap<String, String>): Single<TableRowDataDTO>
 
     fun insertRowData(rowData: HashMap<String, String>): Single<ResponseDTO>
+
+    fun joinTable(tableJoinInfo: HashMap<String, String>): Single<TableRowDataDTO>
 }

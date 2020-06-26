@@ -27,7 +27,7 @@ class TableControlFragment: BaseFragment<TableControlViewModel>() {
         }
         /* join */
         btn_table_control_join.setOnClickListener {
-
+            findNavController().navigate(R.id.action_tableControlFragment_to_tableJoinFragment)
         }
         /* export */
         btn_table_control_export.setOnClickListener {

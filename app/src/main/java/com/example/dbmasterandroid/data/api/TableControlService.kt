@@ -58,7 +58,7 @@ interface TableControlService {
             @Body tableInfo: HashMap<String, String>
     ): Single<ResponseDTO>
 
-    /* TODO 테이블 JOIN API */
+    /* 테이블 JOIN API */
     @POST("/v1/table/join")
     fun joinTable(
             @Body tableJoinInfo: HashMap<String, String>

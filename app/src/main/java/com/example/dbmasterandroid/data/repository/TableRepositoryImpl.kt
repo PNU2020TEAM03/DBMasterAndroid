@@ -50,4 +50,8 @@ class TableRepositoryImpl(
     override fun insertRowData(rowData: HashMap<String, String>): Single<ResponseDTO> {
         return tableControlService.insertRowData(rowData)
     }
+
+    override fun joinTable(tableJoinInfo: HashMap<String, String>): Single<TableRowDataDTO> {
+        return tableControlService.joinTable(tableJoinInfo)
+    }
 }
