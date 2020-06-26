@@ -5,6 +5,7 @@ import com.example.dbmasterandroid.data.dto.TableListDTO
 import com.example.dbmasterandroid.data.dto.TableRowDataDTO
 import io.reactivex.Single
 import retrofit2.http.Body
+import retrofit2.http.POST
 
 interface TableRepository {
 

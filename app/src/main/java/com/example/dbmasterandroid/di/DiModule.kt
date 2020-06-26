@@ -1,6 +1,7 @@
 package com.example.dbmasterandroid.di
 
 import com.example.dbmasterandroid.MainActivityViewModel
+import com.example.dbmasterandroid.ui.custom.CustomQueryViewModel
 import com.example.dbmasterandroid.ui.export.DataExportViewModel
 import com.example.dbmasterandroid.ui.insert.DataInsertViewModel
 import com.example.dbmasterandroid.ui.join.TableJoinViewModel
@@ -41,4 +42,5 @@ val viewModelPart = module {
     viewModel { DataInsertViewModel(get(), get()) }
     viewModel { DataExportViewModel(get(), get()) }
     viewModel { DataUpdateViewModel(get(), get()) }
+    viewModel { CustomQueryViewModel() }
 }

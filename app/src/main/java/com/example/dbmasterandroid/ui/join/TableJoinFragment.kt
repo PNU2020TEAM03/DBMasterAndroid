@@ -38,12 +38,10 @@ class TableJoinFragment: BaseFragment<TableJoinViewModel>() {
             table_join_table_spinner.adapter = ArrayAdapter(requireContext(), R.layout.item_update_spinner, it)
         })
         viewModel.columnNameList.observe(viewLifecycleOwner, Observer {
-            table_join_column_title.visibility = View.VISIBLE
-            table_join_column_spinner.visibility = View.VISIBLE
             table_join_column_spinner.adapter = ArrayAdapter(requireContext(), R.layout.item_update_spinner, it)
         })
         viewModel.tableJoinComplete.observe(viewLifecycleOwner, Observer {
-            table_join_recycler.visibility = View.VISIBLE
+            table_join_recycler_container.visibility = View.VISIBLE
             adapter.notifyDataSetChanged()
         })
         viewModel.tableJoinInvalid.observe(viewLifecycleOwner, Observer {

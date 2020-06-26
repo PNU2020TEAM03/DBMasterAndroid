@@ -345,6 +345,13 @@
             app:exitAnim="@anim/slide_exit"
             app:popEnterAnim="@anim/slide_pop_enter"
             app:popExitAnim="@anim/slide_pop_exit" />
+        <action
+            android:id="@+id/action_tableControlFragment_to_customQueryFragment"
+            app:destination="@id/customQueryFragment"
+            app:enterAnim="@anim/slide_enter"
+            app:exitAnim="@anim/slide_exit"
+            app:popEnterAnim="@anim/slide_pop_enter"
+            app:popExitAnim="@anim/slide_pop_exit" />
     </fragment>
     <fragment
         android:id="@+id/dataExportFragment"
@@ -366,4 +373,9 @@
         android:name="com.example.dbmasterandroid.ui.join.TableJoinFragment"
         android:label="TableJoinFragment"
         tools:layout="@layout/fragment_table_join"/>
+    <fragment
+        android:id="@+id/customQueryFragment"
+        android:name="com.example.dbmasterandroid.ui.custom.CustomQueryFragment"
+        android:label="CustomQueryFragment"
+        tools:layout="@layout/fragment_custom_query"/>
 </navigation>

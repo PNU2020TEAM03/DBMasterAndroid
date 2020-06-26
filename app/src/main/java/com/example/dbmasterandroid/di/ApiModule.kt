@@ -1,14 +1,8 @@
 package com.example.dbmasterandroid.di
 
-import com.example.dbmasterandroid.data.ColumnRepository
-import com.example.dbmasterandroid.data.ConnectionRepository
-import com.example.dbmasterandroid.data.SignUpRepository
-import com.example.dbmasterandroid.data.TableRepository
+import com.example.dbmasterandroid.data.*
 import com.example.dbmasterandroid.data.api.*
-import com.example.dbmasterandroid.data.repository.ColumnRepositoryImpl
-import com.example.dbmasterandroid.data.repository.ConnectionRepositoryImpl
-import com.example.dbmasterandroid.data.repository.SignUpRepositoryImpl
-import com.example.dbmasterandroid.data.repository.TableRepositoryImpl
+import com.example.dbmasterandroid.data.repository.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -32,6 +26,7 @@ val apiModule = module {
     single<ConnectionRepository> { ConnectionRepositoryImpl(get()) }
     single<TableRepository> { TableRepositoryImpl(get()) }
     single<ColumnRepository> { ColumnRepositoryImpl(get()) }
+    single<QueryRepository> { QueryRepositoryImpl(get()) }
 }
 
 fun provideOkHttpClient(): OkHttpClient {

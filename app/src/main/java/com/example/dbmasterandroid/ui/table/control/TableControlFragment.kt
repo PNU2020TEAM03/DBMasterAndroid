@@ -19,7 +19,7 @@ class TableControlFragment: BaseFragment<TableControlViewModel>() {
     override fun initFinish() {
         /* Custom */
         btn_table_control_custom.setOnClickListener {
-
+            findNavController().navigate(R.id.action_tableControlFragment_to_customQueryFragment)
         }
         /* insert */
         btn_table_control_insert.setOnClickListener {
