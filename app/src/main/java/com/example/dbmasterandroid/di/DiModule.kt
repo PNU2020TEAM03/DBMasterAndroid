@@ -42,5 +42,5 @@ val viewModelPart = module {
     viewModel { DataInsertViewModel(get(), get()) }
     viewModel { DataExportViewModel(get(), get()) }
     viewModel { DataUpdateViewModel(get(), get()) }
-    viewModel { CustomQueryViewModel() }
+    viewModel { CustomQueryViewModel(get(), get()) }
 }

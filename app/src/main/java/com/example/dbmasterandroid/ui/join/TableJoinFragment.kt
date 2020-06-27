@@ -41,7 +41,6 @@ class TableJoinFragment: BaseFragment<TableJoinViewModel>() {
             table_join_column_spinner.adapter = ArrayAdapter(requireContext(), R.layout.item_update_spinner, it)
         })
         viewModel.tableJoinComplete.observe(viewLifecycleOwner, Observer {
-            table_join_recycler_container.visibility = View.VISIBLE
             adapter.notifyDataSetChanged()
         })
         viewModel.tableJoinInvalid.observe(viewLifecycleOwner, Observer {

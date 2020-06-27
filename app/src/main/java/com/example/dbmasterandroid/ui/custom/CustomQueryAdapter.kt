@@ -1,4 +1,4 @@
-package com.example.dbmasterandroid.ui.join
+package com.example.dbmasterandroid.ui.custom
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dbmasterandroid.R
 import kotlinx.android.synthetic.main.item_table_row_data.view.*
 
-class TableJoinAdapter(
-        private val viewModel: TableJoinViewModel
+class CustomQueryAdapter(
+        private val viewModel: CustomQueryViewModel
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view)
@@ -19,10 +19,10 @@ class TableJoinAdapter(
                 .inflate(R.layout.item_table_row_data, parent, false))
     }
 
-    override fun getItemCount(): Int = viewModel.getJoinTableListSize() + 1
+    override fun getItemCount(): Int = viewModel.getCustomQueryResultListSize() + 1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val columnNames = viewModel.getJoinTableColumnName()
+        val columnNames = viewModel.getColumnNames()
 
         if (position == 0) {
             when (columnNames.size) {
@@ -101,7 +101,7 @@ class TableJoinAdapter(
                 }
             }
         } else {
-            val rowData = viewModel.getJoinTableListItem(position - 1)
+            val rowData = viewModel.getCustomQueryResultListItem(position - 1)
             val rowDataList = ArrayList<String>()
 
             for (columnName in columnNames) {

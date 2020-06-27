@@ -35,7 +35,7 @@ class TableJoinViewModel(
     fun getJoinTableListSize() = joinTableInfo.size
     fun getJoinTableListItem(position: Int) = joinTableInfo[position]
 
-    fun getJoinTableColumnName() = joinTableInfo[0].keys
+    fun getJoinTableColumnName(): MutableSet<String> = joinTableInfo[0].keys
 
     fun tableJoin(targetTable: String, targetColumn: String) {
         val joinInfo = HashMap<String, String>()
@@ -44,6 +44,8 @@ class TableJoinViewModel(
         joinInfo["tableName"] = getTableName()
         joinInfo["joinTable"] = targetTable
         joinInfo["joiningColumn"] = targetColumn
+
+        joinTableInfo.clear()
 
         compositeDisposable.add(tableRepository.joinTable(joinInfo)
                 .subscribeOn(Schedulers.io())
